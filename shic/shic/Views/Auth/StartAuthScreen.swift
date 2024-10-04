@@ -9,13 +9,17 @@ import SwiftUI
 
 struct StartAuthScreen: View {
     
-    @StateObject private var router = StartAuthRouter()
+    @State private var isShowSignIn: Bool = false
+    @State private var isShowRegistration: Bool = false
     
     var body: some View {
         makeContent()
-            .edgesIgnoringSafeArea(.top)
-            .fullScreenCover(item: $router.fullScreenView) { fullScreenView in
-                fullScreenView.view
+            .ignoresSafeArea()
+            .fullScreenCover(isPresented: $isShowRegistration) {
+                RegistrationScreen()
+            }
+            .fullScreenCover(isPresented: $isShowSignIn) {
+                SignInScreen()
             }
     }
     
@@ -32,13 +36,14 @@ struct StartAuthScreen: View {
                 .padding(.horizontal, 20)
         }
         .padding(.top, 70)
+        .padding(.bottom, 70)
     }
     
     private func image() -> some View {
-        Image("VectorPlaceholder")
+         Image("VectorPlaceholder")
             .resizable()
-            .aspectRatio(1.37, contentMode: .fit)
-            .frame(height: 330)
+            .aspectRatio(1.13, contentMode: .fit)
+            .frame(maxHeight: .infinity)
     }
     
     private func header() -> some View {
@@ -63,20 +68,8 @@ struct StartAuthScreen: View {
     }
     
     private func largeButton() -> some View {
-        Button {
-            let view = router.view(for: .register)
-            router.present(view, with: .fullScreen)
-        } label: {
-            Text("Начать")
-                .font(Font.custom("Alegreya-Bold", size: 20))
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.white)
-                .padding(.vertical, 16)
-                .frame(maxWidth: .infinity)
-                .background {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(Color.darkPrimary)
-                }
+        MainButton(isAvailable: Binding.constant(true), text: "Начать") {
+            isShowRegistration.toggle()
         }
     }
     
@@ -87,8 +80,7 @@ struct StartAuthScreen: View {
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.darkPrimary)
             Button {
-                let view = router.view(for: .signIn)
-                router.present(view, with: .fullScreen)
+                isShowSignIn.toggle()
             } label: {
                 Text("Войти")
                     .font(Font.custom("Alegreya-Bold", size: 16))

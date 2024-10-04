@@ -5,16 +5,10 @@
 //  Created by Руслан Парастаев on 04.10.2024.
 //
 
-enum NavigationType {
+enum FillFieldType {
     
-    case sheet
-    case fullScreen
-    
-}
-
-enum StartAuthRoute {
-    
-    case register
-    case signIn
+    case standart
+    case date
+    case phone
     
 }
