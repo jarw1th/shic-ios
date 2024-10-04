@@ -10,9 +10,22 @@
 		219979812CAFE2E4008688A5 /* shic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		219979C22CAFF598008688A5 /* Exceptions for "shic" folder in "shic" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Core/Info.plist,
+			);
+			target = 219979802CAFE2E4008688A5 /* shic */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		219979832CAFE2E4008688A5 /* shic */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				219979C22CAFF598008688A5 /* Exceptions for "shic" folder in "shic" target */,
+			);
 			path = shic;
 			sourceTree = "<group>";
 		};
@@ -256,6 +269,8 @@
 				DEVELOPMENT_TEAM = QN6RC23FCQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = shic/Core/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Shic;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -286,6 +301,8 @@
 				DEVELOPMENT_TEAM = QN6RC23FCQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = shic/Core/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Shic;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

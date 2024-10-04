@@ -43,14 +43,14 @@ struct StartAuthScreen: View {
     
     private func header() -> some View {
         Text("Встречайте своего личного стилиста")
-            .font(.system(size: 24, weight: .bold))
+            .font(Font.custom("Alegreya-Bold", size: 24))
             .multilineTextAlignment(.center)
             .foregroundStyle(.darkPrimary)
     }
     
     private func text() -> some View {
         Text("Просто расскажите о своих предпочтениях,\nи мы подберем для вас стиль.")
-            .font(.system(size: 16, weight: .regular))
+            .font(Font.custom("Alegreya-Regular", size: 16))
             .multilineTextAlignment(.center)
             .foregroundStyle(.darkPrimary)
     }
@@ -68,7 +68,7 @@ struct StartAuthScreen: View {
             router.present(view, with: .fullScreen)
         } label: {
             Text("Начать")
-                .font(.system(size: 20, weight: .bold))
+                .font(Font.custom("Alegreya-Bold", size: 20))
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.white)
                 .padding(.vertical, 16)
@@ -83,7 +83,7 @@ struct StartAuthScreen: View {
     private func smallButton() -> some View {
         HStack(spacing: 24) {
             Text("Вы уже с нами?")
-                .font(.system(size: 16, weight: .bold))
+                .font(Font.custom("Alegreya-Bold", size: 16))
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.darkPrimary)
             Button {
@@ -91,7 +91,7 @@ struct StartAuthScreen: View {
                 router.present(view, with: .fullScreen)
             } label: {
                 Text("Войти")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(Font.custom("Alegreya-Bold", size: 16))
                     .multilineTextAlignment(.center)
                     .underline()
                     .foregroundStyle(.darkPrimary)
