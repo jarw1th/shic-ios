@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct shicApp: App {
+    
     var body: some Scene {
         WindowGroup {
-            
+            LoadingScreen()
+                .preferredColorScheme(.light)
         }
     }
+    
 }
