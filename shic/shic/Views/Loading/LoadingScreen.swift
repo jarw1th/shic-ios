@@ -14,6 +14,7 @@ struct LoadingScreen: View {
     var body: some View {
         makeContent()
         .onAppear {
+            RouteManager.shared.initial()
             isShowAuth.toggle()
         }
         .fullScreenCover(isPresented: $isShowAuth) {

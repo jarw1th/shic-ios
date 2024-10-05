@@ -100,9 +100,9 @@ struct SignInScreen: View {
                 isShowRegistration.toggle()
             } label: {
                 Text("Создать")
+                    .underline()
                     .font(Font.custom("Alegreya-Bold", size: 16))
                     .multilineTextAlignment(.center)
-                    .underline()
                     .foregroundStyle(Color.darkPrimary)
             }
         }

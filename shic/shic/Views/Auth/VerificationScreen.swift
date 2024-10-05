@@ -15,8 +15,10 @@ struct VerificationScreen: View {
     
     var number: String
     
-    @State private var isValid: Bool = false
+    @State private var countdown: Int? = nil
+    @State private var timer: Timer?
     
+    @State private var isValid: Bool = false
     @State private var code: String = ""
     
     var body: some View {
@@ -24,10 +26,13 @@ struct VerificationScreen: View {
             .ignoresSafeArea()
             .navigationBarHidden(true)
             .fullScreenCover(isPresented: $isShowForm) {
-                LoadingScreen()
+                AnyView(RouteManager.shared.getScreen())
             }
             .onChange(of: code) { _ in
                 checkAvailable()
+            }
+            .onAppear {
+                startCountdown()
             }
             .endEditing()
     }
@@ -111,14 +116,37 @@ struct VerificationScreen: View {
                 .multilineTextAlignment(.center)
                 .foregroundStyle(Color.darkPrimary)
             Button {
-                
+                startCountdown()
             } label: {
-                Text("Еще раз")
+                Text(countdownText())
+                    .underline()
                     .font(Font.custom("Alegreya-Bold", size: 16))
                     .multilineTextAlignment(.center)
-                    .underline()
                     .foregroundStyle(Color.darkPrimary)
+                    .opacity(countdown == nil ? 1.0 : 0.4)
             }
+            .disabled(countdown != nil)
+        }
+    }
+    
+    private func startCountdown() {
+        countdown = 60
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            if let currentCountdown = countdown, currentCountdown > 0 {
+                countdown = currentCountdown - 1
+            } else {
+                timer?.invalidate()
+                timer = nil
+                countdown = nil
+            }
+        }
+    }
+    
+    private func countdownText() -> String {
+        if let countdown = countdown {
+            return "\(countdown)c"
+        } else {
+            return "Еще раз"
         }
     }
     

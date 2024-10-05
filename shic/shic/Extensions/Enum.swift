@@ -12,3 +12,23 @@ enum FillFieldType {
     case phone
     
 }
+
+
+enum Gender: StringData, CaseIterable {
+    
+    case mail
+    case femail
+    case child
+    
+    func text() -> String {
+        switch self {
+        case .child:
+            "Ребенок"
+        case .femail:
+            "Женщина"
+        case .mail:
+            "Мужчина"
+        }
+    }
+    
+}

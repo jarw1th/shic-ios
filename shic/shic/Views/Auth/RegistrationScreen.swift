@@ -84,10 +84,10 @@ struct RegistrationScreen: View {
                         .multilineTextAlignment(.leading)
                         .foregroundStyle(Color.darkPrimary)
                     Text("Условиями пользования.")
+                        .underline()
                         .font(Font.custom("Alegreya-Regular", size: 12))
                         .multilineTextAlignment(.leading)
                         .foregroundStyle(Color.darkPrimary)
-                        .underline()
                 }
             }
         }
@@ -127,9 +127,9 @@ struct RegistrationScreen: View {
                 isShowSignIn.toggle()
             } label: {
                 Text("Войти")
+                    .underline()
                     .font(Font.custom("Alegreya-Bold", size: 16))
                     .multilineTextAlignment(.center)
-                    .underline()
                     .foregroundStyle(Color.darkPrimary)
             }
         }
