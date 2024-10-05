@@ -18,13 +18,13 @@ final class RouteManager {
     init() {
         self.formIndex = 0
         self.screenIndex = 0
-        self.formScreens = [StartSmartFormScreen(), SmartFormGenderScreen()]
+        self.formScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormWearStyleScreen()]
     }
     
     func initial() {
         self.formIndex = 0
         self.screenIndex = 0
-        self.formScreens = [StartSmartFormScreen(), SmartFormGenderScreen()]
+        self.formScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormWearStyleScreen()]
     }
     
     func pop(_ incrementIndex: Bool = true) {

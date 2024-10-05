@@ -18,6 +18,7 @@ struct BottomBarForm: View {
     var body: some View {
         VStack(spacing: 24) {
             MainButton(isAvailable: $isAvailable, text: "Дальше") {
+                RouteManager.shared.push()
                 next = AnyView(RouteManager.shared.getScreen())
             }
             .background {

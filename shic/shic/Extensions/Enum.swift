@@ -32,3 +32,34 @@ enum Gender: StringData, CaseIterable {
     }
     
 }
+
+enum WearStyle: StringData, CaseIterable {
+    
+    case casual
+    case business
+    case sporty
+    case street
+    case romantic
+    case party
+    case classic
+    
+    func text() -> String {
+        switch self {
+        case .casual:
+            "Кэжуал"
+        case .business:
+            "Деловой"
+        case .sporty:
+            "Спортивный"
+        case .street:
+            "Стрит"
+        case .romantic:
+            "Свидание"
+        case .party:
+            "Вечеринки"
+        case .classic:
+            "Классический"
+        }
+    }
+    
+}
