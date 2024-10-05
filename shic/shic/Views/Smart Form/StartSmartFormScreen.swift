@@ -67,7 +67,7 @@ struct StartSmartFormScreen: View {
     }
     
     private func largeButton() -> some View {
-        MainButton(isAvailable: Binding.constant(true), text: "Начать") {
+        MainButton(text: "Начать") {
             RouteManager.shared.push(false)
             form = AnyView(RouteManager.shared.getScreen())
         }

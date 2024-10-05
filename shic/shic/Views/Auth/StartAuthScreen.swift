@@ -68,7 +68,7 @@ struct StartAuthScreen: View {
     }
     
     private func largeButton() -> some View {
-        MainButton(isAvailable: Binding.constant(true), text: "Начать") {
+        MainButton(text: "Начать") {
             isShowRegistration.toggle()
         }
     }

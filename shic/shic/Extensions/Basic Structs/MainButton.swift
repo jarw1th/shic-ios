@@ -9,10 +9,15 @@ import SwiftUI
 
 struct MainButton: View {
     
-    var disabling: Bool = false
     @Binding var isAvailable: Bool
     var text: String
     var action: () -> Void
+    
+    init(isAvailable: Binding<Bool> = Binding.constant(true), text: String, action: @escaping () -> Void) {
+        self._isAvailable = isAvailable
+        self.text = text
+        self.action = action
+    }
     
     var body: some View {
         Button {
@@ -31,7 +36,7 @@ struct MainButton: View {
                         .opacity(isAvailable ? 1.0 : 0.4)
                 }
         }
-        .disabled(disabling ? !isAvailable : false)
+        .disabled(!isAvailable)
     }
     
 }

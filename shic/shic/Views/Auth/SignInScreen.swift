@@ -74,7 +74,7 @@ struct SignInScreen: View {
     }
     
     private func largeButton() -> some View {
-        MainButton(disabling: true, isAvailable: $isValid, text: "Отправить код") {
+        MainButton(isAvailable: $isValid, text: "Отправить код") {
             if isValid {
                 isShowVerification.toggle()
             }
