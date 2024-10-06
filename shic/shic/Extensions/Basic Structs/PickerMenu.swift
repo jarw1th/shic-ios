@@ -14,10 +14,18 @@ struct PickerMenu<Data: StringData>: View {
     var header: String
     var action: (Data) -> Void
     @State private var isOpened: Bool = false
-    @State private var selectedData: Data? = nil
+    @Binding private var selectedData: Data? 
     
     @State private var mainButtonWidth: CGFloat = 0
     @State private var headerWidth: CGFloat = 0
+    
+    init(data: [Data], placeholder: String, header: String, selectedData: Binding<Data?> = Binding.constant(nil), action: @escaping (Data) -> Void) {
+        self.data = data
+        self.placeholder = placeholder
+        self.header = header
+        self.action = action
+        self._selectedData = selectedData
+    }
     
     var body: some View {
         VStack(alignment: .trailing, spacing: 0) {

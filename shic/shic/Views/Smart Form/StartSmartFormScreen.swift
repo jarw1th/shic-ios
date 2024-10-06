@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StartSmartFormScreen: View {
     
+    @EnvironmentObject var viewModel: ViewModel
+    
     @State private var form: AnyView? = nil
     @State private var isShowTab: Bool = false
     
@@ -17,7 +19,7 @@ struct StartSmartFormScreen: View {
             makeContent()
                 .ignoresSafeArea()
                 .fullScreenCover(isPresented: $isShowTab) {
-                    AnyView(RouteManager.shared.getLaterScreen())
+                    AnyView(SmartFormRouteManager.shared.getLaterScreen())
                 }
         }
     }
@@ -68,8 +70,8 @@ struct StartSmartFormScreen: View {
     
     private func largeButton() -> some View {
         MainButton(text: "Начать") {
-            RouteManager.shared.push(false)
-            form = AnyView(RouteManager.shared.getScreen())
+            SmartFormRouteManager.shared.push(false)
+            form = AnyView(SmartFormRouteManager.shared.getScreen())
         }
         .background {
             NavigationLink(destination: form, isActive: Binding(

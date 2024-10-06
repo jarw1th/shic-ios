@@ -9,24 +9,26 @@ import SwiftUI
 
 struct SmartFormBodyTypeScreen: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: ViewModel
+    @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
-    
-    @State private var bodyType: BodyType? = nil
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .onAppear {
+                    checkAvailable()
+                }
         }
     }
     
     private func makeContent() -> some View {
         VStack(spacing: 16) {
             NavigationBarForm {
-                RouteManager.shared.pop(false)
-                presentationMode.wrappedValue.dismiss()
+                SmartFormRouteManager.shared.pop()
+                dismiss()
             }
             VStack(spacing: 40) {
                 TopHeaderText(header: "Тип тела", text: "Укажи какая у тебя фигура")
@@ -41,14 +43,16 @@ struct SmartFormBodyTypeScreen: View {
     }
     
     private func centerView() -> some View {
-        PickerMenuWithTip(data: BodyType.allCases, action: { data in
-            bodyType = data
-            if bodyType != nil {
-                isValid = true
-            }
+        PickerMenuWithTip(data: BodyType.allCases, selectedData: $viewModel.smartFormModel.bodyType, action: { data in
+            viewModel.smartFormModel.bodyType = data
+            checkAvailable()
         }, tip: { value in
             
         })
+    }
+    
+    private func checkAvailable() {
+        isValid = viewModel.smartFormModel.bodyType != nil
     }
     
 }

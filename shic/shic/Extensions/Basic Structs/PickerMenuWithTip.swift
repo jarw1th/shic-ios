@@ -13,7 +13,15 @@ struct PickerMenuWithTip<Data: StringData>: View {
     var header: String? = nil
     var action: (Data) -> Void
     var tip: (Data) -> Void
-    @State private var selectedData: Data? = nil
+    @Binding private var selectedData: Data?
+    
+    init(data: [Data], header: String? = nil, selectedData: Binding<Data?> = Binding.constant(nil), action: @escaping (Data) -> Void, tip: @escaping (Data) -> Void) {
+        self.data = data
+        self.header = header
+        self.action = action
+        self.tip = tip
+        self._selectedData = selectedData
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

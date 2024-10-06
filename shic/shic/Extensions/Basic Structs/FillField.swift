@@ -130,18 +130,10 @@ struct FillField: View {
         let thirdPart = String(adjustedCleanedNumber.dropFirst(6).prefix(2))
         let fourthPart = String(adjustedCleanedNumber.dropFirst(8).prefix(2))
 
-        formattedNumber += firstPart.isEmpty ? "" : "\(firstPart) "
-        formattedNumber += secondPart.isEmpty ? "" : "\(secondPart) "
-        formattedNumber += thirdPart.isEmpty ? "" : "\(thirdPart) "
+        formattedNumber += firstPart.isEmpty ? "" : (secondPart.isEmpty ? firstPart : "\(firstPart) ")
+        formattedNumber += secondPart.isEmpty ? "" : (thirdPart.isEmpty ? secondPart : "\(secondPart) ")
+        formattedNumber += thirdPart.isEmpty ? "" : (fourthPart.isEmpty ? thirdPart : "\(thirdPart) ")
         formattedNumber += fourthPart.isEmpty ? "" : "\(fourthPart)"
-        
-        formattedNumber = formattedNumber.trimmingCharacters(in: .whitespaces)
-        
-        if number.last == " " {
-            if !formattedNumber.isEmpty {
-                formattedNumber = String(formattedNumber.dropLast())
-            }
-        }
 
         return prefix + formattedNumber
     }

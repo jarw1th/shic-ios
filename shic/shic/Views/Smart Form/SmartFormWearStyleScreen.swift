@@ -9,24 +9,26 @@ import SwiftUI
 
 struct SmartFormWearStyleScreen: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: ViewModel
+    @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
-    
-    @State private var styles: [WearStyle] = []
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .onAppear {
+                    checkAvailable()
+                }
         }
     }
     
     private func makeContent() -> some View {
         VStack(spacing: 16) {
             NavigationBarForm {
-                RouteManager.shared.pop(false)
-                presentationMode.wrappedValue.dismiss()
+                SmartFormRouteManager.shared.pop()
+                dismiss()
             }
             VStack(spacing: 64) {
                 TopHeaderText(header: "Стиль одежды", text: "Какие вещи ты ищешь?")
@@ -41,10 +43,14 @@ struct SmartFormWearStyleScreen: View {
     }
     
     private func centerView() -> some View {
-        PickerSeveralItems(data: WearStyle.allCases, rows: 3) { data in
-            styles = data
-            isValid = !styles.isEmpty
+        PickerSeveralItems(data: WearStyle.allCases, rows: 3, selectedData: $viewModel.smartFormModel.wearStyle) { data in
+            viewModel.smartFormModel.wearStyle = data
+            checkAvailable()
         }
+    }
+    
+    private func checkAvailable() {
+        isValid = !viewModel.smartFormModel.wearStyle.isEmpty
     }
     
 }

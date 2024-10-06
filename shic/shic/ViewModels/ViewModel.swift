@@ -10,9 +10,10 @@ import SwiftUI
 @MainActor
 final class ViewModel: ObservableObject {
     
-    static let shared = ViewModel()
-    
     private var userDefaultsManager: UserDefaultsManager
+    
+    @Published var smartFormModel: SmartFormModel = SmartFormModel()
+    @Published var userModel: UserModel = UserModel()
     
     init() {
         self.userDefaultsManager = UserDefaultsManager.shared

@@ -9,16 +9,18 @@ import SwiftUI
 
 struct LoadingScreen: View {
     
+    @StateObject private var viewModel: ViewModel = ViewModel()
+    
     @State private var isShowAuth: Bool = false
     
     var body: some View {
         makeContent()
         .onAppear {
-            RouteManager.shared.initial()
             isShowAuth.toggle()
         }
         .fullScreenCover(isPresented: $isShowAuth) {
             StartAuthScreen()
+                .environmentObject(viewModel)
         }
     }
     

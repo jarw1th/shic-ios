@@ -9,15 +9,12 @@ import SwiftUI
 
 struct RegistrationScreen: View {
     
+    @EnvironmentObject var viewModel: ViewModel
+    
     @State private var isShowSignIn: Bool = false
     @State private var isShowVerification: Bool = false
     
     @State private var isValid: Bool = false
-    
-    @State private var name: String = ""
-    @State private var date: String = ""
-    @State private var phone: String = ""
-    @State private var isAccepted: Bool = false
     
     var body: some View {
         NavigationView() {
@@ -26,17 +23,21 @@ struct RegistrationScreen: View {
                 .navigationBarHidden(true)
                 .fullScreenCover(isPresented: $isShowSignIn) {
                     SignInScreen()
+                        .environmentObject(viewModel)
                 }
-                .onChange(of: name) { _ in
+                .onChange(of: viewModel.userModel.name) { _ in
                     checkAvailable()
                 }
-                .onChange(of: date) { _ in
+                .onChange(of: viewModel.userModel.birthday) { _ in
                     checkAvailable()
                 }
-                .onChange(of: phone) { _ in
+                .onChange(of: viewModel.userModel.phone) { _ in
                     checkAvailable()
                 }
-                .onChange(of: isAccepted) { _ in
+                .onChange(of: viewModel.userModel.isAccepted) { _ in
+                    checkAvailable()
+                }
+                .onAppear {
                     checkAvailable()
                 }
         }
@@ -74,10 +75,10 @@ struct RegistrationScreen: View {
     
     private func centerView() -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            FillField(text: $name, placeholder: "Руслан", name: "Имя")
-            FillField(type: .date, text: $date, placeholder: "00.00.0000", name: "День рождения")
-            FillField(type: .phone, text: $phone, placeholder: "+7 999 999 99 99", name: "Телефон")
-            AcceptField(isAccepted: $isAccepted) {
+            FillField(text: $viewModel.userModel.name, placeholder: "Руслан", name: "Имя")
+            FillField(type: .date, text: $viewModel.userModel.birthday, placeholder: "00.00.0000", name: "День рождения")
+            FillField(type: .phone, text: $viewModel.userModel.phone, placeholder: "+7 999 999 99 99", name: "Телефон")
+            AcceptField(isAccepted: $viewModel.userModel.isAccepted) {
                 HStack {
                     Text("Согласен с")
                         .font(Font.custom("Alegreya-Regular", size: 12))
@@ -108,7 +109,8 @@ struct RegistrationScreen: View {
         }
         .background {
             NavigationLink(
-                destination: VerificationScreen(number: phone)
+                destination: VerificationScreen()
+                    .environmentObject(viewModel)
                     .navigationBarHidden(true),
                 isActive: $isShowVerification
             ) {
@@ -136,11 +138,11 @@ struct RegistrationScreen: View {
     }
     
     private func checkAvailable() {
-        let checkName = name.count >= 2
-        let checkDate = ValidManager.shared.checkDate(date)
-        let checkPhone = ValidManager.shared.checkPhoneNumber(phone)
+        let checkName = viewModel.userModel.name.count >= 2
+        let checkDate = ValidManager.shared.checkDate(viewModel.userModel.birthday)
+        let checkPhone = ValidManager.shared.checkPhoneNumber(viewModel.userModel.phone)
         
-        isValid = checkName && checkDate && checkPhone && isAccepted
+        isValid = checkName && checkDate && checkPhone && viewModel.userModel.isAccepted
     }
     
 }

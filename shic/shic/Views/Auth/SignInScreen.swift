@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SignInScreen: View {
     
+    @EnvironmentObject var viewModel: ViewModel
+    
     @State private var isShowRegistration: Bool = false
     @State private var isShowVerification: Bool = false
     
     @State private var isValid: Bool = false
-    
-    @State private var phone: String = ""
     
     var body: some View {
         NavigationView {
@@ -23,8 +23,12 @@ struct SignInScreen: View {
                 .navigationBarHidden(true)
                 .fullScreenCover(isPresented: $isShowRegistration) {
                     RegistrationScreen()
+                        .environmentObject(viewModel)
                 }
-                .onChange(of: phone) { _ in
+                .onChange(of: viewModel.userModel.phone) { _ in
+                    checkAvailable()
+                }
+                .onAppear {
                     checkAvailable()
                 }
         }
@@ -62,7 +66,7 @@ struct SignInScreen: View {
     
     private func centerView() -> some View {
         VStack(alignment: .leading, spacing: 16) {
-            FillField(type: .phone, text: $phone, placeholder: "+7 999 999 99 99", name: "Телефон")
+            FillField(type: .phone, text: $viewModel.userModel.phone, placeholder: "+7 999 999 99 99", name: "Телефон")
         }
     }
     
@@ -81,7 +85,8 @@ struct SignInScreen: View {
         }
         .background {
             NavigationLink(
-                destination: VerificationScreen(number: phone)
+                destination: VerificationScreen()
+                    .environmentObject(viewModel)
                     .navigationBarHidden(true),
                 isActive: $isShowVerification
             ) {
@@ -109,7 +114,7 @@ struct SignInScreen: View {
     }
     
     private func checkAvailable() {
-        isValid = ValidManager.shared.checkPhoneNumber(phone)
+        isValid = ValidManager.shared.checkPhoneNumber(viewModel.userModel.phone)
     }
     
 }

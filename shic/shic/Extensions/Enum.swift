@@ -177,3 +177,38 @@ enum LengthSizeType: StringData, CaseIterable {
     }
     
 }
+
+enum ShirtType: StringData, CaseIterable {
+    
+    case tight
+    case classic
+    
+    func text() -> String {
+        switch self {
+        case .tight:
+            "Узкая"
+        case .classic:
+            "Классика"
+        }
+    }
+    
+}
+
+enum PantsType: StringData, CaseIterable {
+    
+    case skinny
+    case tight
+    case athletic
+    
+    func text() -> String {
+        switch self {
+        case .skinny:
+            "Скини"
+        case .tight:
+            "Узкие"
+        case .athletic:
+            "Атлетичные"
+        }
+    }
+    
+}

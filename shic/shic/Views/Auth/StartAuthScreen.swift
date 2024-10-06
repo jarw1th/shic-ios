@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StartAuthScreen: View {
     
+    @EnvironmentObject var viewModel: ViewModel
+    
     @State private var isShowSignIn: Bool = false
     @State private var isShowRegistration: Bool = false
     
@@ -17,9 +19,11 @@ struct StartAuthScreen: View {
             .ignoresSafeArea()
             .fullScreenCover(isPresented: $isShowRegistration) {
                 RegistrationScreen()
+                    .environmentObject(viewModel)
             }
             .fullScreenCover(isPresented: $isShowSignIn) {
                 SignInScreen()
+                    .environmentObject(viewModel)
             }
     }
     

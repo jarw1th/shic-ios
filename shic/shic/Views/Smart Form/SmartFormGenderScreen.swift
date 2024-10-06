@@ -9,24 +9,26 @@ import SwiftUI
 
 struct SmartFormGenderScreen: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: ViewModel
+    @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
-    
-    @State private var gender: Gender? = nil
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .onAppear {
+                    checkAvailable()
+                }
         }
     }
     
     private func makeContent() -> some View {
         VStack(spacing: 16) {
             NavigationBarForm {
-                RouteManager.shared.pop(false)
-                presentationMode.wrappedValue.dismiss()
+                SmartFormRouteManager.shared.pop(false)
+                dismiss()
             }
             VStack(spacing: 64) {
                 TopHeaderText(header: "Пол")
@@ -41,12 +43,14 @@ struct SmartFormGenderScreen: View {
     }
     
     private func centerView() -> some View {
-        PickerMenu(data: Gender.allCases, placeholder: "выбери", header: "Я ") { data in
-            gender = data
-            if gender != nil {
-                isValid = true
-            }
+        PickerMenu(data: Gender.allCases, placeholder: "выбери", header: "Я ", selectedData: $viewModel.smartFormModel.gender) { data in
+            viewModel.smartFormModel.gender = data
+            checkAvailable()
         }
+    }
+    
+    private func checkAvailable() {
+        isValid = viewModel.smartFormModel.gender != nil
     }
     
 }

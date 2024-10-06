@@ -1,5 +1,5 @@
 //
-//  SmartFormShirtScreen.swift
+//  SmartFormWearTypeScreen.swift
 //  shic
 //
 //  Created by Руслан Парастаев on 06.10.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SmartFormShirtScreen: View {
+struct SmartFormWearTypeScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
@@ -31,7 +31,7 @@ struct SmartFormShirtScreen: View {
                 dismiss()
             }
             VStack(spacing: 64) {
-                TopHeaderText(header: "Футболки", text: "Дополнительные вопросы")
+                TopHeaderText(header: "Тип одежды", text: "Выбери, что тебе нравится")
                 centerView()
             }
             BottomBarForm(isAvailable: $isValid)
@@ -44,27 +44,26 @@ struct SmartFormShirtScreen: View {
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 16) {
-                PickerItems(data: WidthSizeType.allCases, header: "Воротники", rows: 2, selectedData: $viewModel.smartFormModel.shirt.colar) { data in
-                    viewModel.smartFormModel.shirt.colar = data
+                PickerMenuWithTip(data: ShirtType.allCases, header: "Тип футболки", selectedData: $viewModel.smartFormModel.shirt.type, action: { data in
+                    viewModel.smartFormModel.shirt.type = data
                     checkAvailable()
-                }
-                PickerItems(data: WidthSizeType.allCases, header: "В плечах", rows: 2, selectedData: $viewModel.smartFormModel.shirt.shoulders) { data in
-                    viewModel.smartFormModel.shirt.shoulders = data
+                }, tip: { value in
+                    
+                })
+                PickerMenuWithTip(data: PantsType.allCases, header: "Тип штанов", selectedData: $viewModel.smartFormModel.pants.type, action: { data in
+                    viewModel.smartFormModel.pants.type = data
                     checkAvailable()
-                }
-                PickerItems(data: LengthSizeType.allCases, header: "Длина рукавов", rows: 2, selectedData: $viewModel.smartFormModel.shirt.sleeve) { data in
-                    viewModel.smartFormModel.shirt.sleeve = data
-                    checkAvailable()
-                }
+                }, tip: { value in
+                    
+                })
             }
         }
     }
     
     private func checkAvailable() {
-        let colar = viewModel.smartFormModel.shirt.colar != nil
-        let shoulders = viewModel.smartFormModel.shirt.shoulders != nil
-        let sleeve = viewModel.smartFormModel.shirt.sleeve != nil
-        isValid = colar && shoulders && sleeve
+        let shirt = viewModel.smartFormModel.shirt.type != nil
+        let pants = viewModel.smartFormModel.pants.type != nil
+        isValid = shirt && pants
     }
     
 }

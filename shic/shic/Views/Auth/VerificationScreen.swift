@@ -9,11 +9,10 @@ import SwiftUI
 
 struct VerificationScreen: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: ViewModel
+    @Environment(\.dismiss) private var dismiss
     
     @State private var isShowForm: Bool = false
-    
-    var number: String
     
     @State private var countdown: Int? = nil
     @State private var timer: Timer?
@@ -26,12 +25,13 @@ struct VerificationScreen: View {
             .ignoresSafeArea()
             .navigationBarHidden(true)
             .fullScreenCover(isPresented: $isShowForm) {
-                AnyView(RouteManager.shared.getScreen())
+                AnyView(SmartFormRouteManager.shared.getScreen())
             }
             .onChange(of: code) { _ in
                 checkAvailable()
             }
             .onAppear {
+                SmartFormRouteManager.shared.initial(viewModel)
                 startCountdown()
             }
             .endEditing()
@@ -64,7 +64,7 @@ struct VerificationScreen: View {
     }
     
     private func text() -> some View {
-        Text("Мы отправили тебе код на телефон\n\(number)")
+        Text("Мы отправили тебе код на телефон\n\(viewModel.userModel.phone)")
             .font(Font.custom("Alegreya-Regular", size: 16))
             .multilineTextAlignment(.center)
             .foregroundStyle(Color.darkPrimary)
@@ -93,7 +93,7 @@ struct VerificationScreen: View {
     
     private func backButton() -> some View {
         Button {
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         } label: {
             ZStack {
                 Circle()

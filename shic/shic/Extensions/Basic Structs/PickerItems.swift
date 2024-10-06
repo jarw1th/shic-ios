@@ -15,7 +15,16 @@ struct PickerItems<Data: StringData>: View {
     var rows: Int =  1
     var action: (Data) -> Void
     
-    @State private var selectedData: Data? = nil
+    @Binding private var selectedData: Data?
+    
+    init(data: [Data], header: String? = nil, text: String? = nil, rows: Int = 1, selectedData: Binding<Data?> = Binding.constant(nil), action: @escaping (Data) -> Void) {
+        self.data = data
+        self.header = header
+        self.text = text
+        self.rows = rows
+        self.action = action
+        self._selectedData = selectedData
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

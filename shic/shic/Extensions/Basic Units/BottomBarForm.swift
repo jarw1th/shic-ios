@@ -18,8 +18,8 @@ struct BottomBarForm: View {
     var body: some View {
         VStack(spacing: 24) {
             MainButton(isAvailable: $isAvailable, text: "Дальше") {
-                RouteManager.shared.push()
-                next = AnyView(RouteManager.shared.getScreen())
+                SmartFormRouteManager.shared.push()
+                next = AnyView(SmartFormRouteManager.shared.getScreen())
             }
             .background {
                 NavigationLink(destination: next, isActive: Binding(
@@ -31,7 +31,7 @@ struct BottomBarForm: View {
             }
             HStack(spacing: 24) {
                 Button {
-                    RouteManager.shared.push()
+                    SmartFormRouteManager.shared.push()
                     isShowLater.toggle()
                 } label: {
                     Text("Заполню потом")
@@ -41,8 +41,8 @@ struct BottomBarForm: View {
                         .foregroundStyle(.darkPrimary)
                 }
                 Button {
-                    RouteManager.shared.push()
-                    skip = AnyView(RouteManager.shared.getScreen())
+                    SmartFormRouteManager.shared.push()
+                    skip = AnyView(SmartFormRouteManager.shared.getScreen())
                 } label: {
                     Text("Пропустить")
                         .underline()
