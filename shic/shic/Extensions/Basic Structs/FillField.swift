@@ -85,15 +85,20 @@ struct FillField: View {
             if type == .footSize, !text.isEmpty {
                 text = formatFootSize(text)
             }
+            if type == .email, !text.isEmpty {
+                text = formatEmail(text)
+            }
         }
     }
     
     private func formatFootSize(_ size: String) -> String {
-        let cleaned = size.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        let pattern = "[\\d]+(?:[.][\\d]+)?"
+        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+        let matches = regex.matches(in: size, options: [], range: NSRange(location: 0, length: size.utf16.count))
         
-        let result = cleaned.joined(separator: " ")
+        let result = matches.map { String(size[Range($0.range, in: size)!]) }
         
-        return result
+        return result.joined(separator: " ")
     }
     
     private func formatHeight(_ height: String) -> String {
@@ -177,8 +182,28 @@ struct FillField: View {
         
         let isLeapYear = (yearInt % 4 == 0 && yearInt % 100 != 0) || (yearInt % 400 == 0)
         let maxDays = (monthInt == 2 && isLeapYear) ? 29 : daysInMonth[monthInt]
+        
+        guard (1...maxDays).contains(dayInt) else {
+            return false
+        }
 
-        return (1...maxDays).contains(dayInt)
+        return yearInt >= 1900
+    }
+    
+    private func formatEmail(_ email: String) -> String {
+        let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        
+        if isValidEmail(trimmedEmail) {
+            return trimmedEmail
+        } else {
+            return ""
+        }
+    }
+
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPredicate.evaluate(with: email)
     }
     
 }

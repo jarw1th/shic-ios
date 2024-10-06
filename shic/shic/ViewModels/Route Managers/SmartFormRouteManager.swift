@@ -45,10 +45,15 @@ final class SmartFormRouteManager {
     }
     
     func getScreen() -> any View {
-        if allScreens.count > screenIndex,
+        if allScreens.count == screenIndex + 1,
            let viewModel {
-            let screen = allScreens[screenIndex].navigationBarHidden(true).environmentObject(viewModel)
+            StyleFormRouteManager.shared.initial(viewModel)
+            let screen = StyleFormRouteManager.shared.getScreen()
             return screen
+        } else if allScreens.count > screenIndex,
+                  let viewModel {
+                   let screen = allScreens[screenIndex].navigationBarHidden(true).environmentObject(viewModel)
+                   return screen
         } else {
             return getLaterScreen()
         }
@@ -62,8 +67,12 @@ final class SmartFormRouteManager {
     }
     
     func getLaterScreen() -> any View {
-        let screen = LoadingScreen()
-        return screen
+        if let viewModel {
+            let screen = TabScreen().navigationBarHidden(true).environmentObject(viewModel)
+            return screen
+        } else {
+            return LoadingScreen()
+        }
     }
     
 }

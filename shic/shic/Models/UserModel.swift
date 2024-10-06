@@ -12,6 +12,8 @@ struct UserModel {
     var name: String = ""
     var birthday: String = ""
     var phone: String = ""
+    var surname: String = ""
+    var email: String = ""
     var isAccepted: Bool = false
     
 }

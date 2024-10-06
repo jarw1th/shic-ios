@@ -31,7 +31,6 @@ struct BottomBarForm: View {
             }
             HStack(spacing: 24) {
                 Button {
-                    SmartFormRouteManager.shared.push()
                     isShowLater.toggle()
                 } label: {
                     Text("Заполню потом")
@@ -59,6 +58,9 @@ struct BottomBarForm: View {
                     }
                 }
             }
+        }
+        .fullScreenCover(isPresented: $isShowLater) {
+            AnyView(SmartFormRouteManager.shared.getLaterScreen())
         }
     }
     

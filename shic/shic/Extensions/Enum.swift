@@ -17,6 +17,21 @@ enum FillFieldType {
     
 }
 
+enum TabType {
+    
+    case home
+    case orders
+    case profile
+    
+}
+
+enum FormType {
+    
+    case smart
+    case style
+    
+}
+
 
 enum Gender: StringData, CaseIterable {
     

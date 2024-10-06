@@ -9,11 +9,27 @@ import SwiftUI
 
 struct NavigationBarForm: View {
     
-    private var index: Int = SmartFormRouteManager.shared.formIndex
-    private var count: Int = SmartFormRouteManager.shared.formScreens.count
+    private var index: Int {
+        switch form {
+        case .smart:
+            SmartFormRouteManager.shared.formIndex
+        case .style:
+            StyleFormRouteManager.shared.formIndex
+        }
+    }
+    private var count: Int {
+        switch form {
+        case .smart:
+            SmartFormRouteManager.shared.formScreens.count
+        case .style:
+            StyleFormRouteManager.shared.formScreens.count
+        }
+    }
+    var form: FormType
     var action: () -> Void
     
-    init(_ action: @escaping () -> Void) {
+    init(form: FormType = .smart, _ action: @escaping () -> Void) {
+        self.form = form
         self.action = action
     }
     
