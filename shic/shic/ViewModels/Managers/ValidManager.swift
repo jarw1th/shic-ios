@@ -44,4 +44,9 @@ final class ValidManager {
         return code.count == digits.count && digits.count == numbers
     }
     
+    func checkHeightAndWeight(_ value: String) -> Bool {
+        let digits = value.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        return !digits.isEmpty
+    }
+    
 }

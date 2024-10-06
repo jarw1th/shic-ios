@@ -18,7 +18,7 @@ struct PickerItems<Data: StringData>: View {
     @State private var selectedData: Data? = nil
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 8) {
             if let header {
                 Text(header)
                     .font(Font.custom("Alegreya-Bold", size: 16))
@@ -66,7 +66,7 @@ struct PickerItems<Data: StringData>: View {
                     .foregroundStyle(.darkPrimary)
                     .opacity(selectedData == value ? 1.0 : 0.4)
                     .padding(.vertical, 16)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 20)
                     .background {
                         RoundedCorners(corners: .allCorners, radius: 20)
                             .stroke(Color.darkPrimary)

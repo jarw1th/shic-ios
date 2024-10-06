@@ -14,6 +14,26 @@ struct FillField: View {
     var placeholder: String
     var name: String
     
+    private var keyboardType: UIKeyboardType {
+        switch type {
+        case .standart:
+            return .default
+        case .phone:
+            return .numberPad
+        case .email:
+            return .emailAddress
+        case .date:
+            return .numberPad
+        case .height:
+            return .numberPad
+        case .weight:
+            return .numberPad
+        case .footSize:
+            return .numbersAndPunctuation
+        }
+    }
+    @FocusState private var focus: Bool
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(name)
@@ -30,12 +50,13 @@ struct FillField: View {
                         .multilineTextAlignment(.leading)
                 }
                 TextField("", text: $text)
-                    .keyboardType(type == .standart ? .default : .numberPad)
+                    .keyboardType(keyboardType)
                     .autocapitalization(.sentences)
                     .disableAutocorrection(true)
                     .font(.custom("Alegreya-Regular", size: 16))
                     .foregroundStyle(Color.darkPrimary)
                     .frame(maxWidth: .infinity)
+                    .focused($focus)
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 12)
@@ -53,6 +74,42 @@ struct FillField: View {
                 text = formatDate(newValue)
             }
         }
+        .onChange(of: focus) { newValue in
+            guard !newValue else { return }
+            if type == .height, !text.isEmpty {
+                text = formatHeight(text)
+            }
+            if type == .weight, !text.isEmpty {
+                text = formatWeight(text)
+            }
+            if type == .footSize, !text.isEmpty {
+                text = formatFootSize(text)
+            }
+        }
+    }
+    
+    private func formatFootSize(_ size: String) -> String {
+        let cleaned = size.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        
+        let result = cleaned.joined(separator: " ")
+        
+        return result
+    }
+    
+    private func formatHeight(_ height: String) -> String {
+        let cleaned = height.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        
+        let postfix = " см"
+        
+        return cleaned + postfix
+    }
+    
+    private func formatWeight(_ weight: String) -> String {
+        let cleaned = weight.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        
+        let postfix = " кг"
+        
+        return cleaned + postfix
     }
     
     private func formatPhoneNumber(_ number: String) -> String {

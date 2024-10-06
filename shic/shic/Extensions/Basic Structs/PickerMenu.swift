@@ -51,7 +51,7 @@ struct PickerMenu<Data: StringData>: View {
                     .foregroundStyle(.darkPrimary)
                     .opacity(selectedData != nil ? 1.0 : 0.4)
             }
-            .padding(.vertical, 16)
+            .padding(.vertical, 12)
             .padding(.horizontal, 20)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background {
@@ -81,7 +81,7 @@ struct PickerMenu<Data: StringData>: View {
                     .multilineTextAlignment(.leading)
                     .foregroundStyle(.darkPrimary)
                     .opacity(selectedData == value ? 1.0 : 0.4)
-                    .padding(.vertical, 16)
+                    .padding(.vertical, 12)
                     .padding(.horizontal, 10)
                     .frame(width: (mainButtonWidth - headerWidth) - 30, alignment: .leading)
                     .background {

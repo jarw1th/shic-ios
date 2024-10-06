@@ -10,6 +10,10 @@ enum FillFieldType {
     case standart
     case date
     case phone
+    case email
+    case height
+    case weight
+    case footSize
     
 }
 
@@ -59,6 +63,116 @@ enum WearStyle: StringData, CaseIterable {
             "Вечеринки"
         case .classic:
             "Классический"
+        }
+    }
+    
+}
+
+enum BodyType: StringData, CaseIterable {
+    
+    case inverted
+    case triangle
+    case slim
+    case oval
+    
+    func text() -> String {
+        switch self {
+        case .inverted:
+            "Обратный треугольник"
+        case .triangle:
+            "Треугольник"
+        case .slim:
+            "Худой"
+        case .oval:
+            "Овальная форма"
+        }
+    }
+    
+}
+
+enum DefaultSizeTable: StringData, CaseIterable {
+    
+    case xs
+    case s
+    case m
+    case l
+    case xl
+    case xxl
+    case xxxl
+    
+    func text() -> String {
+        switch self {
+        case .xs:
+            "XS"
+        case .s:
+            "S"
+        case .m:
+            "M"
+        case .l:
+            "L"
+        case .xl:
+            "XL"
+        case .xxl:
+            "XXL"
+        case .xxxl:
+            "3L"
+        }
+    }
+    
+}
+
+enum DefaultSizeType: StringData, CaseIterable {
+    
+    case little
+    case perfect
+    case big
+    
+    func text() -> String {
+        switch self {
+        case .little:
+            "Маломерят"
+        case .perfect:
+            "Идеально"
+        case .big:
+            "Большемерят"
+        }
+    }
+    
+}
+
+enum WidthSizeType: StringData, CaseIterable {
+    
+    case tight
+    case perfect
+    case wide
+    
+    func text() -> String {
+        switch self {
+        case .tight:
+            "Обычно узко"
+        case .perfect:
+            "Идеально"
+        case .wide:
+            "Обычно широко"
+        }
+    }
+    
+}
+
+enum LengthSizeType: StringData, CaseIterable {
+    
+    case short
+    case perfect
+    case long
+    
+    func text() -> String {
+        switch self {
+        case .short:
+            "Обычно коротко"
+        case .perfect:
+            "Идеально"
+        case .long:
+            "Обычно длинные"
         }
     }
     

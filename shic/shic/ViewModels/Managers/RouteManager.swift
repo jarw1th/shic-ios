@@ -19,15 +19,19 @@ final class RouteManager {
     init() {
         self.formIndex = 0
         self.screenIndex = 0
-        self.formScreens = [SmartFormGenderScreen(), SmartFormWearStyleScreen()]
-        self.allScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormWearStyleScreen()]
+        self.formScreens = [SmartFormGenderScreen(), SmartFormWearStyleScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSizesScreen(),
+                            SmartFormShirtScreen()]
+        self.allScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormWearStyleScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSizesScreen(),
+                           SmartFormShirtScreen()]
     }
     
     func initial() {
         self.formIndex = 0
         self.screenIndex = 0
-        self.formScreens = [SmartFormGenderScreen(), SmartFormWearStyleScreen()]
-        self.allScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormWearStyleScreen()]
+        self.formScreens = [SmartFormGenderScreen(), SmartFormWearStyleScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSizesScreen(),
+                            SmartFormShirtScreen()]
+        self.allScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormWearStyleScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSizesScreen(),
+                           SmartFormShirtScreen()]
     }
     
     func pop(_ incrementIndex: Bool = true) {
