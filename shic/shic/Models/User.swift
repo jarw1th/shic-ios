@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct UserModel {
+struct User: Codable {
     
+    var uid: String
     var name: String = ""
     var birthday: String = ""
     var phone: String = ""

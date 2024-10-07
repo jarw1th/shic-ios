@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FillField: View {
     
-    var type: FillFieldType = .standart
+    var type: FillFieldType
     @Binding var text: String
     var placeholder: String
     var name: String
@@ -32,7 +32,17 @@ struct FillField: View {
             return .numbersAndPunctuation
         }
     }
-    @FocusState private var focus: Bool
+    
+    var focusComplete: ((Bool) -> Void)?
+    @FocusState var focus: Bool
+    
+    init(type: FillFieldType = .standart, text: Binding<String>, placeholder: String, name: String, focusComplete: ((Bool) -> Void)? = nil) {
+        self.type = type
+        self._text = text
+        self.placeholder = placeholder
+        self.name = name
+        self.focusComplete = focusComplete
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -88,6 +98,22 @@ struct FillField: View {
             }
             if type == .email, !text.isEmpty {
                 text = formatEmail(text)
+            }
+        }
+        .onChange(of: focus) { newValue in
+            guard !newValue else { return }
+            
+            if type == .standart {
+                focusComplete?(text.count > 1)
+            }
+            if type == .phone {
+                focusComplete?(ValidManager.shared.checkPhoneNumber(text))
+            }
+            if type == .email {
+                focusComplete?(ValidManager.shared.checkEmail(text))
+            }
+            if type == .date {
+                focusComplete?(ValidManager.shared.checkDate(text))
             }
         }
     }
@@ -154,41 +180,16 @@ struct FillField: View {
         let yearPart = String(cleaned.dropFirst(4).prefix(4))
         
         if !dayPart.isEmpty {
-            formattedDate += "\(dayPart)."
+            formattedDate += "\(dayPart)"
         }
         if !monthPart.isEmpty {
-            formattedDate += "\(monthPart)."
+            formattedDate += ".\(monthPart)"
         }
         if !yearPart.isEmpty {
-            formattedDate += "\(yearPart)"
+            formattedDate += ".\(yearPart)"
         }
 
-        if isValidDate(day: dayPart, month: monthPart, year: yearPart) {
-            return formattedDate
-        } else {
-            return String(formattedDate.dropLast())
-        }
-    }
-    
-    private func isValidDate(day: String, month: String, year: String) -> Bool {
-        guard let dayInt = Int(day), let monthInt = Int(month), let yearInt = Int(year) else {
-            return false
-        }
-        
-        guard (1...12).contains(monthInt) else {
-            return false
-        }
-
-        let daysInMonth: [Int] = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        
-        let isLeapYear = (yearInt % 4 == 0 && yearInt % 100 != 0) || (yearInt % 400 == 0)
-        let maxDays = (monthInt == 2 && isLeapYear) ? 29 : daysInMonth[monthInt]
-        
-        guard (1...maxDays).contains(dayInt) else {
-            return false
-        }
-
-        return yearInt >= 1900
+        return formattedDate
     }
     
     private func formatEmail(_ email: String) -> String {

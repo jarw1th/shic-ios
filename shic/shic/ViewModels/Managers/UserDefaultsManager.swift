@@ -12,7 +12,7 @@ final class UserDefaultsManager {
     static let shared = UserDefaultsManager()
     
     private var userDefaults: UserDefaults {
-        if let userDefaults = UserDefaults(suiteName: "group.ruslanparastaev.shic") {
+        if let userDefaults = UserDefaults(suiteName: "group.com.ruslanparastaev.shic") {
             return userDefaults
         } else {
             return UserDefaults.standard

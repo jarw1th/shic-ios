@@ -32,6 +32,7 @@ struct BasicButton: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 12)
+                    .frame(maxWidth: .infinity)
                     .background(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.darkPrimary, lineWidth: 1.5)

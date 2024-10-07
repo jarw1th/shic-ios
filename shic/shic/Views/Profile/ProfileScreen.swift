@@ -43,11 +43,41 @@ struct ProfileScreen: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 32) {
                 VStack(alignment: .leading, spacing: 16) {
-                    FillField(text: $viewModel.userModel.name, placeholder: "Руслан", name: "Имя")
-                    FillField(text: $viewModel.userModel.surname, placeholder: "Парастаев", name: "Фамилия")
-                    FillField(type: .email, text: $viewModel.userModel.email, placeholder: "shic@gmail.com", name: "Почта")
-                    FillField(type: .date, text: $viewModel.userModel.birthday, placeholder: "00.00.0000", name: "День рождения")
-                    FillField(type: .phone, text: $viewModel.userModel.phone, placeholder: "+7 999 999 99 99", name: "Телефон")
+                    FillField(text: $viewModel.userModel.name, placeholder: "Руслан", name: "Имя") { isValid in
+                        if isValid {
+                            viewModel.saveUser()
+                        } else {
+                            viewModel.fetchUser()
+                        }
+                    }
+                    FillField(text: $viewModel.userModel.surname, placeholder: "Парастаев", name: "Фамилия") { isValid in
+                        if isValid {
+                            viewModel.saveUser()
+                        } else {
+                            viewModel.fetchUser()
+                        }
+                    }
+                    FillField(type: .email, text: $viewModel.userModel.email, placeholder: "shic@gmail.com", name: "Почта") { isValid in
+                        if isValid {
+                            viewModel.saveUser()
+                        } else {
+                            viewModel.fetchUser()
+                        }
+                    }
+                    FillField(type: .date, text: $viewModel.userModel.birthday, placeholder: "00.00.0000", name: "День рождения") { isValid in
+                        if isValid {
+                            viewModel.saveUser()
+                        } else {
+                            viewModel.fetchUser()
+                        }
+                    }
+                    FillField(type: .phone, text: $viewModel.userModel.phone, placeholder: "+7 999 999 99 99", name: "Телефон") { isValid in
+                        if isValid {
+                            viewModel.saveUser()
+                        } else {
+                            viewModel.fetchUser()
+                        }
+                    }
                 }
                 VStack(alignment: .leading, spacing: 16) {
                     BasicButton(header: "Банковские карты", title: "Открыть") {

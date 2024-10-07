@@ -86,6 +86,7 @@ struct VerificationScreen: View {
     private func largeButton() -> some View {
         MainButton(isAvailable: $isValid, text: "Готово") {
             if isValid {
+                viewModel.saveUser()
                 isShowForm.toggle()
             }
         }

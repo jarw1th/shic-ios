@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct shicApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
             LoadingScreen()
