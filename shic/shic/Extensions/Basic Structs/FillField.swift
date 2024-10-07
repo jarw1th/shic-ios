@@ -64,6 +64,7 @@ struct FillField: View {
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(Color.darkPrimary, lineWidth: 1)
                     .opacity(!text.isEmpty ? 1.0 : 0.4)
+                    .padding(1)
             )
         }
         .onChange(of: text) { newValue in

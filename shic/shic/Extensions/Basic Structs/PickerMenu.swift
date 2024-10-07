@@ -66,6 +66,7 @@ struct PickerMenu<Data: StringData>: View {
                 RoundedRectangle(cornerRadius: 20)
                     .stroke(Color.darkPrimary)
                     .opacity(selectedData != nil ? 1.0 : 0.4)
+                    .padding(1)
             }
         }
         .background(GeometryReader { hStackGeometry in

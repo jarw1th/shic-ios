@@ -77,6 +77,7 @@ struct CodeField: View {
             RoundedRectangle(cornerRadius: 20)
                 .stroke(Color.darkPrimary, lineWidth: 1)
                 .opacity(!digit.wrappedValue.isEmpty ? 1.0 : 0.4)
+                .padding(1)
         )
     }
     

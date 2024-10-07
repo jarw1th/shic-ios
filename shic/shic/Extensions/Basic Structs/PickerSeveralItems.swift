@@ -85,6 +85,7 @@ struct PickerSeveralItems<Data: StringData>: View {
                         RoundedCorners(corners: .allCorners, radius: 20)
                             .stroke(Color.darkPrimary)
                             .opacity(selectedData.contains(value) ? 1.0 : 0.4)
+                            .padding(1)
                     }
             }
         }

@@ -67,6 +67,7 @@ struct RectangleImagePicker: View {
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.darkPrimary)
                         .opacity(selectedData.contains(value) ? 1.0 : 0.4)
+                        .padding(1)
                 )
         }
     }

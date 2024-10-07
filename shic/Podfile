@@ -1,0 +1,14 @@
+platform :ios, '15.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'shic' do
+  use_frameworks!
+
+  # Pods for lookie
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'FirebaseStorage'
+  pod 'SDWebImageSwiftUI'
+
+end

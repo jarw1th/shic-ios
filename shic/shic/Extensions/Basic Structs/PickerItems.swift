@@ -80,6 +80,7 @@ struct PickerItems<Data: StringData>: View {
                         RoundedCorners(corners: .allCorners, radius: 20)
                             .stroke(Color.darkPrimary)
                             .opacity(selectedData == value ? 1.0 : 0.4)
+                            .padding(1)
                     }
             }
         }

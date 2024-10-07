@@ -26,6 +26,7 @@ struct OrdersScreen: View {
                 header()
             }
             centerView()
+            Spacer()
         }
         .padding(.horizontal, 20)
         .padding(.top, 70)
@@ -40,8 +41,17 @@ struct OrdersScreen: View {
     }
     
     private func centerView() -> some View {
-        VStack {
-            
+        VStack(spacing: 16) {
+            OrderItem(status: "В процессе", title: "Заказ #1020", action: {
+                
+            }, chat: {
+                
+            })
+            OrderItem(status: "Нужно уточнить ", title: "Заказ #1024", action: {
+                
+            }, chat: {
+                
+            })
         }
     }
     

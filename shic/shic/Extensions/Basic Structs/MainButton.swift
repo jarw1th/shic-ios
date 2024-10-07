@@ -34,6 +34,7 @@ struct MainButton: View {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(Color.darkPrimary)
                         .opacity(isAvailable ? 1.0 : 0.4)
+                        .padding(1)
                 }
         }
         .disabled(!isAvailable)
