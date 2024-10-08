@@ -30,10 +30,19 @@ enum FormType {
     case smart
     case style
     
+    func firebaseID() -> String {
+        switch self {
+        case .smart:
+            "smartForm"
+        case .style:
+            "styleForm"
+        }
+    }
+    
 }
 
 
-enum Gender: StringData, CaseIterable {
+enum Gender: String, Codable, StringData, CaseIterable {
     
     case mail
     case femail
@@ -52,7 +61,7 @@ enum Gender: StringData, CaseIterable {
     
 }
 
-enum WearStyle: StringData, CaseIterable {
+enum WearStyle: String, Codable, StringData, CaseIterable {
     
     case casual
     case business
@@ -83,7 +92,7 @@ enum WearStyle: StringData, CaseIterable {
     
 }
 
-enum BodyType: StringData, CaseIterable {
+enum BodyType: String, Codable, StringData, CaseIterable {
     
     case inverted
     case triangle
@@ -105,7 +114,7 @@ enum BodyType: StringData, CaseIterable {
     
 }
 
-enum DefaultSizeTable: StringData, CaseIterable {
+enum DefaultSizeTable: String, Codable, StringData, CaseIterable {
     
     case xs
     case s
@@ -136,7 +145,7 @@ enum DefaultSizeTable: StringData, CaseIterable {
     
 }
 
-enum DefaultSizeType: StringData, CaseIterable {
+enum DefaultSizeType: String, Codable, StringData, CaseIterable {
     
     case little
     case perfect
@@ -155,7 +164,7 @@ enum DefaultSizeType: StringData, CaseIterable {
     
 }
 
-enum WidthSizeType: StringData, CaseIterable {
+enum WidthSizeType: String, Codable, StringData, CaseIterable {
     
     case tight
     case perfect
@@ -174,7 +183,7 @@ enum WidthSizeType: StringData, CaseIterable {
     
 }
 
-enum LengthSizeType: StringData, CaseIterable {
+enum LengthSizeType: String, Codable, StringData, CaseIterable {
     
     case short
     case perfect
@@ -193,7 +202,7 @@ enum LengthSizeType: StringData, CaseIterable {
     
 }
 
-enum ShirtType: StringData, CaseIterable {
+enum ShirtType: String, Codable, StringData, CaseIterable {
     
     case tight
     case classic
@@ -209,7 +218,7 @@ enum ShirtType: StringData, CaseIterable {
     
 }
 
-enum PantsType: StringData, CaseIterable {
+enum PantsType: String, Codable, StringData, CaseIterable {
     
     case skinny
     case tight

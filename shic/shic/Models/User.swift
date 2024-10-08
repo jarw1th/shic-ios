@@ -16,5 +16,7 @@ struct User: Codable {
     var surname: String = ""
     var email: String = ""
     var isAccepted: Bool = false
+    var isSmartFormFill: Bool = false
+    var isStyleFormFill: Bool = false
     
 }

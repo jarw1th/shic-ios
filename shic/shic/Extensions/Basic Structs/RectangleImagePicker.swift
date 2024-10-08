@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct RectangleImagePicker: View {
     
-    var data: [Image]
+    var data: [String]
     var action: () -> Void
     
-    @Binding private var selectedData: [Image]
+    @Binding private var selectedData: [String]
     
-    init(data: [Image], selectedData: Binding<[Image]> = Binding.constant([]), action: @escaping () -> Void) {
+    init(data: [String], selectedData: Binding<[String]> = Binding.constant([]), action: @escaping () -> Void) {
         self.data = Array(data.prefix(4))
         self.action = action
         self._selectedData = selectedData
@@ -25,31 +26,23 @@ struct RectangleImagePicker: View {
             HStack(spacing: 16) {
                 if data.count > 0 {
                     button(data[0])
-                } else {
-                    placeholder()
                 }
                 if data.count > 1 {
                     button(data[1])
-                } else {
-                    placeholder()
                 }
             }
             HStack(spacing: 16) {
                 if data.count > 2 {
                     button(data[2])
-                } else {
-                    placeholder()
                 }
                 if data.count > 3 {
                     button(data[3])
-                } else {
-                    placeholder()
                 }
             }
         }
     }
     
-    private func button(_ value: Image) -> some View {
+    private func button(_ value: String) -> some View {
         Button {
             if selectedData.contains(value),
                let index = selectedData.firstIndex(of: value) {
@@ -59,27 +52,21 @@ struct RectangleImagePicker: View {
             }
             action()
         } label: {
-            value
-                .resizable()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.darkPrimary)
-                        .opacity(selectedData.contains(value) ? 1.0 : 0.4)
-                        .padding(1)
-                )
-        }
-    }
-    
-    private func placeholder() -> some View {
-        Button {
-            
-        } label: {
-            Image("NoDataImage")
-                .resizable()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .cornerRadius(20)
+            WebImage(url: URL(string: value), content: { image in
+                image
+                    .resizable()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.darkPrimary)
+                            .opacity(selectedData.contains(value) ? 1.0 : 0.4)
+                            .padding(1)
+                    )
+            }, placeholder: {
+                Placeholder()
+                    .cornerRadius(20)
+            })
         }
     }
     

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SmartFormModel {
+struct SmartFormModel: Codable {
     
     var gender: Gender? = nil
     
@@ -24,7 +24,7 @@ struct SmartFormModel {
     
 }
 
-struct ShirtModel {
+struct ShirtModel: Codable {
     
     var sizes: [DefaultSizeTable] = []
     var sizeType: DefaultSizeType? = nil
@@ -37,7 +37,7 @@ struct ShirtModel {
     
 }
 
-struct PantsModel {
+struct PantsModel: Codable {
     
     var sizes: [DefaultSizeTable] = []
     var sizeType: DefaultSizeType? = nil
@@ -46,7 +46,7 @@ struct PantsModel {
     
 }
 
-struct FootModel {
+struct FootModel: Codable {
     
     var sizes: String = ""
     var sizeType: DefaultSizeType? = nil

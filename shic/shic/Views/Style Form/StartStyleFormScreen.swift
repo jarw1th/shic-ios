@@ -71,7 +71,8 @@ struct StartStyleFormScreen: View {
     
     private func largeButton() -> some View {
         MainButton(text: "Начать") {
-            SmartFormRouteManager.shared.push(false)
+            viewModel.fetchPreloadContent()
+            StyleFormRouteManager.shared.push(false)
             form = AnyView(StyleFormRouteManager.shared.getScreen())
         }
         .background {

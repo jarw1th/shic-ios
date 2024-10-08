@@ -45,10 +45,9 @@ final class SmartFormRouteManager {
     }
     
     func getScreen() -> any View {
-        if allScreens.count == screenIndex + 1,
+        if allScreens.count == screenIndex,
            let viewModel {
-            StyleFormRouteManager.shared.initial(viewModel)
-            let screen = StyleFormRouteManager.shared.getScreen()
+            let screen = SavingInformation(savingType: .smart).navigationBarHidden(true).environmentObject(viewModel)
             return screen
         } else if allScreens.count > screenIndex,
                   let viewModel {

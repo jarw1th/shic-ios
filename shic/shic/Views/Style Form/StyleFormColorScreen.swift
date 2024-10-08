@@ -1,18 +1,16 @@
 //
-//  StyleFormLikeScreen.swift
+//  StyleFormColorScreen.swift
 //  shic
 //
-//  Created by Руслан Парастаев on 06.10.2024.
+//  Created by Руслан Парастаев on 08.10.2024.
 //
 
 import SwiftUI
 
-struct StyleFormLikeScreen: View {
+struct StyleFormColorScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
-    
-    var index: Int
     
     @State private var isValid: Bool = false
     
@@ -29,7 +27,7 @@ struct StyleFormLikeScreen: View {
     private func makeContent() -> some View {
         VStack(spacing: 16) {
             NavigationBarForm(form: .style) {
-                StyleFormRouteManager.shared.pop(!(index == 0))
+                StyleFormRouteManager.shared.pop()
                 dismiss()
             }
             VStack(spacing: 64) {
@@ -46,18 +44,15 @@ struct StyleFormLikeScreen: View {
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 16) {
-                if viewModel.imagePacks.count > index {
-                    RectangleImagePicker(data: viewModel.imagePacks[index], selectedData: $viewModel.styleFormModel.lovingImages) {
-                        checkAvailable()
-                    }
+                RectangleImagePickerWithText(data: DataManager.shared.getColors(), rows: 2, selectedData: $viewModel.styleFormModel.lovingColors) {
+                    checkAvailable()
                 }
             }
         }
     }
     
     private func checkAvailable() {
-//        isValid = !viewModel.styleFormModel.lovingImages.isEmpty
-        isValid = true
+        isValid = !viewModel.styleFormModel.lovingColors.isEmpty 
     }
     
 }

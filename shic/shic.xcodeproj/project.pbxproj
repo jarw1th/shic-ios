@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2185BE9C2CB5183200C0A89E /* Split+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BE9B2CB5182F00C0A89E /* Split+.swift */; };
+		2185BE9F2CB51A4500C0A89E /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BE9E2CB51A4500C0A89E /* Placeholder.swift */; };
+		2185BEA12CB51EC400C0A89E /* RectangleImagePickerWithText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEA02CB51EB800C0A89E /* RectangleImagePickerWithText.swift */; };
+		2185BEA32CB526D100C0A89E /* StyleFormColorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEA22CB526C300C0A89E /* StyleFormColorScreen.swift */; };
+		2185BEA52CB5276000C0A89E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEA42CB5275C00C0A89E /* DataManager.swift */; };
+		2185BEA72CB530BB00C0A89E /* SavingInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEA62CB530B100C0A89E /* SavingInformation.swift */; };
 		21D6F7F72CB448EE00163CA6 /* Alegreya-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21D6F7A72CB448EE00163CA6 /* Alegreya-Bold.ttf */; };
 		21D6F7F82CB448EE00163CA6 /* Alegreya-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21D6F7A82CB448EE00163CA6 /* Alegreya-Regular.ttf */; };
 		21D6F7F92CB448EE00163CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21D6F7AA2CB448EE00163CA6 /* Assets.xcassets */; };
@@ -66,6 +72,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2185BE9B2CB5182F00C0A89E /* Split+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split+.swift"; sourceTree = "<group>"; };
+		2185BE9E2CB51A4500C0A89E /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
+		2185BEA02CB51EB800C0A89E /* RectangleImagePickerWithText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleImagePickerWithText.swift; sourceTree = "<group>"; };
+		2185BEA22CB526C300C0A89E /* StyleFormColorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleFormColorScreen.swift; sourceTree = "<group>"; };
+		2185BEA42CB5275C00C0A89E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		2185BEA62CB530B100C0A89E /* SavingInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingInformation.swift; sourceTree = "<group>"; };
 		219979812CAFE2E4008688A5 /* shic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D6F7A72CB448EE00163CA6 /* Alegreya-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-Bold.ttf"; sourceTree = "<group>"; };
 		21D6F7A82CB448EE00163CA6 /* Alegreya-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-Regular.ttf"; sourceTree = "<group>"; };
@@ -149,6 +161,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2185BE9A2CB5182900C0A89E /* Array */ = {
+			isa = PBXGroup;
+			children = (
+				2185BE9B2CB5182F00C0A89E /* Split+.swift */,
+			);
+			path = Array;
+			sourceTree = "<group>";
+		};
 		219979782CAFE2E4008688A5 = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +231,7 @@
 				21D6F7B82CB448EE00163CA6 /* PickerMenuWithTip.swift */,
 				21D6F7B92CB448EE00163CA6 /* PickerSeveralItems.swift */,
 				21D6F7BA2CB448EE00163CA6 /* RectangleImagePicker.swift */,
+				2185BEA02CB51EB800C0A89E /* RectangleImagePickerWithText.swift */,
 			);
 			path = "Basic Structs";
 			sourceTree = "<group>";
@@ -252,6 +273,7 @@
 		21D6F7C62CB448EE00163CA6 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				2185BE9E2CB51A4500C0A89E /* Placeholder.swift */,
 				21D6F7C52CB448EE00163CA6 /* View */,
 			);
 			path = SwiftUI;
@@ -260,6 +282,7 @@
 		21D6F7C72CB448EE00163CA6 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				2185BE9A2CB5182900C0A89E /* Array */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -308,6 +331,7 @@
 		21D6F7D52CB448EE00163CA6 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				2185BEA42CB5275C00C0A89E /* DataManager.swift */,
 				21D6F8302CB45F9100163CA6 /* FirebaseManager.swift */,
 				21D6F7D22CB448EE00163CA6 /* ConnectionManager.swift */,
 				21D6F7D32CB448EE00163CA6 /* UserDefaultsManager.swift */,
@@ -357,6 +381,7 @@
 		21D6F7E32CB448EE00163CA6 /* Loading */ = {
 			isa = PBXGroup;
 			children = (
+				2185BEA62CB530B100C0A89E /* SavingInformation.swift */,
 				21D6F7E22CB448EE00163CA6 /* LoadingScreen.swift */,
 			);
 			path = Loading;
@@ -398,6 +423,7 @@
 			children = (
 				21D6F7F12CB448EE00163CA6 /* StartStyleFormScreen.swift */,
 				21D6F7F22CB448EE00163CA6 /* StyleFormLikeScreen.swift */,
+				2185BEA22CB526C300C0A89E /* StyleFormColorScreen.swift */,
 			);
 			path = "Style Form";
 			sourceTree = "<group>";
@@ -558,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2185BEA72CB530BB00C0A89E /* SavingInformation.swift in Sources */,
 				21D6F7FC2CB448EE00163CA6 /* ProjectApp.swift in Sources */,
 				21D6F7FD2CB448EE00163CA6 /* AcceptField.swift in Sources */,
 				21D6F7FE2CB448EE00163CA6 /* BasicButton.swift in Sources */,
@@ -566,7 +593,10 @@
 				21D6F8012CB448EE00163CA6 /* MainButton.swift in Sources */,
 				21D6F8022CB448EE00163CA6 /* OrderItem.swift in Sources */,
 				21D6F8032CB448EE00163CA6 /* PickerItems.swift in Sources */,
+				2185BE9C2CB5183200C0A89E /* Split+.swift in Sources */,
 				21D6F8042CB448EE00163CA6 /* PickerMenu.swift in Sources */,
+				2185BEA12CB51EC400C0A89E /* RectangleImagePickerWithText.swift in Sources */,
+				2185BE9F2CB51A4500C0A89E /* Placeholder.swift in Sources */,
 				21D6F8052CB448EE00163CA6 /* PickerMenuWithTip.swift in Sources */,
 				21D6F8062CB448EE00163CA6 /* PickerSeveralItems.swift in Sources */,
 				21D6F82F2CB4592400163CA6 /* AppDelegate.swift in Sources */,
@@ -586,6 +616,7 @@
 				21D6F8142CB448EE00163CA6 /* UserDefaultsManager.swift in Sources */,
 				21D6F8152CB448EE00163CA6 /* ValidManager.swift in Sources */,
 				21D6F8162CB448EE00163CA6 /* SmartFormRouteManager.swift in Sources */,
+				2185BEA32CB526D100C0A89E /* StyleFormColorScreen.swift in Sources */,
 				21D6F8172CB448EE00163CA6 /* StyleFormRouteManager.swift in Sources */,
 				21D6F8182CB448EE00163CA6 /* ViewModel.swift in Sources */,
 				21D6F8192CB448EE00163CA6 /* RegistrationScreen.swift in Sources */,
@@ -595,6 +626,7 @@
 				21D6F81D2CB448EE00163CA6 /* HomeScreen.swift in Sources */,
 				21D6F81E2CB448EE00163CA6 /* LoadingScreen.swift in Sources */,
 				21D6F81F2CB448EE00163CA6 /* OrdersScreen.swift in Sources */,
+				2185BEA52CB5276000C0A89E /* DataManager.swift in Sources */,
 				21D6F8202CB448EE00163CA6 /* ProfileScreen.swift in Sources */,
 				21D6F8212CB448EE00163CA6 /* SmartFormBodyTypeScreen.swift in Sources */,
 				21D6F8222CB448EE00163CA6 /* SmartFormGenderScreen.swift in Sources */,

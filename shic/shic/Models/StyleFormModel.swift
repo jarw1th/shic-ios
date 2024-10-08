@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StyleFormModel {
     
-    var lovingImages: [Image] = []
+    var lovingImages: [String] = []
+    var lovingColors: [Color] = []
     
 }

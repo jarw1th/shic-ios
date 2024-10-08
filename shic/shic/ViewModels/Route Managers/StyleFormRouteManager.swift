@@ -21,16 +21,16 @@ final class StyleFormRouteManager {
     init() {
         self.formIndex = 0
         self.screenIndex = 0
-        self.formScreens = [StyleFormLikeScreen(index: 0)]
-        self.allScreens = [StartStyleFormScreen(), StyleFormLikeScreen(index: 0)]
+        self.formScreens = [StyleFormLikeScreen(index: 0), StyleFormColorScreen()]
+        self.allScreens = [StartStyleFormScreen(), StyleFormLikeScreen(index: 0), StyleFormColorScreen()]
     }
     
     func initial(_ viewModel: ViewModel) {
         self.viewModel = viewModel
         self.formIndex = 0
         self.screenIndex = 0
-        self.formScreens = [StyleFormLikeScreen(index: 0)]
-        self.allScreens = [StartStyleFormScreen(), StyleFormLikeScreen(index: 0)]
+        self.formScreens = [StyleFormLikeScreen(index: 0), StyleFormColorScreen()]
+        self.allScreens = [StartStyleFormScreen(), StyleFormLikeScreen(index: 0), StyleFormColorScreen()]
     }
     
     func pop(_ decrementIndex: Bool = true) {
@@ -41,7 +41,11 @@ final class StyleFormRouteManager {
     }
     
     func getScreen() -> any View {
-        if allScreens.count > screenIndex,
+        if allScreens.count == screenIndex,
+           let viewModel {
+            let screen = SavingInformation(savingType: .style).navigationBarHidden(true).environmentObject(viewModel)
+            return screen
+        } else if allScreens.count > screenIndex,
            let viewModel {
             let screen = allScreens[screenIndex].navigationBarHidden(true).environmentObject(viewModel)
             return screen
