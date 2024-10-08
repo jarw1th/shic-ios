@@ -11,11 +11,20 @@ struct ProfileScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     
+    @State private var isShowSmartForm: Bool = false
+    @State private var isShowStyleForm: Bool = false
+    
     var body: some View {
         NavigationView() {
             makeContent()
                 .ignoresSafeArea()
                 .navigationBarHidden(true)
+                .fullScreenCover(isPresented: $isShowSmartForm) {
+                    AnyView(SmartFormRouteManager.shared.getScreen())
+                }
+                .fullScreenCover(isPresented: $isShowStyleForm) {
+                    AnyView(StyleFormRouteManager.shared.getScreen())
+                }
         }
         .endEditing()
     }
@@ -86,11 +95,13 @@ struct ProfileScreen: View {
                     BasicButton(header: "Адреса", title: "Открыть") {
                         
                     }
-                    BasicButton(header: "Умная форма", title: "Заполнить") {
-                        
+                    BasicButton(header: "Умная форма", title: viewModel.userModel.isSmartFormFill ? "Заполнить заново" : "Заполнить") {
+                        SmartFormRouteManager.shared.initial(viewModel)
+                        isShowSmartForm.toggle()
                     }
-                    BasicButton(header: "Мой стиль", title: "Заполнить") {
-                        
+                    BasicButton(header: "Мой стиль", title: viewModel.userModel.isStyleFormFill ? "Заполнить заново" : "Заполнить") {
+                        StyleFormRouteManager.shared.initial(viewModel)
+                        isShowSmartForm.toggle()
                     }
                     BasicButton(header: "Архив заказов", title: "Открыть") {
                         

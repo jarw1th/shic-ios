@@ -55,7 +55,7 @@ struct StartSmartFormScreen: View {
     }
     
     private func text() -> some View {
-        Text("Сейчас будет небольшая форма,\nкоторая поможет нам подобрать для вас идеальный гардероб.")
+        Text("Сейчас будет небольшая форма на 10 минут,\nкоторая поможет нам подобрать для вас идеальный гардероб.")
             .font(Font.custom("Alegreya-Regular", size: 16))
             .multilineTextAlignment(.center)
             .foregroundStyle(.darkPrimary)
@@ -69,7 +69,7 @@ struct StartSmartFormScreen: View {
     }
     
     private func largeButton() -> some View {
-        MainButton(text: "Начать") {
+        MainButton(text: viewModel.userModel.isSmartFormFill ? "Перепройти" : "Начать") {
             SmartFormRouteManager.shared.push(false)
             form = AnyView(SmartFormRouteManager.shared.getScreen())
         }
@@ -88,7 +88,7 @@ struct StartSmartFormScreen: View {
             Button {
                 isShowTab.toggle()
             } label: {
-                Text("Потом")
+                Text(viewModel.userModel.isSmartFormFill ? "Оставить" : "Потом")
                     .underline()
                     .font(Font.custom("Alegreya-Bold", size: 16))
                     .multilineTextAlignment(.center)

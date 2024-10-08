@@ -1,13 +1,13 @@
 //
-//  SmartFormBodyTypeScreen.swift
+//  SmartFormClothScreen.swift
 //  shic
 //
-//  Created by Руслан Парастаев on 06.10.2024.
+//  Created by Руслан Парастаев on 08.10.2024.
 //
 
 import SwiftUI
 
-struct SmartFormBodyTypeScreen: View {
+struct SmartFormClothScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
@@ -31,10 +31,10 @@ struct SmartFormBodyTypeScreen: View {
                 dismiss()
             }
             VStack(spacing: 40) {
-                TopHeaderText(header: "Тип тела", text: "Укажи какая у тебя фигура")
+                TopHeaderText(header: "Ткань", text: "Какую ткань ты предпочитаешь?")
                 centerView()
                 Spacer()
-                BottomBarForm(isAvailable: $isValid, isImportant: true)
+                BottomBarForm(isAvailable: $isValid)
             }
         }
         .padding(.horizontal, 20)
@@ -43,15 +43,13 @@ struct SmartFormBodyTypeScreen: View {
     }
     
     private func centerView() -> some View {
-        PickerMenuWithTip(data: BodyType.allCases, selectedData: $viewModel.smartFormModel.bodyType, action: { 
+        PickerSeveralItems(data: ClothType.allCases, rows: 2, selectedData: $viewModel.smartFormModel.clothType) {
             checkAvailable()
-        }, tip: { value in
-            
-        })
+        }
     }
     
     private func checkAvailable() {
-        isValid = viewModel.smartFormModel.bodyType != nil
+        isValid = !viewModel.smartFormModel.clothType.isEmpty
     }
     
 }

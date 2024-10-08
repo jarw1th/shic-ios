@@ -1,13 +1,13 @@
 //
-//  SmartFormWearStyleScreen.swift
+//  SmartFormFootAccessoriesScreen.swift
 //  shic
 //
-//  Created by Руслан Парастаев on 05.10.2024.
+//  Created by Руслан Парастаев on 08.10.2024.
 //
 
 import SwiftUI
 
-struct SmartFormWearStyleScreen: View {
+struct SmartFormFootAccessoriesScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
@@ -30,8 +30,8 @@ struct SmartFormWearStyleScreen: View {
                 SmartFormRouteManager.shared.pop()
                 dismiss()
             }
-            VStack(spacing: 64) {
-                TopHeaderText(header: "Одежда", text: "Какие стиль и вид тебе больше по душе?")
+            VStack(spacing: 40) {
+                TopHeaderText(header: "Обувь и акссесуары", text: "Выбери, что тебе нравится")
                 centerView()
             }
             BottomBarForm(isAvailable: $isValid, isImportant: true)
@@ -44,10 +44,13 @@ struct SmartFormWearStyleScreen: View {
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 16) {
-                PickerSeveralItems(data: WearStyle.allCases, header: "Стиль", rows: 3, selectedData: $viewModel.smartFormModel.wearStyle) {
+                PickerSeveralItems(data: FootType.allCases, header: "Обувь", rows: 2, selectedData: $viewModel.smartFormModel.foot.type) {
                     checkAvailable()
                 }
-                PickerSeveralItems(data: WearType.allCases, header: "Вид", rows: 3, selectedData: $viewModel.smartFormModel.wearType) {
+                PickerSeveralItems(data: AccessoriesType.allCases, header: "Аксессуары", rows: 2, selectedData: $viewModel.smartFormModel.accessories) {
+                    checkAvailable()
+                }
+                PickerSeveralItems(data: JewelryType.allCases, header: "Бижутерия", rows: 3, selectedData: $viewModel.smartFormModel.jewelry) {
                     checkAvailable()
                 }
             }
@@ -55,9 +58,10 @@ struct SmartFormWearStyleScreen: View {
     }
     
     private func checkAvailable() {
-        let style = !viewModel.smartFormModel.wearStyle.isEmpty
-        let type = !viewModel.smartFormModel.wearType.isEmpty
-        isValid = style && type
+        let foot = !viewModel.smartFormModel.foot.type.isEmpty
+        let accessories = !viewModel.smartFormModel.accessories.isEmpty
+        let jewelry = !viewModel.smartFormModel.jewelry.isEmpty
+        isValid = foot && accessories && jewelry
     }
     
 }

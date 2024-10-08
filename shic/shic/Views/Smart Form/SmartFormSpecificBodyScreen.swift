@@ -1,13 +1,13 @@
 //
-//  SmartFormBodyTypeScreen.swift
+//  SmartFormSpecificBodyScreen.swift
 //  shic
 //
-//  Created by Руслан Парастаев on 06.10.2024.
+//  Created by Руслан Парастаев on 08.10.2024.
 //
 
 import SwiftUI
 
-struct SmartFormBodyTypeScreen: View {
+struct SmartFormSpecificBodyScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
@@ -31,10 +31,10 @@ struct SmartFormBodyTypeScreen: View {
                 dismiss()
             }
             VStack(spacing: 40) {
-                TopHeaderText(header: "Тип тела", text: "Укажи какая у тебя фигура")
+                TopHeaderText(header: "Особенности тела", text: "Есть ли у тебя какие-то особенности тела?")
                 centerView()
                 Spacer()
-                BottomBarForm(isAvailable: $isValid, isImportant: true)
+                BottomBarForm(isAvailable: $isValid)
             }
         }
         .padding(.horizontal, 20)
@@ -43,15 +43,16 @@ struct SmartFormBodyTypeScreen: View {
     }
     
     private func centerView() -> some View {
-        PickerMenuWithTip(data: BodyType.allCases, selectedData: $viewModel.smartFormModel.bodyType, action: { 
-            checkAvailable()
-        }, tip: { value in
-            
-        })
+        VStack(spacing: 16) {
+            PickerSeveralItems(data: SpecificBodyType.allCases, rows: 3, selectedData: $viewModel.smartFormModel.specificBodyType) {
+                checkAvailable()
+            }
+            FillField(text: $viewModel.smartFormModel.specificBodyString, placeholder: "Хочу скрыть мои полные бедра", name: "Хотите что-то подчеркнуть или скрыть?")
+        }
     }
     
     private func checkAvailable() {
-        isValid = viewModel.smartFormModel.bodyType != nil
+        isValid = !viewModel.smartFormModel.specificBodyType.isEmpty
     }
     
 }

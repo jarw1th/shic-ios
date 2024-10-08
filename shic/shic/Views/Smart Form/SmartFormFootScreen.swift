@@ -1,13 +1,13 @@
 //
-//  SmartFormBodyTypeScreen.swift
+//  SmartFormFootScreen.swift
 //  shic
 //
-//  Created by Руслан Парастаев on 06.10.2024.
+//  Created by Руслан Парастаев on 08.10.2024.
 //
 
 import SwiftUI
 
-struct SmartFormBodyTypeScreen: View {
+struct SmartFormFootScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
@@ -30,12 +30,12 @@ struct SmartFormBodyTypeScreen: View {
                 SmartFormRouteManager.shared.pop()
                 dismiss()
             }
-            VStack(spacing: 40) {
-                TopHeaderText(header: "Тип тела", text: "Укажи какая у тебя фигура")
+            VStack(spacing: 64) {
+                TopHeaderText(header: "Обувь", text: "Дополнительные вопросы")
                 centerView()
                 Spacer()
-                BottomBarForm(isAvailable: $isValid, isImportant: true)
             }
+            BottomBarForm(isAvailable: $isValid)
         }
         .padding(.horizontal, 20)
         .padding(.top, 78)
@@ -43,15 +43,15 @@ struct SmartFormBodyTypeScreen: View {
     }
     
     private func centerView() -> some View {
-        PickerMenuWithTip(data: BodyType.allCases, selectedData: $viewModel.smartFormModel.bodyType, action: { 
-            checkAvailable()
-        }, tip: { value in
-            
-        })
+        VStack(alignment: .leading, spacing: 16) {
+            PickerItems(data: PlantingType.allCases, header: "Посадка", rows: 2, selectedData: $viewModel.smartFormModel.foot.planting) {
+                checkAvailable()
+            }
+        }
     }
     
     private func checkAvailable() {
-        isValid = viewModel.smartFormModel.bodyType != nil
+        isValid = viewModel.smartFormModel.foot.planting != nil
     }
     
 }

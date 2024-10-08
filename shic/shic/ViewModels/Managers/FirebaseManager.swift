@@ -55,30 +55,40 @@ final class FirebaseManager {
         }
     }
     
-    func saveSmartForm(uuid: String, smartForm: SmartFormModel) {
-        fetchLastDocumentID(for: uuid, and: .smart) { result in
+    func saveSmartForm<T: Codable>(uuid: String, type: FormType, form: T) {
+        fetchLastDocumentID(for: uuid, and: type) { result in
             switch result {
             case .success(let id):
-                try? self.db.collection("users").document(uuid).collection("smartForm").document(String(id)).setData(from: smartForm)
+                try? self.db.collection("users").document(uuid).collection(type.firebaseID()).document(String(id)).setData(from: form)
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    func fetchSmartForm(for uuid: String, completion: @escaping (Result<SmartFormModel, Error>) -> Void) {
-        fetchLastDocumentID(for: uuid, and: .smart) { result in
+    func fetchSmartForm(for uuid: String, type: FormType, completion: @escaping (Result<Codable, Error>) -> Void) {
+        fetchLastDocumentID(for: uuid, and: type) { result in
             switch result {
             case .success(let id):
-                let docRef = self.db.collection("users").document(uuid).collection("smartForm").document(String(id))
+                let docRef = self.db.collection("users").document(uuid).collection(type.firebaseID()).document(String(id))
                 
                 docRef.getDocument { document, error in
                     if let document = document, document.exists {
-                        if let smartForm = try? document.data(as: SmartFormModel.self) {
-                            completion(.success(smartForm))
-                        } else {
-                            completion(.failure(error ?? NSError(domain: "", code: -1, userInfo: nil)))
+                        switch type {
+                        case .smart:
+                            if let smartForm = try? document.data(as: SmartFormModel.self) {
+                                completion(.success(smartForm))
+                            } else {
+                                completion(.failure(error ?? NSError(domain: "", code: -1, userInfo: nil)))
+                            }
+                        case .style:
+                            if let styleForm = try? document.data(as: StyleFormModel.self) {
+                                completion(.success(styleForm))
+                            } else {
+                                completion(.failure(error ?? NSError(domain: "", code: -1, userInfo: nil)))
+                            }
                         }
+                        
                     } else {
                         completion(.failure(error ?? NSError(domain: "", code: -1, userInfo: nil)))
                     }

@@ -14,6 +14,12 @@ struct BottomBarForm: View {
     @State private var next: AnyView? = nil
     @State private var skip: AnyView? = nil
     @State private var isShowLater: Bool = false
+    private var isImportant: Bool
+    
+    init(isAvailable: Binding<Bool>, isImportant: Bool = false) {
+        self._isAvailable = isAvailable
+        self.isImportant = isImportant
+    }
     
     var body: some View {
         VStack(spacing: 24) {
@@ -39,22 +45,25 @@ struct BottomBarForm: View {
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.darkPrimary)
                 }
-                Button {
-                    SmartFormRouteManager.shared.push()
-                    skip = AnyView(SmartFormRouteManager.shared.getScreen())
-                } label: {
-                    Text("Пропустить")
-                        .underline()
-                        .font(Font.custom("Alegreya-Bold", size: 16))
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.darkPrimary)
-                }
-                .background {
-                    NavigationLink(destination: skip, isActive: Binding(
-                        get: { skip != nil },
-                        set: { if !$0 { skip = nil } }
-                    )) {
-                        EmptyView()
+                
+                if !isImportant {
+                    Button {
+                        SmartFormRouteManager.shared.push()
+                        skip = AnyView(SmartFormRouteManager.shared.getScreen())
+                    } label: {
+                        Text("Пропустить")
+                            .underline()
+                            .font(Font.custom("Alegreya-Bold", size: 16))
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.darkPrimary)
+                    }
+                    .background {
+                        NavigationLink(destination: skip, isActive: Binding(
+                            get: { skip != nil },
+                            set: { if !$0 { skip = nil } }
+                        )) {
+                            EmptyView()
+                        }
                     }
                 }
             }

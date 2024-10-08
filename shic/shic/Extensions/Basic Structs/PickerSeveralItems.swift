@@ -13,11 +13,11 @@ struct PickerSeveralItems<Data: StringData>: View {
     var header: String? = nil
     var text: String? = nil
     var rows: Int =  1
-    var action: ([Data]) -> Void
+    var action: () -> Void
     
     @Binding private var selectedData: [Data]
     
-    init(data: [Data], header: String? = nil, text: String? = nil, rows: Int = 1, selectedData: Binding<[Data]> = Binding.constant([]), action: @escaping ([Data]) -> Void) {
+    init(data: [Data], header: String? = nil, text: String? = nil, rows: Int = 1, selectedData: Binding<[Data]> = Binding.constant([]), action: @escaping () -> Void) {
         self.data = data
         self.header = header
         self.text = text
@@ -71,7 +71,7 @@ struct PickerSeveralItems<Data: StringData>: View {
                 } else {
                     selectedData.append(value)
                 }
-                action(selectedData)
+                action()
             } label: {
                 Text(value.text())
                     .font(Font.custom("Alegreya-Regular", size: 16))

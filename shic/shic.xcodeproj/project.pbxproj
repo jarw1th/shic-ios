@@ -13,6 +13,14 @@
 		2185BEA32CB526D100C0A89E /* StyleFormColorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEA22CB526C300C0A89E /* StyleFormColorScreen.swift */; };
 		2185BEA52CB5276000C0A89E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEA42CB5275C00C0A89E /* DataManager.swift */; };
 		2185BEA72CB530BB00C0A89E /* SavingInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEA62CB530B100C0A89E /* SavingInformation.swift */; };
+		2185BEA92CB5AB3600C0A89E /* SmartFormSpecificBodyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEA82CB5AB2A00C0A89E /* SmartFormSpecificBodyScreen.swift */; };
+		2185BEAB2CB5ADBD00C0A89E /* SmartFormClothScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEAA2CB5ADB600C0A89E /* SmartFormClothScreen.swift */; };
+		2185BEAD2CB5AE4900C0A89E /* SmartFormFootAccessoriesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEAC2CB5AE3300C0A89E /* SmartFormFootAccessoriesScreen.swift */; };
+		2185BEAF2CB5AF2E00C0A89E /* SmartFormBudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEAE2CB5AF2300C0A89E /* SmartFormBudgetScreen.swift */; };
+		2185BEB12CB5B32C00C0A89E /* SmartFormJacketScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEB02CB5B32300C0A89E /* SmartFormJacketScreen.swift */; };
+		2185BEB32CB5B45C00C0A89E /* SmartFormPantsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEB22CB5B45400C0A89E /* SmartFormPantsScreen.swift */; };
+		2185BEB52CB5B47900C0A89E /* SmartFormFootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEB42CB5B47000C0A89E /* SmartFormFootScreen.swift */; };
+		2185BEB82CB5BD3E00C0A89E /* HEX+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185BEB72CB5BD3B00C0A89E /* HEX+.swift */; };
 		21D6F7F72CB448EE00163CA6 /* Alegreya-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21D6F7A72CB448EE00163CA6 /* Alegreya-Bold.ttf */; };
 		21D6F7F82CB448EE00163CA6 /* Alegreya-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21D6F7A82CB448EE00163CA6 /* Alegreya-Regular.ttf */; };
 		21D6F7F92CB448EE00163CA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21D6F7AA2CB448EE00163CA6 /* Assets.xcassets */; };
@@ -78,6 +86,14 @@
 		2185BEA22CB526C300C0A89E /* StyleFormColorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleFormColorScreen.swift; sourceTree = "<group>"; };
 		2185BEA42CB5275C00C0A89E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		2185BEA62CB530B100C0A89E /* SavingInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingInformation.swift; sourceTree = "<group>"; };
+		2185BEA82CB5AB2A00C0A89E /* SmartFormSpecificBodyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFormSpecificBodyScreen.swift; sourceTree = "<group>"; };
+		2185BEAA2CB5ADB600C0A89E /* SmartFormClothScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFormClothScreen.swift; sourceTree = "<group>"; };
+		2185BEAC2CB5AE3300C0A89E /* SmartFormFootAccessoriesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFormFootAccessoriesScreen.swift; sourceTree = "<group>"; };
+		2185BEAE2CB5AF2300C0A89E /* SmartFormBudgetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFormBudgetScreen.swift; sourceTree = "<group>"; };
+		2185BEB02CB5B32300C0A89E /* SmartFormJacketScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFormJacketScreen.swift; sourceTree = "<group>"; };
+		2185BEB22CB5B45400C0A89E /* SmartFormPantsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFormPantsScreen.swift; sourceTree = "<group>"; };
+		2185BEB42CB5B47000C0A89E /* SmartFormFootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFormFootScreen.swift; sourceTree = "<group>"; };
+		2185BEB72CB5BD3B00C0A89E /* HEX+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HEX+.swift"; sourceTree = "<group>"; };
 		219979812CAFE2E4008688A5 /* shic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D6F7A72CB448EE00163CA6 /* Alegreya-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-Bold.ttf"; sourceTree = "<group>"; };
 		21D6F7A82CB448EE00163CA6 /* Alegreya-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-Regular.ttf"; sourceTree = "<group>"; };
@@ -167,6 +183,14 @@
 				2185BE9B2CB5182F00C0A89E /* Split+.swift */,
 			);
 			path = Array;
+			sourceTree = "<group>";
+		};
+		2185BEB62CB5BD3600C0A89E /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				2185BEB72CB5BD3B00C0A89E /* HEX+.swift */,
+			);
+			path = Color;
 			sourceTree = "<group>";
 		};
 		219979782CAFE2E4008688A5 = {
@@ -273,6 +297,7 @@
 		21D6F7C62CB448EE00163CA6 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				2185BEB62CB5BD3600C0A89E /* Color */,
 				2185BE9E2CB51A4500C0A89E /* Placeholder.swift */,
 				21D6F7C52CB448EE00163CA6 /* View */,
 			);
@@ -406,6 +431,13 @@
 		21D6F7F02CB448EE00163CA6 /* Smart Form */ = {
 			isa = PBXGroup;
 			children = (
+				2185BEB02CB5B32300C0A89E /* SmartFormJacketScreen.swift */,
+				2185BEB22CB5B45400C0A89E /* SmartFormPantsScreen.swift */,
+				2185BEB42CB5B47000C0A89E /* SmartFormFootScreen.swift */,
+				2185BEAC2CB5AE3300C0A89E /* SmartFormFootAccessoriesScreen.swift */,
+				2185BEAE2CB5AF2300C0A89E /* SmartFormBudgetScreen.swift */,
+				2185BEAA2CB5ADB600C0A89E /* SmartFormClothScreen.swift */,
+				2185BEA82CB5AB2A00C0A89E /* SmartFormSpecificBodyScreen.swift */,
 				21D6F7E82CB448EE00163CA6 /* SmartFormBodyTypeScreen.swift */,
 				21D6F7E92CB448EE00163CA6 /* SmartFormGenderScreen.swift */,
 				21D6F7EA2CB448EE00163CA6 /* SmartFormParamsScreen.swift */,
@@ -601,17 +633,21 @@
 				21D6F8062CB448EE00163CA6 /* PickerSeveralItems.swift in Sources */,
 				21D6F82F2CB4592400163CA6 /* AppDelegate.swift in Sources */,
 				21D6F8072CB448EE00163CA6 /* RectangleImagePicker.swift in Sources */,
+				2185BEB12CB5B32C00C0A89E /* SmartFormJacketScreen.swift in Sources */,
 				21D6F8082CB448EE00163CA6 /* BottomBarForm.swift in Sources */,
 				21D6F8092CB448EE00163CA6 /* NavigationBarForm.swift in Sources */,
 				21D6F80A2CB448EE00163CA6 /* TopHeaderText.swift in Sources */,
 				21D6F80B2CB448EE00163CA6 /* StringData.swift in Sources */,
 				21D6F80C2CB448EE00163CA6 /* RoundedCorners.swift in Sources */,
+				2185BEB52CB5B47900C0A89E /* SmartFormFootScreen.swift in Sources */,
 				21D6F80D2CB448EE00163CA6 /* EndEditing+.swift in Sources */,
 				21D6F80E2CB448EE00163CA6 /* ViewWrapper.swift in Sources */,
 				21D6F80F2CB448EE00163CA6 /* Enum.swift in Sources */,
 				21D6F8102CB448EE00163CA6 /* SmartFormModel.swift in Sources */,
+				2185BEAB2CB5ADBD00C0A89E /* SmartFormClothScreen.swift in Sources */,
 				21D6F8112CB448EE00163CA6 /* StyleFormModel.swift in Sources */,
 				21D6F8122CB448EE00163CA6 /* User.swift in Sources */,
+				2185BEB32CB5B45C00C0A89E /* SmartFormPantsScreen.swift in Sources */,
 				21D6F8132CB448EE00163CA6 /* ConnectionManager.swift in Sources */,
 				21D6F8142CB448EE00163CA6 /* UserDefaultsManager.swift in Sources */,
 				21D6F8152CB448EE00163CA6 /* ValidManager.swift in Sources */,
@@ -627,11 +663,13 @@
 				21D6F81E2CB448EE00163CA6 /* LoadingScreen.swift in Sources */,
 				21D6F81F2CB448EE00163CA6 /* OrdersScreen.swift in Sources */,
 				2185BEA52CB5276000C0A89E /* DataManager.swift in Sources */,
+				2185BEAF2CB5AF2E00C0A89E /* SmartFormBudgetScreen.swift in Sources */,
 				21D6F8202CB448EE00163CA6 /* ProfileScreen.swift in Sources */,
 				21D6F8212CB448EE00163CA6 /* SmartFormBodyTypeScreen.swift in Sources */,
 				21D6F8222CB448EE00163CA6 /* SmartFormGenderScreen.swift in Sources */,
 				21D6F8232CB448EE00163CA6 /* SmartFormParamsScreen.swift in Sources */,
 				21D6F8242CB448EE00163CA6 /* SmartFormShirtScreen.swift in Sources */,
+				2185BEB82CB5BD3E00C0A89E /* HEX+.swift in Sources */,
 				21D6F8312CB45F9400163CA6 /* FirebaseManager.swift in Sources */,
 				21D6F8252CB448EE00163CA6 /* SmartFormSizesScreen.swift in Sources */,
 				21D6F8262CB448EE00163CA6 /* SmartFormWearStyleScreen.swift in Sources */,
@@ -639,6 +677,8 @@
 				21D6F8282CB448EE00163CA6 /* StartSmartFormScreen.swift in Sources */,
 				21D6F8292CB448EE00163CA6 /* StartStyleFormScreen.swift in Sources */,
 				21D6F82A2CB448EE00163CA6 /* StyleFormLikeScreen.swift in Sources */,
+				2185BEA92CB5AB3600C0A89E /* SmartFormSpecificBodyScreen.swift in Sources */,
+				2185BEAD2CB5AE4900C0A89E /* SmartFormFootAccessoriesScreen.swift in Sources */,
 				21D6F82B2CB448EE00163CA6 /* TabScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

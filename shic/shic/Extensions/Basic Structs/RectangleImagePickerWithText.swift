@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
-struct RectangleImagePickerWithText<Shape: ShapeStyle>: View {
+struct RectangleImagePickerWithText: View {
     
-    var data: [String: Shape]
+    var data: [String: String]
+    var type: ShapeType
     var rows: Int =  1
     var action: () -> Void
     
-    @Binding private var selectedData: [Shape]
+    @Binding private var selectedData: [String]
     
-    init(data: [String: Shape], rows: Int = 1, selectedData: Binding<[Shape]>, action: @escaping () -> Void) {
+    init(data: [String: String], type: ShapeType = .color, rows: Int = 1, selectedData: Binding<[String]>, action: @escaping () -> Void) {
         self.data = data
+        self.type = type
         self.rows = rows
         self.action = action
         self._selectedData = selectedData
@@ -56,19 +59,22 @@ struct RectangleImagePickerWithText<Shape: ShapeStyle>: View {
                 action()
             } label: {
                 VStack(spacing: 8) {
-                    if let colorValue = value as? Color {
+                    if type == .color {
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(colorValue)
+                            .fill(Color(hex: value))
                             .frame(height: 60)
                             .frame(minWidth: 60)
-                    } else if let imageValue = value as? Image {
-                        imageValue
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 60)
-                            .frame(minWidth: 60)
-                    } else {
-                        EmptyView()
+                    }
+                    if type == .image {
+                        WebImage(url: URL(string: value), content: { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 60)
+                                .frame(minWidth: 60)
+                        }, placeholder: {
+                            Placeholder()
+                        })
                     }
                     
                     Text(key)

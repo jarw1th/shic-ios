@@ -31,7 +31,7 @@ struct SmartFormShirtScreen: View {
                 dismiss()
             }
             VStack(spacing: 64) {
-                TopHeaderText(header: "Футболки", text: "Дополнительные вопросы")
+                TopHeaderText(header: "Верх", text: "Дополнительные вопросы")
                 centerView()
             }
             BottomBarForm(isAvailable: $isValid)
@@ -44,16 +44,16 @@ struct SmartFormShirtScreen: View {
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 16) {
-                PickerItems(data: WidthSizeType.allCases, header: "Воротники", rows: 2, selectedData: $viewModel.smartFormModel.shirt.colar) { data in
-                    viewModel.smartFormModel.shirt.colar = data
+                PickerItems(data: WidthSizeType.allCases, header: "Воротники", rows: 2, selectedData: $viewModel.smartFormModel.shirt.colar) {
                     checkAvailable()
                 }
-                PickerItems(data: WidthSizeType.allCases, header: "В плечах", rows: 2, selectedData: $viewModel.smartFormModel.shirt.shoulders) { data in
-                    viewModel.smartFormModel.shirt.shoulders = data
+                PickerItems(data: LengthSizeType.allCases, header: "Длина рукавов", rows: 2, selectedData: $viewModel.smartFormModel.shirt.sleeve) {
                     checkAvailable()
                 }
-                PickerItems(data: LengthSizeType.allCases, header: "Длина рукавов", rows: 2, selectedData: $viewModel.smartFormModel.shirt.sleeve) { data in
-                    viewModel.smartFormModel.shirt.sleeve = data
+                PickerItems(data: WidthSizeType.allCases, header: "В плечах", rows: 2, selectedData: $viewModel.smartFormModel.shirt.shoulders) {
+                    checkAvailable()
+                }
+                PickerItems(data: WidthSizeType.allCases, header: "В талии", rows: 2, selectedData: $viewModel.smartFormModel.shirt.waist) {
                     checkAvailable()
                 }
             }
@@ -64,7 +64,8 @@ struct SmartFormShirtScreen: View {
         let colar = viewModel.smartFormModel.shirt.colar != nil
         let shoulders = viewModel.smartFormModel.shirt.shoulders != nil
         let sleeve = viewModel.smartFormModel.shirt.sleeve != nil
-        isValid = colar && shoulders && sleeve
+        let waist = viewModel.smartFormModel.shirt.waist != nil
+        isValid = colar && shoulders && sleeve && waist
     }
     
 }

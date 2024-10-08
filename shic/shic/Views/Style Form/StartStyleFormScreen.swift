@@ -70,7 +70,7 @@ struct StartStyleFormScreen: View {
     }
     
     private func largeButton() -> some View {
-        MainButton(text: "Начать") {
+        MainButton(text: viewModel.userModel.isStyleFormFill ? "Перепройти" : "Начать") {
             viewModel.fetchPreloadContent()
             StyleFormRouteManager.shared.push(false)
             form = AnyView(StyleFormRouteManager.shared.getScreen())
@@ -90,7 +90,7 @@ struct StartStyleFormScreen: View {
             Button {
                 isShowTab.toggle()
             } label: {
-                Text("Потом")
+                Text(viewModel.userModel.isStyleFormFill ? "Оставить" : "Потом")
                     .underline()
                     .font(Font.custom("Alegreya-Bold", size: 16))
                     .multilineTextAlignment(.center)

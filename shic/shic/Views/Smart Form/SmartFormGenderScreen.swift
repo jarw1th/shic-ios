@@ -34,7 +34,7 @@ struct SmartFormGenderScreen: View {
                 TopHeaderText(header: "Пол")
                 centerView()
                 Spacer()
-                BottomBarForm(isAvailable: $isValid)
+                BottomBarForm(isAvailable: $isValid, isImportant: true)
             }
         }
         .padding(.horizontal, 20)
@@ -43,8 +43,7 @@ struct SmartFormGenderScreen: View {
     }
     
     private func centerView() -> some View {
-        PickerMenu(data: Gender.allCases, placeholder: "выбери", header: "Я ", selectedData: $viewModel.smartFormModel.gender) { data in
-            viewModel.smartFormModel.gender = data
+        PickerMenu(data: Gender.allCases, placeholder: "выбери", header: "Я ", selectedData: $viewModel.smartFormModel.gender) { 
             checkAvailable()
         }
     }

@@ -54,28 +54,28 @@ final class ViewModel: ObservableObject {
     }
     
     func fetchForm(_ type: FormType) {
-        switch type {
-        case .smart:
-            firebaseManager.fetchSmartForm(for: userModel.uid) { result in
-                switch result {
-                case .success(let form):
-                    self.smartFormModel = form
-                case .failure(let error):
-                    print(error)
-                    break
+        firebaseManager.fetchSmartForm(for: userModel.uid, type: type) { result in
+            switch result {
+            case .success(let form):
+                if let form = form as? StyleFormModel {
+                    self.styleFormModel = form
                 }
+                if let form = form as? SmartFormModel {
+                    self.smartFormModel = form
+                }
+            case .failure(let error):
+                print(error)
+                break
             }
-        case .style:
-            break
         }
     }
     
     func saveForm(_ type: FormType) {
         switch type {
         case .smart:
-            firebaseManager.saveSmartForm(uuid: userModel.uid, smartForm: smartFormModel)
+            firebaseManager.saveSmartForm(uuid: userModel.uid, type: type, form: smartFormModel)
         case .style:
-            break
+            firebaseManager.saveSmartForm(uuid: userModel.uid, type: type, form: styleFormModel)
         }
     }
     

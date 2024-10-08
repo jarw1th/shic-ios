@@ -30,6 +30,8 @@ struct FillField: View {
             return .numberPad
         case .footSize:
             return .numbersAndPunctuation
+        case .budget:
+            return .numberPad
         }
     }
     
@@ -86,7 +88,12 @@ struct FillField: View {
             }
         }
         .onChange(of: focus) { newValue in
+            if type == .budget, !text.isEmpty {
+                text = cleanBudget(text)
+            }
+            
             guard !newValue else { return }
+            
             if type == .height, !text.isEmpty {
                 text = formatHeight(text)
             }
@@ -98,6 +105,9 @@ struct FillField: View {
             }
             if type == .email, !text.isEmpty {
                 text = formatEmail(text)
+            }
+            if type == .budget, !text.isEmpty {
+                text = formatBudget(text)
             }
         }
         .onChange(of: focus) { newValue in
@@ -116,6 +126,27 @@ struct FillField: View {
                 focusComplete?(ValidManager.shared.checkDate(text))
             }
         }
+    }
+    
+    private func formatBudget(_ price: String) -> String {
+        var cleaned = price.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        
+        let postfix = " рублей"
+        let prefix = "До "
+        
+        guard let cleanedPrice = Int(cleaned), cleanedPrice > 0 else {
+            return prefix + "2000" + postfix
+        }
+        
+        let finalPrice = cleanedPrice < 2000 ? 2000 : cleanedPrice
+        
+        return prefix + "\(finalPrice)" + postfix
+    }
+    
+    private func cleanBudget(_ price: String) -> String {
+        var cleaned = price.components(separatedBy: CharacterSet.decimalDigits.inverted).joined().trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return cleaned
     }
     
     private func formatFootSize(_ size: String) -> String {

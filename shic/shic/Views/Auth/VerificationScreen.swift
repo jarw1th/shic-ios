@@ -31,7 +31,6 @@ struct VerificationScreen: View {
                 checkAvailable()
             }
             .onAppear {
-                SmartFormRouteManager.shared.initial(viewModel)
                 startCountdown()
             }
             .endEditing()
@@ -87,6 +86,7 @@ struct VerificationScreen: View {
         MainButton(isAvailable: $isValid, text: "Готово") {
             if isValid {
                 viewModel.saveUser()
+                SmartFormRouteManager.shared.initial(viewModel)
                 isShowForm.toggle()
             }
         }

@@ -13,11 +13,11 @@ struct PickerItems<Data: StringData>: View {
     var header: String? = nil
     var text: String? = nil
     var rows: Int =  1
-    var action: (Data) -> Void
+    var action: () -> Void
     
     @Binding private var selectedData: Data?
     
-    init(data: [Data], header: String? = nil, text: String? = nil, rows: Int = 1, selectedData: Binding<Data?> = Binding.constant(nil), action: @escaping (Data) -> Void) {
+    init(data: [Data], header: String? = nil, text: String? = nil, rows: Int = 1, selectedData: Binding<Data?> = Binding.constant(nil), action: @escaping () -> Void) {
         self.data = data
         self.header = header
         self.text = text
@@ -66,7 +66,7 @@ struct PickerItems<Data: StringData>: View {
         return ForEach(rowItems, id: \.self) { value in
             Button {
                 selectedData = value
-                action(value)
+                action()
             } label: {
                 Text(value.text())
                     .font(Font.custom("Alegreya-Regular", size: 16))

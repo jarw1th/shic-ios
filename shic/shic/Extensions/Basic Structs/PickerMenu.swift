@@ -12,14 +12,14 @@ struct PickerMenu<Data: StringData>: View {
     var data: [Data]
     var placeholder: String
     var header: String
-    var action: (Data) -> Void
+    var action: () -> Void
     @State private var isOpened: Bool = false
     @Binding private var selectedData: Data? 
     
     @State private var mainButtonWidth: CGFloat = 0
     @State private var headerWidth: CGFloat = 0
     
-    init(data: [Data], placeholder: String, header: String, selectedData: Binding<Data?> = Binding.constant(nil), action: @escaping (Data) -> Void) {
+    init(data: [Data], placeholder: String, header: String, selectedData: Binding<Data?> = Binding.constant(nil), action: @escaping () -> Void) {
         self.data = data
         self.placeholder = placeholder
         self.header = header
@@ -81,7 +81,7 @@ struct PickerMenu<Data: StringData>: View {
         ForEach(data, id: \.self) { value in
             Button {
                 selectedData = value
-                action(value)
+                action()
                 isOpened.toggle()
             } label: {
                 Text(value.text())

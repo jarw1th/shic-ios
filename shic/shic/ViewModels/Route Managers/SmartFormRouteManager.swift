@@ -21,20 +21,24 @@ final class SmartFormRouteManager {
     init() {
         self.formIndex = 0
         self.screenIndex = 0
-        self.formScreens = [SmartFormGenderScreen(), SmartFormWearStyleScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSizesScreen(),
-                            SmartFormShirtScreen(), SmartFormWearTypeScreen()]
-        self.allScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormWearStyleScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSizesScreen(),
-                           SmartFormShirtScreen(), SmartFormWearTypeScreen()]
+        self.formScreens = [SmartFormGenderScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSpecificBodyScreen(), SmartFormWearStyleScreen(),
+                            SmartFormClothScreen(), SmartFormSizesScreen(), SmartFormJacketScreen(), SmartFormShirtScreen(), SmartFormPantsScreen(), SmartFormFootScreen(),
+                            SmartFormWearTypeScreen(), SmartFormFootAccessoriesScreen(), SmartFormBudgetScreen()]
+        self.allScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSpecificBodyScreen(),
+                           SmartFormWearStyleScreen(), SmartFormClothScreen(), SmartFormSizesScreen(), SmartFormJacketScreen(), SmartFormShirtScreen(),
+                           SmartFormPantsScreen(), SmartFormFootScreen(), SmartFormWearTypeScreen(), SmartFormFootAccessoriesScreen(), SmartFormBudgetScreen()]
     }
     
     func initial(_ viewModel: ViewModel) {
         self.viewModel = viewModel
         self.formIndex = 0
         self.screenIndex = 0
-        self.formScreens = [SmartFormGenderScreen(), SmartFormWearStyleScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSizesScreen(),
-                            SmartFormShirtScreen(), SmartFormWearTypeScreen()]
-        self.allScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormWearStyleScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSizesScreen(),
-                           SmartFormShirtScreen(), SmartFormWearTypeScreen()]
+        self.formScreens = [SmartFormGenderScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSpecificBodyScreen(), SmartFormWearStyleScreen(),
+                            SmartFormClothScreen(), SmartFormSizesScreen(), SmartFormJacketScreen(), SmartFormShirtScreen(), SmartFormPantsScreen(), SmartFormFootScreen(),
+                            SmartFormWearTypeScreen(), SmartFormFootAccessoriesScreen(), SmartFormBudgetScreen()]
+        self.allScreens = [StartSmartFormScreen(), SmartFormGenderScreen(), SmartFormParamsScreen(), SmartFormBodyTypeScreen(), SmartFormSpecificBodyScreen(),
+                           SmartFormWearStyleScreen(), SmartFormClothScreen(), SmartFormSizesScreen(), SmartFormJacketScreen(), SmartFormShirtScreen(),
+                           SmartFormPantsScreen(), SmartFormFootScreen(), SmartFormWearTypeScreen(), SmartFormFootAccessoriesScreen(), SmartFormBudgetScreen()]
     }
     
     func pop(_ decrementIndex: Bool = true) {

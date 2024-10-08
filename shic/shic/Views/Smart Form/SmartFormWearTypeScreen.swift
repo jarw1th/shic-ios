@@ -34,7 +34,7 @@ struct SmartFormWearTypeScreen: View {
                 TopHeaderText(header: "Тип одежды", text: "Выбери, что тебе нравится")
                 centerView()
             }
-            BottomBarForm(isAvailable: $isValid)
+            BottomBarForm(isAvailable: $isValid, isImportant: true)
         }
         .padding(.horizontal, 20)
         .padding(.top, 78)
@@ -44,14 +44,17 @@ struct SmartFormWearTypeScreen: View {
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 16) {
-                PickerMenuWithTip(data: ShirtType.allCases, header: "Тип футболки", selectedData: $viewModel.smartFormModel.shirt.type, action: { data in
-                    viewModel.smartFormModel.shirt.type = data
+                PickerMenuWithTip(data: ShirtType.allCases, header: "Тип верхней одежды", selectedData: $viewModel.smartFormModel.jacket.type, action: {
                     checkAvailable()
                 }, tip: { value in
                     
                 })
-                PickerMenuWithTip(data: PantsType.allCases, header: "Тип штанов", selectedData: $viewModel.smartFormModel.pants.type, action: { data in
-                    viewModel.smartFormModel.pants.type = data
+                PickerMenuWithTip(data: ShirtType.allCases, header: "Тип верха", selectedData: $viewModel.smartFormModel.shirt.type, action: {
+                    checkAvailable()
+                }, tip: { value in
+                    
+                })
+                PickerMenuWithTip(data: PantsType.allCases, header: "Тип низа", selectedData: $viewModel.smartFormModel.pants.type, action: {
                     checkAvailable()
                 }, tip: { value in
                     
@@ -61,9 +64,10 @@ struct SmartFormWearTypeScreen: View {
     }
     
     private func checkAvailable() {
+        let jacket = viewModel.smartFormModel.jacket.type != nil
         let shirt = viewModel.smartFormModel.shirt.type != nil
         let pants = viewModel.smartFormModel.pants.type != nil
-        isValid = shirt && pants
+        isValid = jacket && shirt && pants
     }
     
 }

@@ -18,7 +18,14 @@ struct SavingInformation: View {
     var body: some View {
         makeContent()
             .onAppear {
+                switch savingType {
+                case .smart:
+                    viewModel.userModel.isSmartFormFill = true
+                case .style:
+                    viewModel.userModel.isStyleFormFill = true
+                }
                 viewModel.saveForm(savingType)
+                viewModel.saveUser()
                 isShowNext.toggle()
             }
             .fullScreenCover(isPresented: $isShowNext) {

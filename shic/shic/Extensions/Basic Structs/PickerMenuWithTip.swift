@@ -11,11 +11,11 @@ struct PickerMenuWithTip<Data: StringData>: View {
     
     var data: [Data]
     var header: String? = nil
-    var action: (Data) -> Void
+    var action: () -> Void
     var tip: (Data) -> Void
     @Binding private var selectedData: Data?
     
-    init(data: [Data], header: String? = nil, selectedData: Binding<Data?> = Binding.constant(nil), action: @escaping (Data) -> Void, tip: @escaping (Data) -> Void) {
+    init(data: [Data], header: String? = nil, selectedData: Binding<Data?> = Binding.constant(nil), action: @escaping () -> Void, tip: @escaping (Data) -> Void) {
         self.data = data
         self.header = header
         self.action = action
@@ -46,7 +46,7 @@ struct PickerMenuWithTip<Data: StringData>: View {
             HStack(spacing: 16) {
                 Button {
                     selectedData = value
-                    action(value)
+                    action()
                 } label: {
                     Text(value.text())
                         .font(Font.custom("Alegreya-Regular", size: 16))

@@ -14,6 +14,7 @@ enum FillFieldType {
     case height
     case weight
     case footSize
+    case budget
     
 }
 
@@ -22,6 +23,13 @@ enum TabType {
     case home
     case orders
     case profile
+    
+}
+
+enum ShapeType {
+    
+    case color
+    case image
     
 }
 
@@ -92,10 +100,192 @@ enum WearStyle: String, Codable, StringData, CaseIterable {
     
 }
 
+enum WearType: String, Codable, StringData, CaseIterable {
+    
+    case jeans
+    case dresses
+    case costumes
+    case sport
+    case shirts
+    case skirts
+    case shorts
+    
+    func text() -> String {
+        switch self {
+        case .jeans:
+            "Джинсы"
+        case .dresses:
+            "Платья"
+        case .costumes:
+            "Костюмы"
+        case .sport:
+            "Спортивная одежда"
+        case .shirts:
+            "Рубашки"
+        case .skirts:
+            "Юбки"
+        case .shorts:
+            "Шорты"
+        }
+    }
+    
+}
+
+enum ClothType: String, Codable, StringData, CaseIterable {
+    
+    case cotton
+    case wool
+    case leather
+    case flax
+    case silk
+    case other
+    
+    func text() -> String {
+        switch self {
+        case .cotton:
+            "Хлопок"
+        case .wool:
+            "Шерсть"
+        case .leather:
+            "Кожа"
+        case .flax:
+            "Лен"
+        case .silk:
+            "Шелк"
+        case .other:
+            "Другие"
+        }
+    }
+    
+}
+
+enum AccessoriesType: String, Codable, StringData, CaseIterable {
+    
+    case scarf
+    case bag
+    case glasses
+    case belt
+    case hat
+    case watch
+    
+    func text() -> String {
+        switch self {
+        case .scarf:
+            "Шарфы"
+        case .bag:
+            "Сумки"
+        case .glasses:
+            "Очки"
+        case .belt:
+            "Ремни"
+        case .hat:
+            "Шляпы"
+        case .watch:
+            "Часы"
+        }
+    }
+    
+}
+
+enum JewelryType: String, Codable, StringData, CaseIterable {
+    
+    case gold
+    case silver
+    case minimalistism
+    case massive
+    
+    func text() -> String {
+        switch self {
+        case .gold:
+            "Золото"
+        case .silver:
+            "Серебро"
+        case .minimalistism:
+            "Минимализм"
+        case .massive:
+            "Массивные"
+        }
+    }
+    
+}
+
+enum DislikeItemsType: String, Codable, StringData, CaseIterable {
+    
+    case shorts
+    case miniskirts
+    case tightfitting
+    case lowlanding
+    
+    func text() -> String {
+        switch self {
+        case .shorts:
+            "Шорты"
+        case .miniskirts:
+            "Мини-юбки"
+        case .tightfitting:
+            "Обтягивающая одежда"
+        case .lowlanding:
+            "С низкой посадкой"
+        }
+    }
+    
+}
+
+enum FootType: String, Codable, StringData, CaseIterable {
+    
+    case sneakers
+    case shoes
+    case boots
+    case sandals
+    case other
+    
+    func text() -> String {
+        switch self {
+        case .sneakers:
+            "Кроссовки"
+        case .shoes:
+            "Туфли"
+        case .boots:
+            "Ботинки"
+        case .sandals:
+            "Сандали"
+        case .other:
+            "Другое"
+        }
+    }
+    
+}
+
+enum SpecificBodyType: String, Codable, StringData, CaseIterable {
+    
+    case wideShoulder
+    case longLegs
+    case fatThighs
+    case fatBelly
+    case no
+    
+    func text() -> String {
+        switch self {
+        case .wideShoulder:
+            "Широкие плечи"
+        case .longLegs:
+            "Длинные ноги"
+        case .fatThighs:
+            "Полные бедра"
+        case .fatBelly:
+            "Полный живот"
+        case .no:
+            "Нет"
+        }
+    }
+    
+}
+
 enum BodyType: String, Codable, StringData, CaseIterable {
     
     case inverted
     case triangle
+    case clock
     case slim
     case oval
     
@@ -105,6 +295,8 @@ enum BodyType: String, Codable, StringData, CaseIterable {
             "Обратный треугольник"
         case .triangle:
             "Треугольник"
+        case .clock:
+            "Песочные часы"
         case .slim:
             "Худой"
         case .oval:
@@ -202,10 +394,30 @@ enum LengthSizeType: String, Codable, StringData, CaseIterable {
     
 }
 
+enum PlantingType: String, Codable, StringData, CaseIterable {
+    
+    case tight
+    case perfect
+    case free
+    
+    func text() -> String {
+        switch self {
+        case .tight:
+            "Обычно облегает"
+        case .perfect:
+            "Идеально"
+        case .free:
+            "Обычно свободно"
+        }
+    }
+    
+}
+
 enum ShirtType: String, Codable, StringData, CaseIterable {
     
     case tight
     case classic
+    case oversize
     
     func text() -> String {
         switch self {
@@ -213,6 +425,8 @@ enum ShirtType: String, Codable, StringData, CaseIterable {
             "Узкая"
         case .classic:
             "Классика"
+        case .oversize:
+            "Оверсайз"
         }
     }
     
@@ -223,6 +437,7 @@ enum PantsType: String, Codable, StringData, CaseIterable {
     case skinny
     case tight
     case athletic
+    case oversize
     
     func text() -> String {
         switch self {
@@ -232,6 +447,36 @@ enum PantsType: String, Codable, StringData, CaseIterable {
             "Узкие"
         case .athletic:
             "Атлетичные"
+        case .oversize:
+            "Оверсайз"
+        }
+    }
+    
+}
+
+enum BrandType: String, Codable, StringData, CaseIterable {
+    
+    case maag
+    case dap
+    case nike
+    case adidas
+    case gucci
+    case puma
+    
+    func text() -> String {
+        switch self {
+        case .maag:
+            "MAAG"
+        case .dap:
+            "DAP"
+        case .nike:
+            "Nike"
+        case .adidas:
+            "Adidas"
+        case .gucci:
+            "Gucci"
+        case .puma:
+            "Puma"
         }
     }
     

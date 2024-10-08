@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct StyleFormModel {
+struct StyleFormModel: Codable {
     
     var lovingImages: [String] = []
-    var lovingColors: [Color] = []
+    var lovingColors: [String] = []
+    var dislikedItems: [String] = []
     
 }

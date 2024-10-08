@@ -41,7 +41,7 @@ struct SmartFormParamsScreen: View {
                 TopHeaderText(header: "Рост и вес", text: "Мы никому не скажем :)")
                 centerView()
                 Spacer()
-                BottomBarForm(isAvailable: $isValid)
+                BottomBarForm(isAvailable: $isValid, isImportant: true)
             }
         }
         .padding(.horizontal, 20)
