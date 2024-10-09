@@ -20,7 +20,10 @@ struct StartStyleFormScreen: View {
             makeContent()
                 .ignoresSafeArea()
                 .fullScreenCover(isPresented: $isShowTab) {
-                    AnyView(StyleFormRouteManager.shared.getLaterScreen())
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
+                .onAppear {
+                    StyleFormRouteManager.shared.clear()
                 }
         }
     }
@@ -72,8 +75,7 @@ struct StartStyleFormScreen: View {
     private func largeButton() -> some View {
         MainButton(text: viewModel.userModel.isStyleFormFill ? "Перепройти" : "Начать") {
             viewModel.fetchPreloadContent()
-            StyleFormRouteManager.shared.push(false)
-            form = AnyView(StyleFormRouteManager.shared.getScreen())
+            form = AnyView(StyleFormLikeScreen(index: 0).navigationBarHidden(true).environmentObject(viewModel))
         }
         .background {
             NavigationLink(destination: form, isActive: Binding(

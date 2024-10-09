@@ -13,11 +13,15 @@ struct SmartFormClothScreen: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
+    @State private var isShowTab: Bool = false
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .fullScreenCover(isPresented: $isShowTab) {
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
                 .onAppear {
                     checkAvailable()
                 }
@@ -34,7 +38,9 @@ struct SmartFormClothScreen: View {
                 TopHeaderText(header: "Ткань", text: "Какую ткань ты предпочитаешь?")
                 centerView()
                 Spacer()
-                BottomBarForm(isAvailable: $isValid)
+                BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
+                    AnyView(SmartFormSizesScreen().navigationBarHidden(true).environmentObject(viewModel))
+                })
             }
         }
         .padding(.horizontal, 20)

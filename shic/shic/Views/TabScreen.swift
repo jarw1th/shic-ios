@@ -30,11 +30,11 @@ struct TabScreen: View {
     private func views() -> some View {
         switch tab {
         case .home:
-            return AnyView(HomeScreen().environmentObject(viewModel))
+            return AnyView(HomeScreen().navigationBarHidden(true).environmentObject(viewModel))
         case .orders:
-            return AnyView(OrdersScreen().environmentObject(viewModel))
+            return AnyView(OrdersScreen().navigationBarHidden(true).environmentObject(viewModel))
         case .profile:
-            return AnyView(ProfileScreen().environmentObject(viewModel))
+            return AnyView(ProfileScreen().navigationBarHidden(true).environmentObject(viewModel))
         }
     }
     

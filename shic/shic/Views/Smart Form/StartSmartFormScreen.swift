@@ -19,7 +19,10 @@ struct StartSmartFormScreen: View {
             makeContent()
                 .ignoresSafeArea()
                 .fullScreenCover(isPresented: $isShowTab) {
-                    AnyView(SmartFormRouteManager.shared.getLaterScreen())
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
+                .onAppear {
+                    SmartFormRouteManager.shared.clear()
                 }
         }
     }
@@ -70,8 +73,7 @@ struct StartSmartFormScreen: View {
     
     private func largeButton() -> some View {
         MainButton(text: viewModel.userModel.isSmartFormFill ? "Перепройти" : "Начать") {
-            SmartFormRouteManager.shared.push(false)
-            form = AnyView(SmartFormRouteManager.shared.getScreen())
+            form = AnyView(SmartFormGenderScreen().navigationBarHidden(true).environmentObject(viewModel))
         }
         .background {
             NavigationLink(destination: form, isActive: Binding(

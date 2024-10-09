@@ -13,11 +13,15 @@ struct StyleFormColorScreen: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
+    @State private var isShowTab: Bool = false
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .fullScreenCover(isPresented: $isShowTab) {
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
                 .onAppear {
                     checkAvailable()
                 }
@@ -34,7 +38,9 @@ struct StyleFormColorScreen: View {
                 TopHeaderText(header: "Мне нравится...")
                 centerView()
             }
-            BottomBarForm(isAvailable: $isValid)
+            BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
+                AnyView(SavingInformation(savingType: .style).navigationBarHidden(true).environmentObject(viewModel))
+            })
         }
         .padding(.horizontal, 20)
         .padding(.top, 78)

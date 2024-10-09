@@ -25,7 +25,8 @@ struct VerificationScreen: View {
             .ignoresSafeArea()
             .navigationBarHidden(true)
             .fullScreenCover(isPresented: $isShowForm) {
-                AnyView(SmartFormRouteManager.shared.getScreen())
+                StartSmartFormScreen()
+                    .navigationBarHidden(true).environmentObject(viewModel)
             }
             .onChange(of: code) { _ in
                 checkAvailable()
@@ -86,7 +87,6 @@ struct VerificationScreen: View {
         MainButton(isAvailable: $isValid, text: "Готово") {
             if isValid {
                 viewModel.saveUser()
-                SmartFormRouteManager.shared.initial(viewModel)
                 isShowForm.toggle()
             }
         }

@@ -15,11 +15,15 @@ struct StyleFormLikeScreen: View {
     var index: Int
     
     @State private var isValid: Bool = false
+    @State private var isShowTab: Bool = false
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .fullScreenCover(isPresented: $isShowTab) {
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
                 .onAppear {
                     checkAvailable()
                 }
@@ -29,14 +33,18 @@ struct StyleFormLikeScreen: View {
     private func makeContent() -> some View {
         VStack(spacing: 16) {
             NavigationBarForm(form: .style) {
-                StyleFormRouteManager.shared.pop(!(index == 0))
+                if !(index == 0) {
+                    StyleFormRouteManager.shared.pop()
+                }
                 dismiss()
             }
             VStack(spacing: 64) {
                 TopHeaderText(header: "Мне нравится...")
                 centerView()
             }
-            BottomBarForm(isAvailable: $isValid)
+            BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
+                AnyView(StyleFormColorScreen().navigationBarHidden(true).environmentObject(viewModel))
+            })
         }
         .padding(.horizontal, 20)
         .padding(.top, 78)

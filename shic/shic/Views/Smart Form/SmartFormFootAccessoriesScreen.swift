@@ -13,11 +13,15 @@ struct SmartFormFootAccessoriesScreen: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
+    @State private var isShowTab: Bool = false
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .fullScreenCover(isPresented: $isShowTab) {
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
                 .onAppear {
                     checkAvailable()
                 }
@@ -34,7 +38,9 @@ struct SmartFormFootAccessoriesScreen: View {
                 TopHeaderText(header: "Обувь и акссесуары", text: "Выбери, что тебе нравится")
                 centerView()
             }
-            BottomBarForm(isAvailable: $isValid, isImportant: true)
+            BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, isImportant: true, nextAction: {
+                AnyView(SmartFormBudgetScreen().navigationBarHidden(true).environmentObject(viewModel))
+            })
         }
         .padding(.horizontal, 20)
         .padding(.top, 78)

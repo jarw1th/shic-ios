@@ -10,22 +10,24 @@ import SwiftUI
 struct BottomBarForm: View {
     
     @Binding var isAvailable: Bool
+    @Binding var isShowLater: Bool
+    @State var next: AnyView?
+    var nextAction: () -> AnyView
     
-    @State private var next: AnyView? = nil
-    @State private var skip: AnyView? = nil
-    @State private var isShowLater: Bool = false
     private var isImportant: Bool
     
-    init(isAvailable: Binding<Bool>, isImportant: Bool = false) {
+    init(isAvailable: Binding<Bool>, isShowLater: Binding<Bool>, isImportant: Bool = false, nextAction: @escaping () -> AnyView) {
         self._isAvailable = isAvailable
+        self._isShowLater = isShowLater
         self.isImportant = isImportant
+        self.nextAction = nextAction
     }
     
     var body: some View {
         VStack(spacing: 24) {
             MainButton(isAvailable: $isAvailable, text: "Дальше") {
                 SmartFormRouteManager.shared.push()
-                next = AnyView(SmartFormRouteManager.shared.getScreen())
+                next = nextAction()
             }
             .background {
                 NavigationLink(destination: next, isActive: Binding(
@@ -49,7 +51,7 @@ struct BottomBarForm: View {
                 if !isImportant {
                     Button {
                         SmartFormRouteManager.shared.push()
-                        skip = AnyView(SmartFormRouteManager.shared.getScreen())
+                        next = nextAction()
                     } label: {
                         Text("Пропустить")
                             .underline()
@@ -57,19 +59,8 @@ struct BottomBarForm: View {
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.darkPrimary)
                     }
-                    .background {
-                        NavigationLink(destination: skip, isActive: Binding(
-                            get: { skip != nil },
-                            set: { if !$0 { skip = nil } }
-                        )) {
-                            EmptyView()
-                        }
-                    }
                 }
             }
-        }
-        .fullScreenCover(isPresented: $isShowLater) {
-            AnyView(SmartFormRouteManager.shared.getLaterScreen())
         }
     }
     

@@ -13,11 +13,15 @@ struct SmartFormBudgetScreen: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
+    @State private var isShowTab: Bool = false
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .fullScreenCover(isPresented: $isShowTab) {
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
                 .onAppear {
                     checkAvailable()
                 }
@@ -34,7 +38,9 @@ struct SmartFormBudgetScreen: View {
                 TopHeaderText(header: "Бюджет", text: "Какой у тебя бюджет?")
                 centerView()
             }
-            BottomBarForm(isAvailable: $isValid)
+            BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
+                AnyView(SavingInformation(savingType: .smart).navigationBarHidden(true).environmentObject(viewModel))
+            })
         }
         .padding(.horizontal, 20)
         .padding(.top, 78)

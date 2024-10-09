@@ -20,10 +20,10 @@ struct ProfileScreen: View {
                 .ignoresSafeArea()
                 .navigationBarHidden(true)
                 .fullScreenCover(isPresented: $isShowSmartForm) {
-                    AnyView(SmartFormRouteManager.shared.getScreen())
+                    AnyView(StartSmartFormScreen().navigationBarHidden(true).environmentObject(viewModel))
                 }
                 .fullScreenCover(isPresented: $isShowStyleForm) {
-                    AnyView(StyleFormRouteManager.shared.getScreen())
+                    AnyView(StartStyleFormScreen().navigationBarHidden(true).environmentObject(viewModel))
                 }
         }
         .endEditing()
@@ -96,11 +96,12 @@ struct ProfileScreen: View {
                         
                     }
                     BasicButton(header: "Умная форма", title: viewModel.userModel.isSmartFormFill ? "Заполнить заново" : "Заполнить") {
-                        SmartFormRouteManager.shared.initial(viewModel)
                         isShowSmartForm.toggle()
                     }
+                    BasicButton(header: "Замеры тела", title: "Заполнить") {
+                        
+                    }
                     BasicButton(header: "Мой стиль", title: viewModel.userModel.isStyleFormFill ? "Заполнить заново" : "Заполнить") {
-                        StyleFormRouteManager.shared.initial(viewModel)
                         isShowSmartForm.toggle()
                     }
                     BasicButton(header: "Архив заказов", title: "Открыть") {

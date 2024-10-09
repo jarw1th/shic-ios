@@ -13,11 +13,15 @@ struct SmartFormParamsScreen: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
+    @State private var isShowTab: Bool = false
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .fullScreenCover(isPresented: $isShowTab) {
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
                 .onChange(of: viewModel.smartFormModel.height) { _ in
                     checkAvailable()
                 }
@@ -41,7 +45,9 @@ struct SmartFormParamsScreen: View {
                 TopHeaderText(header: "Рост и вес", text: "Мы никому не скажем :)")
                 centerView()
                 Spacer()
-                BottomBarForm(isAvailable: $isValid, isImportant: true)
+                BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, isImportant: true, nextAction: {
+                    AnyView(SmartFormBodyTypeScreen().navigationBarHidden(true).environmentObject(viewModel))
+                })
             }
         }
         .padding(.horizontal, 20)

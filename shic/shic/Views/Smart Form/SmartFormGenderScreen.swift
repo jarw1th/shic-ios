@@ -13,11 +13,15 @@ struct SmartFormGenderScreen: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
+    @State private var isShowTab: Bool = false
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .fullScreenCover(isPresented: $isShowTab) {
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
                 .onAppear {
                     checkAvailable()
                 }
@@ -27,14 +31,15 @@ struct SmartFormGenderScreen: View {
     private func makeContent() -> some View {
         VStack(spacing: 16) {
             NavigationBarForm {
-                SmartFormRouteManager.shared.pop(false)
                 dismiss()
             }
             VStack(spacing: 64) {
                 TopHeaderText(header: "Пол")
                 centerView()
                 Spacer()
-                BottomBarForm(isAvailable: $isValid, isImportant: true)
+                BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, isImportant: true, nextAction: {
+                    AnyView(SmartFormParamsScreen().navigationBarHidden(true).environmentObject(viewModel))
+                })
             }
         }
         .padding(.horizontal, 20)

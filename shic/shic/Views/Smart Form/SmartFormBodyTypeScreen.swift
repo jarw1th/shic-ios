@@ -13,11 +13,15 @@ struct SmartFormBodyTypeScreen: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var isValid: Bool = false
+    @State private var isShowTab: Bool = false
     
     var body: some View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .fullScreenCover(isPresented: $isShowTab) {
+                    AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
                 .onAppear {
                     checkAvailable()
                 }
@@ -34,7 +38,9 @@ struct SmartFormBodyTypeScreen: View {
                 TopHeaderText(header: "Тип тела", text: "Укажи какая у тебя фигура")
                 centerView()
                 Spacer()
-                BottomBarForm(isAvailable: $isValid, isImportant: true)
+                BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, isImportant: true, nextAction: {
+                    AnyView(SmartFormSpecificBodyScreen().navigationBarHidden(true).environmentObject(viewModel))
+                })
             }
         }
         .padding(.horizontal, 20)

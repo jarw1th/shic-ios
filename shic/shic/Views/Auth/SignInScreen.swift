@@ -23,7 +23,7 @@ struct SignInScreen: View {
                 .navigationBarHidden(true)
                 .fullScreenCover(isPresented: $isShowRegistration) {
                     RegistrationScreen()
-                        .environmentObject(viewModel)
+                        .navigationBarHidden(true).environmentObject(viewModel)
                 }
                 .onChange(of: viewModel.userModel.phone) { _ in
                     checkAvailable()
@@ -86,7 +86,7 @@ struct SignInScreen: View {
         .background {
             NavigationLink(
                 destination: VerificationScreen()
-                    .environmentObject(viewModel)
+                    .navigationBarHidden(true).environmentObject(viewModel)
                     .navigationBarHidden(true),
                 isActive: $isShowVerification
             ) {

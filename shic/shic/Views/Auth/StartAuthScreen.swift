@@ -19,11 +19,11 @@ struct StartAuthScreen: View {
             .ignoresSafeArea()
             .fullScreenCover(isPresented: $isShowRegistration) {
                 RegistrationScreen()
-                    .environmentObject(viewModel)
+                    .navigationBarHidden(true).environmentObject(viewModel)
             }
             .fullScreenCover(isPresented: $isShowSignIn) {
                 SignInScreen()
-                    .environmentObject(viewModel)
+                    .navigationBarHidden(true).environmentObject(viewModel)
             }
     }
     

@@ -20,7 +20,7 @@ struct LoadingScreen: View {
         }
         .fullScreenCover(isPresented: $isShowAuth) {
             StartAuthScreen()
-                .environmentObject(viewModel)
+                .navigationBarHidden(true).environmentObject(viewModel)
         }
     }
     

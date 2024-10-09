@@ -31,11 +31,9 @@ struct SavingInformation: View {
             .fullScreenCover(isPresented: $isShowNext) {
                 switch savingType {
                 case .smart:
-                    StyleFormRouteManager.shared.initial(viewModel)
-                    let screen = StyleFormRouteManager.shared.getScreen()
-                    return AnyView(screen)
+                    return AnyView(StartStyleFormScreen().navigationBarHidden(true).environmentObject(viewModel))
                 case .style:
-                    return AnyView(StyleFormRouteManager.shared.getScreen())
+                    return AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
                 }
             }
     }
