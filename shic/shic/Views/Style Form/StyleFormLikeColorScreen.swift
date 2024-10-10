@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StyleFormColorScreen: View {
+struct StyleFormLikeColorScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
@@ -35,11 +35,12 @@ struct StyleFormColorScreen: View {
                 dismiss()
             }
             VStack(spacing: 64) {
-                TopHeaderText(header: "Мне нравится...")
+                TopHeaderText(header: "Мне нравится")
                 centerView()
             }
             BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
-                AnyView(SavingInformation(savingType: .style).navigationBarHidden(true).environmentObject(viewModel))
+                StyleFormRouteManager.shared.push()
+                return AnyView(StyleFormDislikeColorScreen().navigationBarHidden(true).environmentObject(viewModel))
             })
         }
         .padding(.horizontal, 20)
@@ -50,7 +51,7 @@ struct StyleFormColorScreen: View {
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 16) {
-                RectangleImagePickerWithText(data: DataManager.shared.getColors(), rows: 2, selectedData: $viewModel.styleFormModel.lovingColors) {
+                RectangleImagePickerWithText(data: DataManager.shared.getColors(), rows: 4, selectedData: $viewModel.styleFormModel.lovingColors) {
                     checkAvailable()
                 }
             }

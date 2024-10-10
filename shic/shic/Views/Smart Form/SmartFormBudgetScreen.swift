@@ -39,7 +39,8 @@ struct SmartFormBudgetScreen: View {
                 centerView()
             }
             BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
-                AnyView(SavingInformation(savingType: .smart).navigationBarHidden(true).environmentObject(viewModel))
+                SmartFormRouteManager.shared.push()
+                return AnyView(SavingInformation(savingType: .smart).navigationBarHidden(true).environmentObject(viewModel))
             })
         }
         .padding(.horizontal, 20)

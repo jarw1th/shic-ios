@@ -39,7 +39,8 @@ struct SmartFormWearTypeScreen: View {
                 centerView()
             }
             BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, isImportant: true, nextAction: {
-                AnyView(SmartFormFootAccessoriesScreen().navigationBarHidden(true).environmentObject(viewModel))
+                SmartFormRouteManager.shared.push()
+                return AnyView(SmartFormFootAccessoriesScreen().navigationBarHidden(true).environmentObject(viewModel))
             })
         }
         .padding(.horizontal, 20)

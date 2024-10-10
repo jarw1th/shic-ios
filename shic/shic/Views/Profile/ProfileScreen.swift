@@ -13,6 +13,9 @@ struct ProfileScreen: View {
     
     @State private var isShowSmartForm: Bool = false
     @State private var isShowStyleForm: Bool = false
+    @State private var isShowMeasureForm: Bool = false
+    
+    @State private var myAddresses: AnyView?
     
     var body: some View {
         NavigationView() {
@@ -24,6 +27,12 @@ struct ProfileScreen: View {
                 }
                 .fullScreenCover(isPresented: $isShowStyleForm) {
                     AnyView(StartStyleFormScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
+                .fullScreenCover(isPresented: $isShowMeasureForm) {
+                    AnyView(StartMeasureFormScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
+                .onAppear {
+                    viewModel.isTabBarHidded = false
                 }
         }
         .endEditing()
@@ -89,23 +98,29 @@ struct ProfileScreen: View {
                     }
                 }
                 VStack(alignment: .leading, spacing: 16) {
-                    BasicButton(header: "Банковские карты", title: "Открыть") {
-                        
-                    }
                     BasicButton(header: "Адреса", title: "Открыть") {
+                        viewModel.isTabBarHidded = true
+                        myAddresses = AnyView(MyAddressesScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    }
+                    .background {
+                        NavigationLink(destination: myAddresses, isActive: Binding(
+                            get: { myAddresses != nil },
+                            set: { if !$0 { myAddresses = nil } }
+                        )) {
+                            EmptyView()
+                        }
+                    }
+                    BasicButton(header: "Архив заказов", title: "Открыть") {
                         
                     }
                     BasicButton(header: "Умная форма", title: viewModel.userModel.isSmartFormFill ? "Заполнить заново" : "Заполнить") {
                         isShowSmartForm.toggle()
                     }
-                    BasicButton(header: "Замеры тела", title: "Заполнить") {
-                        
+                    BasicButton(header: "Замеры тела", title:  viewModel.userModel.isMeasureFormFill ? "Заполнить заново" : "Заполнить") {
+                        isShowMeasureForm.toggle()
                     }
                     BasicButton(header: "Мой стиль", title: viewModel.userModel.isStyleFormFill ? "Заполнить заново" : "Заполнить") {
                         isShowSmartForm.toggle()
-                    }
-                    BasicButton(header: "Архив заказов", title: "Открыть") {
-                        
                     }
                 }
                 .padding(.bottom, 100)

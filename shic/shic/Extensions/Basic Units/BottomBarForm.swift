@@ -26,7 +26,6 @@ struct BottomBarForm: View {
     var body: some View {
         VStack(spacing: 24) {
             MainButton(isAvailable: $isAvailable, text: "Дальше") {
-                SmartFormRouteManager.shared.push()
                 next = nextAction()
             }
             .background {
@@ -50,7 +49,6 @@ struct BottomBarForm: View {
                 
                 if !isImportant {
                     Button {
-                        SmartFormRouteManager.shared.push()
                         next = nextAction()
                     } label: {
                         Text("Пропустить")

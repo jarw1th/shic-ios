@@ -39,7 +39,8 @@ struct SmartFormPantsScreen: View {
                 centerView()
             }
             BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
-                AnyView(SmartFormFootScreen().navigationBarHidden(true).environmentObject(viewModel))
+                SmartFormRouteManager.shared.push()
+                return AnyView(SmartFormFootScreen().navigationBarHidden(true).environmentObject(viewModel))
             })
         }
         .padding(.horizontal, 20)

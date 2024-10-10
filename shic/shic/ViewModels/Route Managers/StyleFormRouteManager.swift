@@ -16,7 +16,7 @@ final class StyleFormRouteManager {
     
     init() {
         self.formIndex = 0
-        self.formScreens = ["StyleFormLikeScreen0", "StyleFormColorScreen"]
+        self.formScreens = ["StyleFormLikeScreen", "StyleFormLikeColorScreen", "StyleFormDislikeColorScreen", "StyleFormPatternScreen", "StyleFormDislikedItemsScreen"]
     }
     
     func pop() {

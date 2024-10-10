@@ -17,6 +17,7 @@ struct User: Codable {
     var email: String = ""
     var isAccepted: Bool = false
     var isSmartFormFill: Bool = false
+    var isMeasureFormFill: Bool = false
     var isStyleFormFill: Bool = false
     
 }

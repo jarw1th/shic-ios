@@ -21,9 +21,11 @@ struct TabScreen: View {
     private func makeContent() -> some View {
         ZStack(alignment: .bottom) {
             views()
-            tabs()
-                .padding(.horizontal, 20)
-                .padding(.bottom, 40)
+            if !viewModel.isTabBarHidded {
+                tabs()
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 40)
+            }
         }
     }
     

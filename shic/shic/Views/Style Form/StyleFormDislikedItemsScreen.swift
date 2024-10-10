@@ -1,18 +1,16 @@
 //
-//  StyleFormLikeScreen.swift
+//  StyleFormDislikedItemsScreen.swift
 //  shic
 //
-//  Created by Руслан Парастаев on 06.10.2024.
+//  Created by Руслан Парастаев on 10.10.2024.
 //
 
 import SwiftUI
 
-struct StyleFormLikeScreen: View {
+struct StyleFormDislikedItemsScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
-    
-    var index: Int
     
     @State private var isValid: Bool = false
     @State private var isShowTab: Bool = false
@@ -33,22 +31,15 @@ struct StyleFormLikeScreen: View {
     private func makeContent() -> some View {
         VStack(spacing: 16) {
             NavigationBarForm(form: .style) {
-                if !(index == 0) {
-                    StyleFormRouteManager.shared.pop()
-                }
+                StyleFormRouteManager.shared.pop()
                 dismiss()
             }
             VStack(spacing: 64) {
-                TopHeaderText(header: "Мне нравится")
+                TopHeaderText(header: "Мне НЕ нравится")
                 centerView()
             }
             BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
-                if (index == viewModel.imagePacks.count - 1) {
-                    StyleFormRouteManager.shared.push()
-                    return AnyView(StyleFormLikeColorScreen().navigationBarHidden(true).environmentObject(viewModel))
-                } else {
-                    return AnyView(StyleFormLikeScreen(index: index + 1).navigationBarHidden(true).environmentObject(viewModel))
-                }
+                AnyView(SavingInformation(savingType: .style).navigationBarHidden(true).environmentObject(viewModel))
             })
         }
         .padding(.horizontal, 20)
@@ -59,18 +50,15 @@ struct StyleFormLikeScreen: View {
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 16) {
-                if viewModel.imagePacks.count > index {
-                    RectangleImagePicker(data: viewModel.imagePacks[index], selectedData: $viewModel.styleFormModel.lovingImages) {
-                        checkAvailable()
-                    }
+                PickerSeveralItems(data: DislikeItemsType.allCases, rows: 4, selectedData: $viewModel.styleFormModel.dislikedItems) {
+                    checkAvailable()
                 }
             }
         }
     }
     
     private func checkAvailable() {
-//        isValid = !viewModel.styleFormModel.lovingImages.isEmpty
-        isValid = true
+        isValid = !viewModel.styleFormModel.dislikedItems.isEmpty
     }
     
 }

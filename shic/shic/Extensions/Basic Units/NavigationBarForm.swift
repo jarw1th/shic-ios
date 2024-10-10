@@ -15,6 +15,8 @@ struct NavigationBarForm: View {
             SmartFormRouteManager.shared.formIndex
         case .style:
             StyleFormRouteManager.shared.formIndex
+        case .measure:
+            0
         }
     }
     private var count: Int {
@@ -23,6 +25,8 @@ struct NavigationBarForm: View {
             SmartFormRouteManager.shared.formScreens.count
         case .style:
             StyleFormRouteManager.shared.formScreens.count
+        case .measure:
+            0
         }
     }
     var form: FormType

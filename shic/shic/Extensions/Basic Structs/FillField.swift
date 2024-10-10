@@ -32,6 +32,8 @@ struct FillField: View {
             return .numbersAndPunctuation
         case .budget:
             return .numberPad
+        case .number:
+            return .numberPad
         }
     }
     
@@ -86,6 +88,9 @@ struct FillField: View {
             if type == .date, !newValue.isEmpty {
                 text = formatDate(newValue)
             }
+            if type == .number, !newValue.isEmpty {
+                text = formatNumber(newValue)
+            }
         }
         .onChange(of: focus) { newValue in
             if type == .budget, !text.isEmpty {
@@ -128,8 +133,14 @@ struct FillField: View {
         }
     }
     
+    private func formatNumber(_ number: String) -> String {
+        let cleaned = number.components(separatedBy: CharacterSet.decimalDigits.inverted).joined().trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return cleaned
+    }
+    
     private func formatBudget(_ price: String) -> String {
-        var cleaned = price.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        let cleaned = price.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         
         let postfix = " рублей"
         let prefix = "До "
@@ -144,7 +155,7 @@ struct FillField: View {
     }
     
     private func cleanBudget(_ price: String) -> String {
-        var cleaned = price.components(separatedBy: CharacterSet.decimalDigits.inverted).joined().trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleaned = price.components(separatedBy: CharacterSet.decimalDigits.inverted).joined().trimmingCharacters(in: .whitespacesAndNewlines)
         
         return cleaned
     }

@@ -39,7 +39,8 @@ struct SmartFormSpecificBodyScreen: View {
                 centerView()
                 Spacer()
                 BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
-                    AnyView(SmartFormWearStyleScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    SmartFormRouteManager.shared.push()
+                    return AnyView(SmartFormWearStyleScreen().navigationBarHidden(true).environmentObject(viewModel))
                 })
             }
         }

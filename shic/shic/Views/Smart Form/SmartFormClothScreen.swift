@@ -39,7 +39,8 @@ struct SmartFormClothScreen: View {
                 centerView()
                 Spacer()
                 BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, nextAction: {
-                    AnyView(SmartFormSizesScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    SmartFormRouteManager.shared.push()
+                    return AnyView(SmartFormSizesScreen().navigationBarHidden(true).environmentObject(viewModel))
                 })
             }
         }

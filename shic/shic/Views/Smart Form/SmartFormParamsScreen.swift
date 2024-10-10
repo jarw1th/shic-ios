@@ -46,7 +46,8 @@ struct SmartFormParamsScreen: View {
                 centerView()
                 Spacer()
                 BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, isImportant: true, nextAction: {
-                    AnyView(SmartFormBodyTypeScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    SmartFormRouteManager.shared.push()
+                    return AnyView(SmartFormBodyTypeScreen().navigationBarHidden(true).environmentObject(viewModel))
                 })
             }
         }

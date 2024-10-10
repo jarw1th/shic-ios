@@ -11,11 +11,17 @@ struct OrdersScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     
+    @State private var orderScreen: AnyView?
+    
     var body: some View {
         NavigationView() {
             makeContent()
                 .ignoresSafeArea()
                 .navigationBarHidden(true)
+                .onAppear {
+                    viewModel.isTabBarHidded = false
+                    viewModel.fetchOrders()
+                }
         }
         .endEditing()
     }
@@ -41,17 +47,26 @@ struct OrdersScreen: View {
     }
     
     private func centerView() -> some View {
-        VStack(spacing: 16) {
-            OrderItem(status: "В процессе", title: "Заказ #1020", action: {
-                
-            }, chat: {
-                
-            })
-            OrderItem(status: "Нужно уточнить ", title: "Заказ #1024", action: {
-                
-            }, chat: {
-                
-            })
+        ScrollView(.vertical, showsIndicators: false) {
+            LazyVStack(alignment: .leading, spacing: 16) {
+                ForEach(viewModel.orders) { order in
+                    OrderItem(status: order.status.text(), title: order.name, action: {
+                        viewModel.order = order
+                        viewModel.isTabBarHidded = true
+                        orderScreen = AnyView(OrderScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    }, chat: {
+                        
+                    })
+                    .background {
+                        NavigationLink(destination: orderScreen, isActive: Binding(
+                            get: { orderScreen != nil },
+                            set: { if !$0 { orderScreen = nil } }
+                        )) {
+                            EmptyView()
+                        }
+                    }
+                }
+            }
         }
     }
     

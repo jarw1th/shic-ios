@@ -23,6 +23,8 @@ struct SavingInformation: View {
                     viewModel.userModel.isSmartFormFill = true
                 case .style:
                     viewModel.userModel.isStyleFormFill = true
+                case .measure:
+                    viewModel.userModel.isMeasureFormFill = true
                 }
                 viewModel.saveForm(savingType)
                 viewModel.saveUser()
@@ -31,9 +33,19 @@ struct SavingInformation: View {
             .fullScreenCover(isPresented: $isShowNext) {
                 switch savingType {
                 case .smart:
-                    return AnyView(StartStyleFormScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    if viewModel.userModel.isMeasureFormFill {
+                        return AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    } else {
+                        return AnyView(StartMeasureFormScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    }
                 case .style:
                     return AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                case .measure:
+                    if viewModel.userModel.isStyleFormFill {
+                        return AnyView(TabScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    } else {
+                        return AnyView(StartStyleFormScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    }
                 }
             }
     }

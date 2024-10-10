@@ -38,7 +38,8 @@ struct SmartFormGenderScreen: View {
                 centerView()
                 Spacer()
                 BottomBarForm(isAvailable: $isValid, isShowLater: $isShowTab, isImportant: true, nextAction: {
-                    AnyView(SmartFormParamsScreen().navigationBarHidden(true).environmentObject(viewModel))
+                    SmartFormRouteManager.shared.push()
+                    return AnyView(SmartFormParamsScreen().navigationBarHidden(true).environmentObject(viewModel))
                 })
             }
         }

@@ -15,6 +15,7 @@ enum FillFieldType {
     case weight
     case footSize
     case budget
+    case number
     
 }
 
@@ -36,12 +37,15 @@ enum ShapeType {
 enum FormType {
     
     case smart
+    case measure
     case style
     
     func firebaseID() -> String {
         switch self {
         case .smart:
             "smartForm"
+        case .measure:
+            "measureForm"
         case .style:
             "styleForm"
         }
@@ -477,6 +481,68 @@ enum BrandType: String, Codable, StringData, CaseIterable {
             "Gucci"
         case .puma:
             "Puma"
+        }
+    }
+    
+}
+
+enum PatternType: String, Codable, StringData, CaseIterable {
+    
+    case solid
+    case stripes
+    case plaid
+    case dots
+    case floral
+    case geometric
+    case abstract
+    case camouflage
+    case animal
+    
+    func text() -> String {
+        switch self {
+        case .solid:
+            "Однотонный"
+        case .stripes:
+            "Полоска"
+        case .plaid:
+            "Клетка"
+        case .dots:
+            "Горошек"
+        case .floral:
+            "Цветочный"
+        case .geometric:
+            "Геометрический"
+        case .abstract:
+            "Абстрактный"
+        case .camouflage:
+            "Камуфляж"
+        case .animal:
+            "Животные"
+        }
+    }
+    
+}
+
+enum OrderStatus: String, Codable, CaseIterable {
+    
+    case waiting
+    case canceled
+    case concretize
+    case waitingForAccept
+    case waitingForPayment
+    
+    func text() -> String {
+        switch self {
+        case .waiting:
+            "В процессе"
+        case .canceled:
+            "Отменен"
+        case .concretize:
+            "Нужно уточнить"
+        case .waitingForAccept:
+            "Ждет подтверждения"
+        case .waitingForPayment:
+            "Ждет оплаты"
         }
     }
     

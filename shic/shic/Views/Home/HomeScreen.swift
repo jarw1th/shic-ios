@@ -16,6 +16,9 @@ struct HomeScreen: View {
             makeContent()
                 .ignoresSafeArea()
                 .navigationBarHidden(true)
+                .onAppear {
+                    viewModel.isTabBarHidded = false
+                }
         }
         .endEditing()
     }
@@ -41,7 +44,9 @@ struct HomeScreen: View {
     
     private func centerView() -> some View {
         VStack {
-            
+            BasicFeedItem(title: "Попробовать без комиссии", image: "") {
+                
+            }
         }
     }
     

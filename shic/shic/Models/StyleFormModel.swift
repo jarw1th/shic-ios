@@ -11,6 +11,8 @@ struct StyleFormModel: Codable {
     
     var lovingImages: [String] = []
     var lovingColors: [String] = []
-    var dislikedItems: [String] = []
+    var dislikedColors: [String] = []
+    var dislikedItems: [DislikeItemsType] = []
+    var patterns: [PatternType] = []
     
 }
