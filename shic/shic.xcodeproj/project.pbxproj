@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		217524472CB975B900D19AC6 /* StartBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217524462CB975B100D19AC6 /* StartBanner.swift */; };
+		217524492CB9764A00D19AC6 /* PromoBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217524482CB9764200D19AC6 /* PromoBanner.swift */; };
+		2175244D2CB978D800D19AC6 /* StartBannerStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175244C2CB978CA00D19AC6 /* StartBannerStruct.swift */; };
+		2175244F2CB97B8200D19AC6 /* PromoBannerStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175244E2CB97B7800D19AC6 /* PromoBannerStruct.swift */; };
 		21EFBF1D2CB7CD9B003F4ACB /* Alegreya-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21EFBEAA2CB7CD9B003F4ACB /* Alegreya-Bold.ttf */; };
 		21EFBF1E2CB7CD9B003F4ACB /* Alegreya-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21EFBEAB2CB7CD9B003F4ACB /* Alegreya-Regular.ttf */; };
 		21EFBF1F2CB7CD9B003F4ACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21EFBEAD2CB7CD9B003F4ACB /* Assets.xcassets */; };
@@ -96,6 +100,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		217524462CB975B100D19AC6 /* StartBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBanner.swift; sourceTree = "<group>"; };
+		217524482CB9764200D19AC6 /* PromoBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBanner.swift; sourceTree = "<group>"; };
+		2175244C2CB978CA00D19AC6 /* StartBannerStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBannerStruct.swift; sourceTree = "<group>"; };
+		2175244E2CB97B7800D19AC6 /* PromoBannerStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBannerStruct.swift; sourceTree = "<group>"; };
 		219979812CAFE2E4008688A5 /* shic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21EFBEAA2CB7CD9B003F4ACB /* Alegreya-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-Bold.ttf"; sourceTree = "<group>"; };
 		21EFBEAB2CB7CD9B003F4ACB /* Alegreya-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-Regular.ttf"; sourceTree = "<group>"; };
@@ -281,6 +289,8 @@
 		21EFBEC82CB7CD9B003F4ACB /* Basic Units */ = {
 			isa = PBXGroup;
 			children = (
+				2175244E2CB97B7800D19AC6 /* PromoBannerStruct.swift */,
+				2175244C2CB978CA00D19AC6 /* StartBannerStruct.swift */,
 				21EFBEC42CB7CD9B003F4ACB /* BottomBarForm.swift */,
 				21EFBEC52CB7CD9B003F4ACB /* NavigationBarBack.swift */,
 				21EFBEC62CB7CD9B003F4ACB /* NavigationBarForm.swift */,
@@ -373,6 +383,8 @@
 		21EFBEE02CB7CD9B003F4ACB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				217524482CB9764200D19AC6 /* PromoBanner.swift */,
+				217524462CB975B100D19AC6 /* StartBanner.swift */,
 				21EFBEDA2CB7CD9B003F4ACB /* Address.swift */,
 				21EFBEDB2CB7CD9B003F4ACB /* Order.swift */,
 				21EFBF702CB7D55A003F4ACB /* Item.swift */,
@@ -689,6 +701,7 @@
 				21EFBF2A2CB7CD9B003F4ACB /* FillField.swift in Sources */,
 				21EFBF2B2CB7CD9B003F4ACB /* MainButton.swift in Sources */,
 				21EFBF2C2CB7CD9B003F4ACB /* OrderItem.swift in Sources */,
+				217524472CB975B900D19AC6 /* StartBanner.swift in Sources */,
 				21EFBF2D2CB7CD9B003F4ACB /* PickerItems.swift in Sources */,
 				21EFBF2E2CB7CD9B003F4ACB /* PickerMenu.swift in Sources */,
 				21EFBF2F2CB7CD9B003F4ACB /* PickerMenuWithTip.swift in Sources */,
@@ -705,6 +718,7 @@
 				21EFBF392CB7CD9B003F4ACB /* HEX+.swift in Sources */,
 				21EFBF3A2CB7CD9B003F4ACB /* EndEditing+.swift in Sources */,
 				21EFBF3B2CB7CD9B003F4ACB /* Placeholder.swift in Sources */,
+				2175244D2CB978D800D19AC6 /* StartBannerStruct.swift in Sources */,
 				21EFBF3C2CB7CD9B003F4ACB /* Split+.swift in Sources */,
 				21EFBF3D2CB7CD9B003F4ACB /* ViewWrapper.swift in Sources */,
 				21EFBF3E2CB7CD9B003F4ACB /* Enum.swift in Sources */,
@@ -752,6 +766,7 @@
 				21EFBF672CB7CD9B003F4ACB /* SmartFormSizesScreen.swift in Sources */,
 				21EFBF682CB7CD9B003F4ACB /* SmartFormSpecificBodyScreen.swift in Sources */,
 				21EFBF692CB7CD9B003F4ACB /* SmartFormWearStyleScreen.swift in Sources */,
+				2175244F2CB97B8200D19AC6 /* PromoBannerStruct.swift in Sources */,
 				21EFBF6A2CB7CD9B003F4ACB /* SmartFormWearTypeScreen.swift in Sources */,
 				21EFBF6B2CB7CD9B003F4ACB /* StartSmartFormScreen.swift in Sources */,
 				21EFBF6C2CB7CD9B003F4ACB /* StartStyleFormScreen.swift in Sources */,
@@ -759,6 +774,7 @@
 				21EFBF6E2CB7CD9B003F4ACB /* StyleFormLikeScreen.swift in Sources */,
 				21EFBF6F2CB7CD9B003F4ACB /* TabScreen.swift in Sources */,
 				21EFBF782CB7DD45003F4ACB /* StyleFormDislikeColorScreen.swift in Sources */,
+				217524492CB9764A00D19AC6 /* PromoBanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -902,6 +918,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Shic;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -939,6 +956,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Shic;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (

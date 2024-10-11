@@ -59,8 +59,8 @@ struct ProfileScreen: View {
     
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 32) {
-                VStack(alignment: .leading, spacing: 16) {
+            LazyVStack(alignment: .leading, spacing: 32) {
+                LazyVStack(alignment: .leading, spacing: 16) {
                     FillField(text: $viewModel.userModel.name, placeholder: "Руслан", name: "Имя") { isValid in
                         if isValid {
                             viewModel.saveUser()
@@ -97,7 +97,7 @@ struct ProfileScreen: View {
                         }
                     }
                 }
-                VStack(alignment: .leading, spacing: 16) {
+                LazyVStack(alignment: .leading, spacing: 16) {
                     BasicButton(header: "Адреса", title: "Открыть") {
                         viewModel.isTabBarHidded = true
                         myAddresses = AnyView(MyAddressesScreen().navigationBarHidden(true).environmentObject(viewModel))
@@ -120,7 +120,7 @@ struct ProfileScreen: View {
                         isShowMeasureForm.toggle()
                     }
                     BasicButton(header: "Мой стиль", title: viewModel.userModel.isStyleFormFill ? "Заполнить заново" : "Заполнить") {
-                        isShowSmartForm.toggle()
+                        isShowStyleForm.toggle()
                     }
                 }
                 .padding(.bottom, 100)

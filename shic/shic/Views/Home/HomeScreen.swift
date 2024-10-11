@@ -18,6 +18,7 @@ struct HomeScreen: View {
                 .navigationBarHidden(true)
                 .onAppear {
                     viewModel.isTabBarHidded = false
+                    viewModel.fetchBanners()
                 }
         }
         .endEditing()
@@ -43,9 +44,16 @@ struct HomeScreen: View {
     }
     
     private func centerView() -> some View {
-        VStack {
-            BasicFeedItem(title: "Попробовать без комиссии", image: "") {
+        ScrollView(.vertical, showsIndicators: false) {
+            LazyVStack(spacing: 32) {
+                StartBannerStruct(banner: viewModel.start)
                 
+                ForEach(viewModel.promo) { banner in
+                    PromoBannerStruct(banner: banner) {
+                        viewModel.order.promo = banner.promo
+                        viewModel.fetchDiscount()
+                    }
+                }
             }
         }
     }

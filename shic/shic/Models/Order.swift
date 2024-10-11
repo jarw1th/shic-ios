@@ -16,6 +16,7 @@ struct Order: Codable, Identifiable {
     
     var price: String = ""
     var promo: String = ""
+    var discount: Double = 0.0
     
     var items: [Item] = []
     

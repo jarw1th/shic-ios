@@ -48,10 +48,11 @@ final class FirebaseManager {
         let dispatchGroup = DispatchGroup()
         
         for number in 1...imgNumber {
+            dispatchGroup.enter()
+            
             getImageUrl(for: number) { url in
                 images.append(url)
                 dispatchGroup.leave()
-                
             }
         }
         
@@ -234,6 +235,63 @@ final class FirebaseManager {
             }
             
             completion(.success(orders))
+        }
+    }
+    
+    // Banners
+    func fetchStartBanner(completion : @escaping (Result<StartBanner, Error>) -> Void) {
+        let docRef = db.collection("content").document("homeScreen")
+        
+        docRef.getDocument { document, error in
+            if let document = document, document.exists {
+                print(document)
+                print(document.data())
+                if let banner = try? document.data(as: StartBanner.self) {
+                    completion(.success(banner))
+                } else {
+                    completion(.failure(error ?? NSError(domain: "", code: -1, userInfo: nil)))
+                }
+            } else {
+                completion(.failure(error ?? NSError(domain: "", code: -1, userInfo: nil)))
+            }
+        }
+    }
+    
+    func fetchPromoBanners(completion : @escaping (Result<[PromoBanner], Error>) -> Void) {
+        let docRef = db.collection("content").document("homeScreen").collection("promo")
+        
+        docRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+            
+            let banners: [PromoBanner] = documents.compactMap { document in
+                try? document.data(as: PromoBanner.self)
+            }
+            
+            completion(.success(banners))
+        }
+    }
+    
+    func fetchPromoDiscount(for promo: String, completion : @escaping (Result<Double, Error>) -> Void) {
+        let docRef = db.collection("promos").document(promo)
+        
+        docRef.getDocument { document, error in
+            if let document = document, document.exists {
+                if let data = document.data(), let discount = data["discount"] as? Int {
+                    completion(.success(Double(discount) / 100))
+                } else {
+                    completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid discount data"])))
+                }
+            } else {
+                completion(.failure(error ?? NSError(domain: "", code: -1, userInfo: nil)))
+            }
         }
     }
     

@@ -28,6 +28,10 @@ final class ViewModel: ObservableObject {
     @Published var addresses: [Address] = []
     @Published var address: Address = Address()
     
+    // Banners
+    @Published var promo: [PromoBanner] = []
+    @Published var start: StartBanner = StartBanner()
+    
     @Published var userModel: User = User(uid: UUID().uuidString)
     @Published var imagePacks: [[String]] = []
     
@@ -40,6 +44,7 @@ final class ViewModel: ObservableObject {
     }
     
     func saveUser() {
+        UserDefaultsManager.shared.testLoginInfo = userModel.uid
         firebaseManager.saveUserData(user: userModel)
     }
     
@@ -135,6 +140,39 @@ final class ViewModel: ObservableObject {
     
     func newOrder() {
         order = Order()
+    }
+    
+    func fetchBanners() {
+        firebaseManager.fetchStartBanner { result in
+            switch result {
+            case .success(let banner):
+                self.start = banner
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
+        firebaseManager.fetchPromoBanners { result in
+            switch result {
+            case .success(let banners):
+                self.promo = banners
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
+    }
+    
+    func fetchDiscount() {
+        firebaseManager.fetchPromoDiscount(for: order.promo) { result in
+            switch result {
+            case .success(let discount):
+                self.order.discount = discount
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
     }
     
 }

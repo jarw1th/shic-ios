@@ -20,4 +20,14 @@ final class UserDefaultsManager {
     }
     private var standart: UserDefaults = UserDefaults.standard
     
+    // MARK: - Test
+    var testLoginInfo: String {
+        get {
+            return userDefaults.string(forKey: "testLoginInfo") ?? ""
+        }
+        set {
+            userDefaults.set(newValue, forKey: "testLoginInfo")
+        }
+    }
+    
 }

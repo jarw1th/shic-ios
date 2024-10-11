@@ -12,14 +12,25 @@ struct LoadingScreen: View {
     @StateObject private var viewModel: ViewModel = ViewModel()
     
     @State private var isShowAuth: Bool = false
+    @State private var isShowTab: Bool = false
     
     var body: some View {
         makeContent()
         .onAppear {
-            isShowAuth.toggle()
+            if UserDefaultsManager.shared.testLoginInfo.isEmpty {
+                isShowAuth.toggle()
+            } else {
+                viewModel.userModel.uid = UserDefaultsManager.shared.testLoginInfo
+                viewModel.fetchUser()
+                isShowTab.toggle()
+            }
         }
         .fullScreenCover(isPresented: $isShowAuth) {
             StartAuthScreen()
+                .navigationBarHidden(true).environmentObject(viewModel)
+        }
+        .fullScreenCover(isPresented: $isShowTab) {
+            TabScreen()
                 .navigationBarHidden(true).environmentObject(viewModel)
         }
     }

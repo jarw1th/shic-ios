@@ -55,7 +55,8 @@ struct RectangleImagePicker: View {
             WebImage(url: URL(string: value), content: { image in
                 image
                     .resizable()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .aspectRatio(1, contentMode: .fit)
+                    .frame(maxWidth: .infinity)
                     .cornerRadius(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
