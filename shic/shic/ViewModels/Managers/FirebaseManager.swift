@@ -205,14 +205,14 @@ final class FirebaseManager {
     }
     
     func saveOrder(order: Order) {
-        if !order.id.isEmpty {
-            do {
-                try db.collection("users").document(order.userID).collection("orders").document(order.id).setData(from: order)
-                try db.collection("stylists").document(order.stylistID).collection("orders").document(order.id).setData(from: order)
-                try db.collection("orders").document(order.id).setData(from: order)
-            } catch let error {
-                print("Error writing user to Firestore: \(error)")
-            }
+        guard !order.id.isEmpty else { return }
+        
+        do {
+            try db.collection("users").document(order.userID).collection("orders").document(order.id).setData(from: order)
+//            try db.collection("stylists").document(order.stylistID).collection("orders").document(order.id).setData(from: order)
+            try db.collection("orders").document(order.id).setData(from: order)
+        } catch let error {
+            print("Error writing user to Firestore: \(error)")
         }
     }
     
@@ -244,8 +244,6 @@ final class FirebaseManager {
         
         docRef.getDocument { document, error in
             if let document = document, document.exists {
-                print(document)
-                print(document.data())
                 if let banner = try? document.data(as: StartBanner.self) {
                     completion(.success(banner))
                 } else {
@@ -279,19 +277,49 @@ final class FirebaseManager {
         }
     }
     
-    func fetchPromoDiscount(for promo: String, completion : @escaping (Result<Double, Error>) -> Void) {
+    func fetchContentPromo(for promo: String, completion : @escaping (Result<Promo, Error>) -> Void) {
         let docRef = db.collection("promos").document(promo)
         
         docRef.getDocument { document, error in
             if let document = document, document.exists {
-                if let data = document.data(), let discount = data["discount"] as? Int {
-                    completion(.success(Double(discount) / 100))
+                if let promo = try? document.data(as: Promo.self) {
+                    completion(.success(promo))
                 } else {
-                    completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid discount data"])))
+                    completion(.failure(error ?? NSError(domain: "", code: -1, userInfo: nil)))
                 }
             } else {
                 completion(.failure(error ?? NSError(domain: "", code: -1, userInfo: nil)))
             }
+        }
+    }
+    
+    func fetchUserPromos(for uuid: String, completion : @escaping (Result<[Promo], Error>) -> Void) {
+        let docRef = db.collection("users").document(uuid).collection("promos")
+        
+        docRef.getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                completion(.success([]))
+                return
+            }
+            
+            let promos: [Promo] = documents.compactMap { document in
+                try? document.data(as: Promo.self)
+            }
+            
+            completion(.success(promos))
+        }
+    }
+    
+    func saveUserPromo(for uuid: String, with promo: Promo) {
+        do {
+            try db.collection("users").document(uuid).collection("promos").document(promo.name).setData(from: promo)
+        } catch let error {
+            print("Error writing user to Firestore: \(error)")
         }
     }
     

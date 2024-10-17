@@ -1,55 +1,59 @@
 //
-//  OrdersScreen.swift
+//  OrderArchive.swift
 //  shic
 //
-//  Created by Руслан Парастаев on 06.10.2024.
+//  Created by Руслан Парастаев on 11.10.2024.
 //
 
 import SwiftUI
 
-struct OrdersScreen: View {
+struct OrderArchive: View {
     
     @EnvironmentObject var viewModel: ViewModel
+    @Environment(\.dismiss) private var dismiss
     
     @State private var orderScreen: AnyView?
     
+    @State private var isShowNewOrder: Bool = false
+    
     var body: some View {
-        NavigationView() {
+        NavigationView {
             makeContent()
-                .navigationBarHidden(true)
+                .ignoresSafeArea()
                 .onAppear {
-                    viewModel.isTabBarHidded = false
+                    viewModel.isTabBarHidded = true
                     viewModel.fetchOrders()
                 }
+                .fullScreenCover(isPresented: $isShowNewOrder) {
+                    AnyView(AddressChooseScreen().navigationBarHidden(true).environmentObject(viewModel))
+                }
         }
-        .endEditing()
     }
     
     private func makeContent() -> some View {
-        VStack(spacing: 32) {
-            VStack(spacing: 16) {
-                header()
+        VStack(spacing: 16) {
+            NavigationBarBack {
+                dismiss()
             }
-            centerView()
-            Spacer()
+            VStack(spacing: 64) {
+                TopHeaderText(header: "Архив заказов")
+                centerView()
+            }
+            MainButton(text: "Сделать заказ") {
+                viewModel.newAddress()
+                isShowNewOrder.toggle()
+            }
         }
         .padding(.horizontal, 20)
-        .padding(.top, 24)
-        .padding(.bottom, 40)
-    }
-    
-    private func header() -> some View {
-        Text("Мои заказы")
-            .font(Font.custom("Alegreya-Bold", size: 20))
-            .multilineTextAlignment(.center)
-            .foregroundStyle(Color.darkPrimary)
+        .padding(.top, 78)
+        .padding(.bottom, 114)
     }
     
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(alignment: .leading, spacing: 16) {
-                ForEach(viewModel.orders) { order in
-                    OrderItem(status: order.status.text(), title: order.name, action: {
+                ForEach(viewModel.doneOrders) { order in
+                    OrderItem(status: order.endDate, title: order.name, action: {
                         viewModel.order = order
                         viewModel.isTabBarHidded = true
                         orderScreen = AnyView(OrderScreen().navigationBarHidden(true).environmentObject(viewModel))

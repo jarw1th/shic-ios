@@ -19,6 +19,7 @@ struct OrderScreen: View {
         NavigationView {
             makeContent()
                 .ignoresSafeArea()
+                .disabled(viewModel.order.status == .canceled)
         }
     }
     
@@ -31,32 +32,33 @@ struct OrderScreen: View {
                 TopHeaderText(header: viewModel.order.name)
                 centerView()
             }
-            VStack(spacing: 24) {
-                if viewModel.order.status != .waiting {
-                    MainButton(isAvailable: $isValid, text: "Заказ") {
-                        dismiss()
+            if viewModel.order.status != .canceled {
+                VStack(spacing: 24) {
+                    if viewModel.order.status != .waiting {
+                        MainButton(isAvailable: $isValid, text: "Заказ") {
+                            dismiss()
+                        }
                     }
-                }
-                HStack(spacing: 24) {
-                    Button {
-                        viewModel.order.status = .canceled
-                        viewModel.saveOrder()
-                        dismiss()
-                    } label: {
-                        Text("Отменить заказ")
-                            .underline()
-                            .font(Font.custom("Alegreya-Bold", size: 16))
-                            .multilineTextAlignment(.center)
-                            .foregroundStyle(.darkPrimary)
-                    }
-                    Button {
-                        
-                    } label: {
-                        Text("Открыть чат")
-                            .underline()
-                            .font(Font.custom("Alegreya-Bold", size: 16))
-                            .multilineTextAlignment(.center)
-                            .foregroundStyle(.darkPrimary)
+                    HStack(spacing: 24) {
+                        Button {
+                            viewModel.cancelOrder()
+                            dismiss()
+                        } label: {
+                            Text("Отменить заказ")
+                                .underline()
+                                .font(Font.custom("Alegreya-Bold", size: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.darkPrimary)
+                        }
+                        Button {
+                            
+                        } label: {
+                            Text("Открыть чат")
+                                .underline()
+                                .font(Font.custom("Alegreya-Bold", size: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.darkPrimary)
+                        }
                     }
                 }
             }
@@ -71,15 +73,17 @@ struct OrderScreen: View {
             LazyVStack(alignment: .leading, spacing: 16) {
                 BasicButton(header: "Статус", title: viewModel.order.status.text(), action: {})
                     .disabled(true)
-                BasicButton(header: "Адрес", title: "\(viewModel.order.address.city), \(viewModel.order.address.street), \(viewModel.order.address.room)", action: {
-                    addressScreen = AnyView(NewAddressScreen(isEdit: true).navigationBarHidden(true).environmentObject(viewModel))
-                })
-                .background {
-                    NavigationLink(destination: addressScreen, isActive: Binding(
-                        get: { addressScreen != nil },
-                        set: { if !$0 { addressScreen = nil } }
-                    )) {
-                        EmptyView()
+                if let address = viewModel.order.address {
+                    BasicButton(header: "Адрес", title: "\(address.city), \(address.street), \(address.room)", action: {
+                        addressScreen = AnyView(NewAddressScreen(isEdit: true).navigationBarHidden(true).environmentObject(viewModel))
+                    })
+                    .background {
+                        NavigationLink(destination: addressScreen, isActive: Binding(
+                            get: { addressScreen != nil },
+                            set: { if !$0 { addressScreen = nil } }
+                        )) {
+                            EmptyView()
+                        }
                     }
                 }
             }

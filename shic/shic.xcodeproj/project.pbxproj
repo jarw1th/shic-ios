@@ -9,8 +9,17 @@
 /* Begin PBXBuildFile section */
 		217524472CB975B900D19AC6 /* StartBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217524462CB975B100D19AC6 /* StartBanner.swift */; };
 		217524492CB9764A00D19AC6 /* PromoBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217524482CB9764200D19AC6 /* PromoBanner.swift */; };
-		2175244D2CB978D800D19AC6 /* StartBannerStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175244C2CB978CA00D19AC6 /* StartBannerStruct.swift */; };
+		2175244D2CB978D800D19AC6 /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175244C2CB978CA00D19AC6 /* Carousel.swift */; };
 		2175244F2CB97B8200D19AC6 /* PromoBannerStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175244E2CB97B7800D19AC6 /* PromoBannerStruct.swift */; };
+		217524532CB984BB00D19AC6 /* AddressChooseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217524522CB984AD00D19AC6 /* AddressChooseScreen.swift */; };
+		219356692CB985D8000C10E2 /* UserDataScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219356682CB985D1000C10E2 /* UserDataScreen.swift */; };
+		2193566B2CB986BB000C10E2 /* PrepayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2193566A2CB986B5000C10E2 /* PrepayScreen.swift */; };
+		2193566F2CB98B20000C10E2 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2193566E2CB98B1D000C10E2 /* Field.swift */; };
+		219356712CB98D34000C10E2 /* Promo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219356702CB98D32000C10E2 /* Promo.swift */; };
+		219356742CB99D10000C10E2 /* OrderArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219356732CB99D00000C10E2 /* OrderArchive.swift */; };
+		21AA4F732CBE42650029B790 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AA4F722CBE42610029B790 /* Constants.swift */; };
+		21B23BFF2CBE609500C49DA4 /* ACarousel in Frameworks */ = {isa = PBXBuildFile; productRef = 21B23BFE2CBE609500C49DA4 /* ACarousel */; };
+		21EED0C62CBE373000991685 /* CroissantOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21EED0C52CBE373000991685 /* CroissantOne-Regular.ttf */; };
 		21EFBF1D2CB7CD9B003F4ACB /* Alegreya-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21EFBEAA2CB7CD9B003F4ACB /* Alegreya-Bold.ttf */; };
 		21EFBF1E2CB7CD9B003F4ACB /* Alegreya-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21EFBEAB2CB7CD9B003F4ACB /* Alegreya-Regular.ttf */; };
 		21EFBF1F2CB7CD9B003F4ACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21EFBEAD2CB7CD9B003F4ACB /* Assets.xcassets */; };
@@ -21,7 +30,6 @@
 		21EFBF252CB7CD9B003F4ACB /* AcceptField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFBEB52CB7CD9B003F4ACB /* AcceptField.swift */; };
 		21EFBF262CB7CD9B003F4ACB /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFBEB62CB7CD9B003F4ACB /* BasicButton.swift */; };
 		21EFBF272CB7CD9B003F4ACB /* BasicFeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFBEB72CB7CD9B003F4ACB /* BasicFeedItem.swift */; };
-		21EFBF282CB7CD9B003F4ACB /* CardPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFBEB82CB7CD9B003F4ACB /* CardPicker.swift */; };
 		21EFBF292CB7CD9B003F4ACB /* CodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFBEB92CB7CD9B003F4ACB /* CodeField.swift */; };
 		21EFBF2A2CB7CD9B003F4ACB /* FillField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFBEBA2CB7CD9B003F4ACB /* FillField.swift */; };
 		21EFBF2B2CB7CD9B003F4ACB /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EFBEBB2CB7CD9B003F4ACB /* MainButton.swift */; };
@@ -102,9 +110,17 @@
 /* Begin PBXFileReference section */
 		217524462CB975B100D19AC6 /* StartBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBanner.swift; sourceTree = "<group>"; };
 		217524482CB9764200D19AC6 /* PromoBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBanner.swift; sourceTree = "<group>"; };
-		2175244C2CB978CA00D19AC6 /* StartBannerStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBannerStruct.swift; sourceTree = "<group>"; };
+		2175244C2CB978CA00D19AC6 /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		2175244E2CB97B7800D19AC6 /* PromoBannerStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBannerStruct.swift; sourceTree = "<group>"; };
+		217524522CB984AD00D19AC6 /* AddressChooseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressChooseScreen.swift; sourceTree = "<group>"; };
+		219356682CB985D1000C10E2 /* UserDataScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataScreen.swift; sourceTree = "<group>"; };
+		2193566A2CB986B5000C10E2 /* PrepayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepayScreen.swift; sourceTree = "<group>"; };
+		2193566E2CB98B1D000C10E2 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		219356702CB98D32000C10E2 /* Promo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promo.swift; sourceTree = "<group>"; };
+		219356732CB99D00000C10E2 /* OrderArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderArchive.swift; sourceTree = "<group>"; };
 		219979812CAFE2E4008688A5 /* shic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		21AA4F722CBE42610029B790 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		21EED0C52CBE373000991685 /* CroissantOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CroissantOne-Regular.ttf"; sourceTree = "<group>"; };
 		21EFBEAA2CB7CD9B003F4ACB /* Alegreya-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-Bold.ttf"; sourceTree = "<group>"; };
 		21EFBEAB2CB7CD9B003F4ACB /* Alegreya-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-Regular.ttf"; sourceTree = "<group>"; };
 		21EFBEAD2CB7CD9B003F4ACB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,7 +132,6 @@
 		21EFBEB52CB7CD9B003F4ACB /* AcceptField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptField.swift; sourceTree = "<group>"; };
 		21EFBEB62CB7CD9B003F4ACB /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		21EFBEB72CB7CD9B003F4ACB /* BasicFeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicFeedItem.swift; sourceTree = "<group>"; };
-		21EFBEB82CB7CD9B003F4ACB /* CardPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPicker.swift; sourceTree = "<group>"; };
 		21EFBEB92CB7CD9B003F4ACB /* CodeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeField.swift; sourceTree = "<group>"; };
 		21EFBEBA2CB7CD9B003F4ACB /* FillField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillField.swift; sourceTree = "<group>"; };
 		21EFBEBB2CB7CD9B003F4ACB /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
@@ -202,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B23BFF2CBE609500C49DA4 /* ACarousel in Frameworks */,
 				44573ECA35DA1F8B77BB421A /* Pods_shic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +231,24 @@
 				25CA53B03B2D6F107D59479C /* Pods_shic.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		217524512CB984A400D19AC6 /* New Order */ = {
+			isa = PBXGroup;
+			children = (
+				2193566A2CB986B5000C10E2 /* PrepayScreen.swift */,
+				219356682CB985D1000C10E2 /* UserDataScreen.swift */,
+				217524522CB984AD00D19AC6 /* AddressChooseScreen.swift */,
+			);
+			path = "New Order";
+			sourceTree = "<group>";
+		};
+		219356722CB99CEF000C10E2 /* Order Archive */ = {
+			isa = PBXGroup;
+			children = (
+				219356732CB99D00000C10E2 /* OrderArchive.swift */,
+			);
+			path = "Order Archive";
 			sourceTree = "<group>";
 		};
 		219979782CAFE2E4008688A5 = {
@@ -238,6 +272,7 @@
 		21EFBEAC2CB7CD9B003F4ACB /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				21EED0C52CBE373000991685 /* CroissantOne-Regular.ttf */,
 				21EFBEAA2CB7CD9B003F4ACB /* Alegreya-Bold.ttf */,
 				21EFBEAB2CB7CD9B003F4ACB /* Alegreya-Regular.ttf */,
 			);
@@ -256,6 +291,7 @@
 		21EFBEB42CB7CD9B003F4ACB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				21AA4F722CBE42610029B790 /* Constants.swift */,
 				21EFBEAF2CB7CD9B003F4ACB /* AppDelegate.swift */,
 				21EFBEB02CB7CD9B003F4ACB /* GoogleService-Info.plist */,
 				21EFBEB12CB7CD9B003F4ACB /* Info.plist */,
@@ -268,10 +304,10 @@
 		21EFBEC32CB7CD9B003F4ACB /* Basic Structs */ = {
 			isa = PBXGroup;
 			children = (
+				2193566E2CB98B1D000C10E2 /* Field.swift */,
 				21EFBEB52CB7CD9B003F4ACB /* AcceptField.swift */,
 				21EFBEB62CB7CD9B003F4ACB /* BasicButton.swift */,
 				21EFBEB72CB7CD9B003F4ACB /* BasicFeedItem.swift */,
-				21EFBEB82CB7CD9B003F4ACB /* CardPicker.swift */,
 				21EFBEB92CB7CD9B003F4ACB /* CodeField.swift */,
 				21EFBEBA2CB7CD9B003F4ACB /* FillField.swift */,
 				21EFBEBB2CB7CD9B003F4ACB /* MainButton.swift */,
@@ -290,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				2175244E2CB97B7800D19AC6 /* PromoBannerStruct.swift */,
-				2175244C2CB978CA00D19AC6 /* StartBannerStruct.swift */,
+				2175244C2CB978CA00D19AC6 /* Carousel.swift */,
 				21EFBEC42CB7CD9B003F4ACB /* BottomBarForm.swift */,
 				21EFBEC52CB7CD9B003F4ACB /* NavigationBarBack.swift */,
 				21EFBEC62CB7CD9B003F4ACB /* NavigationBarForm.swift */,
@@ -383,6 +419,7 @@
 		21EFBEE02CB7CD9B003F4ACB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				219356702CB98D32000C10E2 /* Promo.swift */,
 				217524482CB9764200D19AC6 /* PromoBanner.swift */,
 				217524462CB975B100D19AC6 /* StartBanner.swift */,
 				21EFBEDA2CB7CD9B003F4ACB /* Address.swift */,
@@ -537,6 +574,8 @@
 		21EFBF1B2CB7CD9B003F4ACB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				219356722CB99CEF000C10E2 /* Order Archive */,
+				217524512CB984A400D19AC6 /* New Order */,
 				21EFBEF12CB7CD9B003F4ACB /* Addresses */,
 				21EFBEF62CB7CD9B003F4ACB /* Auth */,
 				21EFBEFB2CB7CD9B003F4ACB /* Home */,
@@ -620,6 +659,9 @@
 				Base,
 			);
 			mainGroup = 219979782CAFE2E4008688A5;
+			packageReferences = (
+				21B23BFD2CBE609500C49DA4 /* XCRemoteSwiftPackageReference "ACarousel" */,
+			);
 			productRefGroup = 219979822CAFE2E4008688A5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -635,6 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21EFBF1D2CB7CD9B003F4ACB /* Alegreya-Bold.ttf in Resources */,
+				21EED0C62CBE373000991685 /* CroissantOne-Regular.ttf in Resources */,
 				21EFBF1E2CB7CD9B003F4ACB /* Alegreya-Regular.ttf in Resources */,
 				21EFBF1F2CB7CD9B003F4ACB /* Assets.xcassets in Resources */,
 				21EFBF202CB7CD9B003F4ACB /* GoogleService-Info.plist in Resources */,
@@ -696,10 +739,11 @@
 				21EFBF252CB7CD9B003F4ACB /* AcceptField.swift in Sources */,
 				21EFBF262CB7CD9B003F4ACB /* BasicButton.swift in Sources */,
 				21EFBF272CB7CD9B003F4ACB /* BasicFeedItem.swift in Sources */,
-				21EFBF282CB7CD9B003F4ACB /* CardPicker.swift in Sources */,
 				21EFBF292CB7CD9B003F4ACB /* CodeField.swift in Sources */,
 				21EFBF2A2CB7CD9B003F4ACB /* FillField.swift in Sources */,
+				217524532CB984BB00D19AC6 /* AddressChooseScreen.swift in Sources */,
 				21EFBF2B2CB7CD9B003F4ACB /* MainButton.swift in Sources */,
+				2193566F2CB98B20000C10E2 /* Field.swift in Sources */,
 				21EFBF2C2CB7CD9B003F4ACB /* OrderItem.swift in Sources */,
 				217524472CB975B900D19AC6 /* StartBanner.swift in Sources */,
 				21EFBF2D2CB7CD9B003F4ACB /* PickerItems.swift in Sources */,
@@ -718,10 +762,12 @@
 				21EFBF392CB7CD9B003F4ACB /* HEX+.swift in Sources */,
 				21EFBF3A2CB7CD9B003F4ACB /* EndEditing+.swift in Sources */,
 				21EFBF3B2CB7CD9B003F4ACB /* Placeholder.swift in Sources */,
-				2175244D2CB978D800D19AC6 /* StartBannerStruct.swift in Sources */,
+				219356712CB98D34000C10E2 /* Promo.swift in Sources */,
+				2175244D2CB978D800D19AC6 /* Carousel.swift in Sources */,
 				21EFBF3C2CB7CD9B003F4ACB /* Split+.swift in Sources */,
 				21EFBF3D2CB7CD9B003F4ACB /* ViewWrapper.swift in Sources */,
 				21EFBF3E2CB7CD9B003F4ACB /* Enum.swift in Sources */,
+				219356692CB985D8000C10E2 /* UserDataScreen.swift in Sources */,
 				21EFBF3F2CB7CD9B003F4ACB /* Address.swift in Sources */,
 				21EFBF402CB7CD9B003F4ACB /* Order.swift in Sources */,
 				21EFBF412CB7CD9B003F4ACB /* MeasureFormModel.swift in Sources */,
@@ -733,6 +779,7 @@
 				21EFBF472CB7CD9B003F4ACB /* DataManager.swift in Sources */,
 				21EFBF482CB7CD9B003F4ACB /* FirebaseManager.swift in Sources */,
 				21EFBF492CB7CD9B003F4ACB /* UserDefaultsManager.swift in Sources */,
+				21AA4F732CBE42650029B790 /* Constants.swift in Sources */,
 				21EFBF4A2CB7CD9B003F4ACB /* ValidManager.swift in Sources */,
 				21EFBF4B2CB7CD9B003F4ACB /* SmartFormRouteManager.swift in Sources */,
 				21EFBF4C2CB7CD9B003F4ACB /* StyleFormRouteManager.swift in Sources */,
@@ -749,6 +796,7 @@
 				21EFBF712CB7D55C003F4ACB /* Item.swift in Sources */,
 				21EFBF592CB7CD9B003F4ACB /* MeasureFormScreen.swift in Sources */,
 				21EFBF5A2CB7CD9B003F4ACB /* StartMeasureFormScreen.swift in Sources */,
+				2193566B2CB986BB000C10E2 /* PrepayScreen.swift in Sources */,
 				21EFBF5B2CB7CD9B003F4ACB /* OrdersScreen.swift in Sources */,
 				21EFBF732CB7D868003F4ACB /* OrderScreen.swift in Sources */,
 				21EFBF5C2CB7CD9B003F4ACB /* ProfileScreen.swift in Sources */,
@@ -767,6 +815,7 @@
 				21EFBF682CB7CD9B003F4ACB /* SmartFormSpecificBodyScreen.swift in Sources */,
 				21EFBF692CB7CD9B003F4ACB /* SmartFormWearStyleScreen.swift in Sources */,
 				2175244F2CB97B8200D19AC6 /* PromoBannerStruct.swift in Sources */,
+				219356742CB99D10000C10E2 /* OrderArchive.swift in Sources */,
 				21EFBF6A2CB7CD9B003F4ACB /* SmartFormWearTypeScreen.swift in Sources */,
 				21EFBF6B2CB7CD9B003F4ACB /* StartSmartFormScreen.swift in Sources */,
 				21EFBF6C2CB7CD9B003F4ACB /* StartStyleFormScreen.swift in Sources */,
@@ -998,6 +1047,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		21B23BFD2CBE609500C49DA4 /* XCRemoteSwiftPackageReference "ACarousel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JWAutumn/ACarousel";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		21B23BFE2CBE609500C49DA4 /* ACarousel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21B23BFD2CBE609500C49DA4 /* XCRemoteSwiftPackageReference "ACarousel" */;
+			productName = ACarousel;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 219979792CAFE2E4008688A5 /* Project object */;
 }

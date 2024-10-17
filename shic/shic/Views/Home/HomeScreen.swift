@@ -11,47 +11,52 @@ struct HomeScreen: View {
     
     @EnvironmentObject var viewModel: ViewModel
     
+    @State private var isShowNewOrder: Bool = false
+    
     var body: some View {
         NavigationView() {
             makeContent()
-                .ignoresSafeArea()
                 .navigationBarHidden(true)
                 .onAppear {
                     viewModel.isTabBarHidded = false
                     viewModel.fetchBanners()
+                }
+                .fullScreenCover(isPresented: $isShowNewOrder, onDismiss: {
+                    viewModel.isTabBarHidded = false
+                }) {
+                    AnyView(AddressChooseScreen().navigationBarHidden(true).environmentObject(viewModel))
                 }
         }
         .endEditing()
     }
     
     private func makeContent() -> some View {
-        VStack(spacing: 32) {
-            VStack(spacing: 16) {
-                header()
-            }
+        VStack {
             centerView()
         }
         .padding(.horizontal, 20)
         .padding(.top, 70)
-        .padding(.bottom, 40)
-    }
-    
-    private func header() -> some View {
-        Text("Приветствуем в Shic")
-            .font(Font.custom("Alegreya-Bold", size: 24))
-            .multilineTextAlignment(.center)
-            .foregroundStyle(Color.darkPrimary)
+        .padding(.bottom, 20)
     }
     
     private func centerView() -> some View {
         ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(spacing: 32) {
-                StartBannerStruct(banner: viewModel.start)
+            LazyVStack(spacing: 16) {
+                Carousel(items: [viewModel.start])
                 
-                ForEach(viewModel.promo) { banner in
-                    PromoBannerStruct(banner: banner) {
-                        viewModel.order.promo = banner.promo
-                        viewModel.fetchDiscount()
+                MainButton(text: "Сделать первый заказ") {
+                    viewModel.newOrder()
+                    isShowNewOrder.toggle()
+                }
+                
+                ForEach(viewModel.promoBanner) { banner in
+                    if viewModel.checkPromo(banner.promo) {
+                        PromoBannerStruct(banner: banner) {
+                            viewModel.newOrder()
+                            viewModel.order.promo = banner.promo
+                            viewModel.fetchDiscount()
+                            isShowNewOrder.toggle()
+                        }
                     }
                 }
             }

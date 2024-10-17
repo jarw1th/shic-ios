@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Address: Codable, Identifiable {
+struct Address: Codable, Identifiable, Equatable {
     
     var id: String = UUID().uuidString
     var name: String = ""

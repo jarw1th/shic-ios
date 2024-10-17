@@ -16,6 +16,7 @@ struct ProfileScreen: View {
     @State private var isShowMeasureForm: Bool = false
     
     @State private var myAddresses: AnyView?
+    @State private var orderArchive: AnyView?
     
     var body: some View {
         NavigationView() {
@@ -96,6 +97,7 @@ struct ProfileScreen: View {
                             viewModel.fetchUser()
                         }
                     }
+                    .disabled(true)
                 }
                 LazyVStack(alignment: .leading, spacing: 16) {
                     BasicButton(header: "Адреса", title: "Открыть") {
@@ -111,7 +113,16 @@ struct ProfileScreen: View {
                         }
                     }
                     BasicButton(header: "Архив заказов", title: "Открыть") {
-                        
+                        viewModel.isTabBarHidded = true
+                        orderArchive = AnyView(OrderArchive().navigationBarHidden(true).environmentObject(viewModel))
+                    }
+                    .background {
+                        NavigationLink(destination: orderArchive, isActive: Binding(
+                            get: { orderArchive != nil },
+                            set: { if !$0 { orderArchive = nil } }
+                        )) {
+                            EmptyView()
+                        }
                     }
                     BasicButton(header: "Умная форма", title: viewModel.userModel.isSmartFormFill ? "Заполнить заново" : "Заполнить") {
                         isShowSmartForm.toggle()

@@ -14,21 +14,25 @@ struct SavingInformation: View {
     var savingType: FormType
     
     @State private var isShowNext: Bool = false
+    @State private var rotation: Double = 0
     
     var body: some View {
         makeContent()
             .onAppear {
-                switch savingType {
-                case .smart:
-                    viewModel.userModel.isSmartFormFill = true
-                case .style:
-                    viewModel.userModel.isStyleFormFill = true
-                case .measure:
-                    viewModel.userModel.isMeasureFormFill = true
+                startRotationAnimation()
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+                    switch savingType {
+                    case .smart:
+                        viewModel.userModel.isSmartFormFill = true
+                    case .style:
+                        viewModel.userModel.isStyleFormFill = true
+                    case .measure:
+                        viewModel.userModel.isMeasureFormFill = true
+                    }
+                    viewModel.saveForm(savingType)
+                    viewModel.saveUser()
+                    isShowNext.toggle()
                 }
-                viewModel.saveForm(savingType)
-                viewModel.saveUser()
-                isShowNext.toggle()
             }
             .fullScreenCover(isPresented: $isShowNext) {
                 switch savingType {
@@ -66,18 +70,38 @@ struct SavingInformation: View {
                     .frame(width: 200, height: 200)
                     .position(x: 0, y: geo.size.height)
                 
-                VStack(spacing: 16) {
+                VStack(spacing: 24) {
                     Spacer()
-                    Image("LargeShicLogotype")
-                        .resizable()
-                        .aspectRatio(1.6, contentMode: .fit)
-                        .frame(width: 200)
                     Text("Загрузка...")
-                        .font(Font.custom("Alegreya-Bold", size: 16))
+                        .font(Font.custom("Alegreya-Bold", size: 20))
                         .multilineTextAlignment(.center)
-                        .foregroundStyle(.darkPrimary)
-                    Spacer()
+                        .foregroundStyle(Color.darkPrimary)
+                        .padding(.bottom, 52)
                 }
+                
+                GeometryReader { geoHStack in
+                    HStack(spacing: 16) {
+                        Spacer()
+                        ForEach(["s", "h", "i", "c"], id: \.self) { letter in
+                            Text(letter)
+                                .font(Font.custom("CroissantOne-Regular", size: 100))
+                                .rotationEffect(Angle(degrees: rotation))
+                        }
+                        Spacer()
+                    }
+                    .padding(.horizontal, 20)
+                    .foregroundStyle(.darkPrimary)
+                }
+                .frame(maxHeight: .infinity)
+            }
+        }
+    }
+    
+    private func startRotationAnimation() {
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
+            rotation += 2.0
+            if rotation >= 360 {
+                rotation = 0
             }
         }
     }

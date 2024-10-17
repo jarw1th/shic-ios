@@ -16,6 +16,7 @@ struct TabScreen: View {
     var body: some View {
         makeContent()
             .ignoresSafeArea()
+            .animation(.easeInOut, value: viewModel.isTabBarHidded)
     }
     
     private func makeContent() -> some View {
@@ -24,7 +25,7 @@ struct TabScreen: View {
             if !viewModel.isTabBarHidded {
                 tabs()
                     .padding(.horizontal, 20)
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 20)
             }
         }
     }
@@ -93,7 +94,7 @@ struct TabScreen: View {
         .padding(.vertical, 6)
         .frame(maxWidth: .infinity)
         .background(
-            RoundedRectangle(cornerRadius: 30)
+            RoundedRectangle(cornerRadius: 20)
                 .foregroundStyle(.darkPrimary)
         )
     }

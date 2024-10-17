@@ -31,7 +31,7 @@ struct MainButton: View {
                 .padding(.vertical, 16)
                 .frame(maxWidth: .infinity)
                 .background {
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 12)
                         .fill(Color.darkPrimary)
                         .opacity(isAvailable ? 1.0 : 0.4)
                         .padding(1)

@@ -15,19 +15,19 @@ struct OrderItem: View {
     var chat: () -> Void
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(status)
                 .font(.custom("Alegreya-Bold", size: 16))
                 .foregroundColor(Color.darkPrimary)
                 .multilineTextAlignment(.leading)
-                .padding(.leading, 20)
+                .padding(.leading, 16)
             
             Button {
                 action()
             } label: {
                 HStack(spacing: 16) {
                     Text(title)
-                        .font(.custom("Alegreya-Regular", size: 16))
+                        .font(.custom("Alegreya-Regular", size: 12))
                         .foregroundColor(Color.darkPrimary)
                         .multilineTextAlignment(.leading)
             
@@ -38,7 +38,7 @@ struct OrderItem: View {
                         Image("ChatIcon")
                             .renderingMode(.template)
                             .resizable()
-                            .frame(width: 24, height: 24)
+                            .frame(width: 16, height: 16)
                             .foregroundStyle(Color.darkPrimary)
                     }
                     Button {
@@ -47,15 +47,15 @@ struct OrderItem: View {
                         Image("FillRightArrow")
                             .renderingMode(.template)
                             .resizable()
-                            .frame(width: 24, height: 24)
+                            .frame(width: 16, height: 16)
                             .foregroundStyle(Color.darkPrimary)
                     }
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
                 .frame(maxWidth: .infinity)
                 .background(
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 12)
                         .stroke(Color.darkPrimary, lineWidth: 1)
                         .padding(1)
                 )

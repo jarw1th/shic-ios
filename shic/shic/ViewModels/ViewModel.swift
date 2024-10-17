@@ -29,12 +29,18 @@ final class ViewModel: ObservableObject {
     @Published var address: Address = Address()
     
     // Banners
-    @Published var promo: [PromoBanner] = []
+    @Published var promoBanner: [PromoBanner] = []
     @Published var start: StartBanner = StartBanner()
     
+    // User
     @Published var userModel: User = User(uid: UUID().uuidString)
-    @Published var imagePacks: [[String]] = []
+    @Published var userPromos: [Promo] = []
     
+    // Content
+    @Published var imagePacks: [[String]] = []
+    @Published var promo: Promo = Promo()
+    
+    // UI
     @Published var isTabBarHidded: Bool = false
     
     init() {
@@ -121,7 +127,20 @@ final class ViewModel: ObservableObject {
         address = Address()
     }
     
-    func saveOrder() {
+    func saveNewOrder() {
+        order.id = generateShortOrderNumber()
+        order.name = generateShortOrderNumber()
+        order.userID = userModel.uid
+        order.smartForm = smartFormModel
+        order.measureForm = measureFormModel
+        order.styleForm = styleFormModel
+        order.startDate = getTodayDate()
+        firebaseManager.saveOrder(order: order)
+    }
+    
+    func cancelOrder() {
+        order.status = .canceled
+        order.endDate = getTodayDate()
         firebaseManager.saveOrder(order: order)
     }
     
@@ -155,7 +174,7 @@ final class ViewModel: ObservableObject {
         firebaseManager.fetchPromoBanners { result in
             switch result {
             case .success(let banners):
-                self.promo = banners
+                self.promoBanner = banners
             case .failure(let error):
                 print(error)
                 break
@@ -164,15 +183,71 @@ final class ViewModel: ObservableObject {
     }
     
     func fetchDiscount() {
-        firebaseManager.fetchPromoDiscount(for: order.promo) { result in
+        firebaseManager.fetchContentPromo(for: order.promo) { result in
             switch result {
-            case .success(let discount):
-                self.order.discount = discount
+            case .success(let promo):
+                self.order.discount = Double(promo.discount) / 100
             case .failure(let error):
                 print(error)
                 break
             }
         }
+    }
+    
+    func checkPromo(_ promo: String) -> Bool {
+        fetchUserPromos()
+        fetchContentPromo(promo)
+        if let userPromo = userPromos.filter({ $0.name == promo }).first,
+           userPromo.uses < userPromo.total {
+            return true
+        } else if !userPromos.contains(where: { $0.name == promo }) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func updatePromo() {
+        if var userPromo = userPromos.filter({ $0.name == order.promo }).first {
+            userPromo.uses += 1
+            firebaseManager.saveUserPromo(for: userModel.uid, with: userPromo)
+        }
+    }
+    
+    private func fetchUserPromos() {
+        firebaseManager.fetchUserPromos(for: userModel.uid) { result in
+            switch result {
+            case .success(let promos):
+                self.userPromos = promos
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
+    }
+    
+    private func fetchContentPromo(_ text: String) {
+        firebaseManager.fetchContentPromo(for: text) { result in
+            switch result {
+            case .success(let promo):
+                self.promo = promo
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
+    }
+    
+    private func generateShortOrderNumber() -> String {
+        let timestamp = Int(Date().timeIntervalSince1970.truncatingRemainder(dividingBy: 100000))
+        let randomSuffix = Int.random(in: 100..<999)
+        return "SHIC\(timestamp)\(randomSuffix)"
+    }
+    
+    private func getTodayDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        return dateFormatter.string(from: Date())
     }
     
 }

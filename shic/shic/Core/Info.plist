@@ -6,6 +6,7 @@
 	<array>
 		<string>Alegreya-Bold.ttf</string>
 		<string>Alegreya-Regular.ttf</string>
+		<string>CroissantOne-Regular.ttf</string>
 	</array>
 	<key>UILaunchScreen</key>
 	<dict>

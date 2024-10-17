@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StartBanner: Codable {
+struct StartBanner: Codable, Identifiable {
     
     var id: String = UUID().uuidString
     var images: [String] = []

@@ -17,12 +17,14 @@ struct LoadingScreen: View {
     var body: some View {
         makeContent()
         .onAppear {
-            if UserDefaultsManager.shared.testLoginInfo.isEmpty {
-                isShowAuth.toggle()
-            } else {
-                viewModel.userModel.uid = UserDefaultsManager.shared.testLoginInfo
-                viewModel.fetchUser()
-                isShowTab.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+                if UserDefaultsManager.shared.testLoginInfo.isEmpty {
+                    isShowAuth.toggle()
+                } else {
+                    viewModel.userModel.uid = UserDefaultsManager.shared.testLoginInfo
+                    viewModel.fetchUser()
+                    isShowTab.toggle()
+                }
             }
         }
         .fullScreenCover(isPresented: $isShowAuth) {
@@ -51,13 +53,26 @@ struct LoadingScreen: View {
                     .frame(width: 200, height: 200)
                     .position(x: 0, y: geo.size.height)
                 
-                VStack {
-                    Spacer()
-                    Image("LargeShicLogotype")
-                        .resizable()
-                        .aspectRatio(1.6, contentMode: .fit)
-                        .frame(width: 200)
-                    Spacer()
+                VStack(spacing: 24) {
+                    GeometryReader { geoHStack in
+                        HStack {
+                            ForEach(["s", "h", "i", "c"], id: \.self) { letter in
+                                Text(letter)
+                                    .font(Font.custom("CroissantOne-Regular", size: CGFloat.random(in: 40...100)))
+                                    .rotationEffect(Angle(degrees: Double.random(in: -40...40)))
+                                    .offset(y: CGFloat.random(in: 40...geoHStack.size.height - 40))
+                                Spacer()
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                        .foregroundStyle(.darkPrimary)
+                    }
+                    .frame(maxHeight: .infinity)
+                    Text(Constants.loadingPhrases.randomElement() ?? "Одевайся по-новому")
+                        .font(Font.custom("Alegreya-Bold", size: 20))
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(Color.darkPrimary)
+                        .padding(.bottom, 52)
                 }
             }
         }
